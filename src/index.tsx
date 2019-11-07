@@ -1,10 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Hello } from "./components/Hello";
+import { SlideShowView } from "./components/SlideShowView";
 
 ReactDOM.render
 (
-    <Hello compiler="TypeScript" framework="React" />,
+    <SlideShowView width={600} height={600}/>,
     document.getElementById("example")
 );
