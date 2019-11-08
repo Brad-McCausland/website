@@ -20,6 +20,7 @@ interface SlideShowProps
 {
     width: number,
     height: number,
+    images: HTMLImageElement[],
 }
 
 interface SlideShowState
@@ -44,28 +45,30 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
         var errorImage = new Image()
         errorImage.src = "./src/images/image_load_error.png";
 
-        errorImage.onload = () =>
-        {
-            this.displayError();
-        }
-
         this.state = 
         {
             width: props.width,
             height: props.height,
+            images: props.images,
             readyState: stateEnum.EMPTY,
-            images: [],
             currentImageIndex: 0,
             intervalID: 0,
             errorImage: errorImage,
         }
+
+        // Todo: doesn't work here, needs to be moved someplace after loading is complete.
+        // this.addLoadingAnimation();
     }
 
     render()
     {
         return (
             <div>
-                <canvas ref={this.canvasRef} width={this.state.width} height={this.state.height} style={{backgroundColor: "#EEEEEE"}}/>
+                <canvas ref={this.canvasRef}
+                width={this.state.width}
+                height={this.state.height}
+                style={{backgroundColor: "#EEEEEE"}}
+                onClick={() => this.displayNextImage()}/>
             </div>
         );
     }
@@ -103,8 +106,44 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
         this.state.images.unshift(image);
     }
 
+    displayNextImage(): void
+    {
+        if (this.state.images.length)
+        {
+            this.setState (
+            {
+                currentImageIndex: (this.state.currentImageIndex + 1) % this.state.images.length,
+            });
+            this.displayImage(this.state.images[this.state.currentImageIndex]);
+        }
+        else
+        {
+            console.log("Attempted to display next image when no images are loaded!")
+        }
+    }
+
     // Loads error image from local storage, pushes it into the slideshow, and displays it
     displayError(callback?: () => void): void
+    {
+        // Clear slideshow
+        this.clearImages();
+
+        // Display error image
+        this.displayImage(this.state.errorImage);
+        
+        this.setState (
+            {
+                readyState: stateEnum.ERROR,
+            }
+        )
+
+        if (callback)
+        {
+            callback();
+        }
+    }
+
+    displayImage(image: HTMLImageElement): void
     {
         const canvas = this.canvasRef.current;
         if (canvas)
@@ -118,26 +157,14 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
                     clearInterval(this.state.intervalID);
                 }
 
-                // Clear slideshow
-                this.clearImages();
+                // Clear previous image
+                context.clearRect(0, 0, canvas.width, canvas.height)
 
-                // Display error image
-                context.drawImage(this.state.errorImage, 0, 0);
-                
-                this.setState (
-                    {
-                        readyState: stateEnum.ERROR,
-                    }
-                )
-
-                if (callback)
-                {
-                    callback();
-                }
+                // Display image
+                context.drawImage(image, 0, 0, canvas.width, canvas.height);
             }
         }
     }
-
 
     clearImages(): void
     {
@@ -147,30 +174,48 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
             }
         )
     }
-/*
+
     // Loads loading animation from local storage and displays it in photo view
     addLoadingAnimation(): void
     {
-        this.images = [];
-        this.state = stateEnum.LOADING;
+        this.clearImages()
+
+        this.setState (
+            {
+                readyState: stateEnum.LOADING,
+            }
+        )
 
         let loadingImage = new Image();
-        loadingImage.src = "services/image_service/other_images/loading.png";
+        loadingImage.src = "./src/images/loading.png";
 
         var loadingAnimation = new AnimatableImage(loadingImage, 0, 12, 256, 256);
 
-        if (!this.images.length)
+        if (!this.state.images.length)
         {
             // Center loading image in the loading view
-            let width = (this.canvas.width - 256)/2;
-            let height = (this.canvas.height - 256)/2;
-
-            this.intervalID = window.setInterval(this.animateImageInCanvas, 100, this.canvas.getContext("2d"), width, height, loadingAnimation);
+            let width = (this.state.width - 256)/2;
+            let height = (this.state.height - 256)/2;
+            
+            const canvas = this.canvasRef.current;
+            if (canvas)
+            {
+                const context = canvas.getContext("2d");
+                if (context)
+                {
+                    this.setState(
+                        {
+                            intervalID: window.setInterval(this.animateImageInCanvas, 100, canvas.getContext("2d"), width, height, loadingAnimation)
+                        }
+                    )
+                }
+            }
         }
     }
 
     animateImageInCanvas(context: CanvasRenderingContext2D, x: number, y: number, iobj: AnimatableImage): void
     {
+        console.log("frame");
         if (iobj.source != null)
         {
             context.drawImage
@@ -184,7 +229,7 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
             // Iterate one frame in image
             iobj.currentFrame = (iobj.currentFrame + 1) % iobj.totalFrames;
         }
-    }*/
+    }
 }
 
 class AnimatableImage
