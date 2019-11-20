@@ -42,7 +42,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
         const images = this.state.images;
         return (
             <div>
-                <SlideShowView width={600} height={600} images={images} initWithLoadingAnimation={true}/>
+                <SlideShowView width={600} height={600} images={images} showLoadingAnimationWhenEmpty={true}/>
 
                 <Button
                     value="load images"
