@@ -1,14 +1,5 @@
 import * as React from "react";
 
-// Enum for defining Slideshow's states
-var stateEnum =
-{
-    EMPTY: 0,
-    LOADING: 1,
-    READY: 2,
-    ERROR: 3
-};
-
 // Props define elements required to instantiate
 interface SlideShowProps
 {
@@ -21,7 +12,6 @@ interface SlideShowProps
 // State defines all private properties
 interface SlideShowState
 {
-    readyState: number,
     currentImageIndex: number,
     intervalID: number,
 }
@@ -29,11 +19,13 @@ interface SlideShowState
 export class SlideShowView extends React.Component<SlideShowProps, SlideShowState>
 {
     private canvasRef = React.createRef<HTMLCanvasElement>();
-    private errorImage = new Image()
+    private errorImage = new Image();
     private loadingAnimation = new Image();
 
     render()
     {
+        console.log("render");
+
         return (
             <div>
                 <canvas
@@ -47,6 +39,31 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
         );
     }
 
+    componentDidUpdate(prevProps: SlideShowProps)
+    {
+        console.log("component update");
+        if (prevProps.images !== this.props.images)
+        {
+
+            if (this.props.images.length)
+            {
+                console.log("has images, should end animation");
+                this.endLoadingAnimation();
+            }
+            else
+            {
+                console.log("does not have images, should display animation");
+                this.displayLoadingAnimation();
+            }
+
+            if (this.props.images.length)
+            {
+                console.log("images prop not equal, displaying next image");
+                this.displayNextImage();
+            }
+        }
+    }
+
     constructor(props: SlideShowProps)
     {
         super(props);
@@ -56,7 +73,6 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
 
         this.state = 
         {
-            readyState: stateEnum.EMPTY,
             currentImageIndex: -1,
             intervalID: 0
         }
@@ -64,98 +80,17 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
 
     componentDidMount()
     {
-        // Display first photo when it loads
-        if (this.props.images.length)
-        {
-            this.props.images[0].onload = this.setReady.bind(this);
-        }
-
+        console.log("component mount");
         // Set to loading state if specified by caller
-        if (this.props.initWithLoadingAnimation)
+        if (this.props.initWithLoadingAnimation && !this.props.images.length)
         {
-            this.setLoading();
-        }
-    }
-
-    isEmpty(): boolean
-    {
-        return this.state.readyState === stateEnum.EMPTY;
-    }
-
-    isLoading(): boolean
-    {
-        return this.state.readyState === stateEnum.LOADING;
-    }
-
-    isReady(): boolean
-    {
-        return this.state.readyState === stateEnum.READY;
-    }
-
-    isError(): boolean
-    {
-        return this.state.readyState === stateEnum.ERROR;
-    }
-
-    setEmpty(): void
-    {
-        this.setState(
-            {
-                readyState: stateEnum.EMPTY,
-            }
-        )
-        this.endLoadingAnimation();
-    }
-
-    setLoading(): void
-    {
-        this.setState(
-            {
-                readyState: stateEnum.LOADING,
-            }
-        )
-        this.displayLoadingAnimation()
-    }
-
-    setReady(): void
-    {
-        this.setState(
-            {
-                readyState: stateEnum.READY,
-            }
-        )
-        this.endLoadingAnimation();
-        this.displayNextImage();
-    }
-
-    setError(): void
-    {
-        this.setState(
-            {
-                readyState: stateEnum.ERROR,
-            }
-        )
-        this.endLoadingAnimation();
-        this.displayError();
-    }
-
-    addImage(image: HTMLImageElement): void
-    {
-        this.props.images.unshift(image);
-
-        // If the component is not already displaying images, display the new image when it's loaded and set state accordingly. TODO: Reconsider if this is a good idea
-        if (!this.isReady())
-        {
-            image.onload = () =>
-            {
-                this.setReady();
-            }
+            this.displayLoadingAnimation();
         }
     }
 
     displayNextImage(): void
     {
-        if (this.props.images.length && this.isReady())
+        if (this.props.images.length)
         {
             var newIndex = (this.state.currentImageIndex + 1) % this.props.images.length;
 
@@ -181,6 +116,7 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
         }
     }
 
+    // TODO: Replace with something more 'reacty'. Display the current image in a div in render()
     displayImage(image: HTMLImageElement): void
     {
         const canvas = this.canvasRef.current;
@@ -246,6 +182,7 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
         if (this.state.intervalID)
         {
             clearInterval(this.state.intervalID);
+            console.log("cleared interval");
         }
         this.clearCanvas();
     }
@@ -258,6 +195,7 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
             const context = canvas.getContext("2d");
             if (context)
             {
+                console.log("canvas cleared");
                 context.clearRect(0, 0, canvas.width, canvas.height)
             }
         }

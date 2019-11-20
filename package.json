@@ -3,25 +3,21 @@
   "version": "1.0.0",
   "description": "Personal website",
   "main": "index.js",
-  "scripts":
-  {
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository":
-  {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/bmcc0605/website.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs":
-  {
+  "bugs": {
     "url": "https://github.com/bmcc0605/website/issues"
   },
   "homepage": "https://github.com/bmcc0605/website#readme",
-  "devDependencies":
-  {
+  "devDependencies": {
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
     "source-map-loader": "^0.2.4",
@@ -30,8 +26,7 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
-  "dependencies":
-  {
+  "dependencies": {
     "react": "^16.11.0",
     "react-dom": "^16.11.0"
   }
