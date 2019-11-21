@@ -18,7 +18,7 @@ interface SlideShowState
 export class SlideShowView extends React.Component<SlideShowProps, SlideShowState>
 {
     // TODO: Should the slideshowview own the error image?
-    //private ERROR_IMAGE_SRC = "./src/images/image_load_error.png";
+    static ERROR_IMAGE_SRC = "./src/images/image_load_error.png";
     private LOADING_ANIMATION_SRC = "./src/images/loading.gif";
 
     constructor(props: SlideShowProps)
@@ -50,7 +50,7 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
         return (
             <div>
                 <img
-                    src         = {currentImage.src}
+                    src         = {currentImage.src} //TODO: Bug occurs here sometimes when loading error image: "cannot read property 'src' of undefined." Race condition: does not occur when slowing execution with breakpoints
                     style       = {style}
                     width       = {this.props.width}
                     height      = {this.props.height}
