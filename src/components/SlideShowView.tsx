@@ -29,19 +29,18 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
 
     render()
     {
-        var currentImage;
+        var currentImageSrc;
         var style = {};
 
         if (this.props.images.length)
         {
             // Display current image if images are loaded
-            currentImage = this.props.images[this.state.currentImageIndex];
+            currentImageSrc = this.props.images[this.state.currentImageIndex].src;
         }
         else
         {
             // Display spinner gif if no images
-            currentImage = new Image();
-            currentImage.src = this.LOADING_ANIMATION_SRC;
+            currentImageSrc = this.LOADING_ANIMATION_SRC;
 
             // Hide element if specified in props
             style = this.props.showLoadingAnimationWhenEmpty ? {} : {display: 'none'};
@@ -50,7 +49,7 @@ export class SlideShowView extends React.Component<SlideShowProps, SlideShowStat
         return (
             <div>
                 <img
-                    src         = {currentImage.src} //TODO: Bug occurs here sometimes when loading error image: "cannot read property 'src' of undefined." Race condition: does not occur when slowing execution with breakpoints
+                    src         = {currentImageSrc}
                     style       = {style}
                     width       = {this.props.width}
                     height      = {this.props.height}
