@@ -4,7 +4,7 @@ import * as ReactDOM from "react-dom";
 import { SlideShowView } from "./components/SlideShowView";
 import { fetchImages } from "./utils/ImageLoader";
 import { Button } from "./components/Button";
-import { RoundedImage } from './components/RoundedImage';
+import { RoundedImage } from "./components/RoundedImage";
 
 interface WebPageProps
 {
@@ -32,10 +32,10 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
 
     render()
     {
-        const divStyle =
+        const headerStyle =
         {
             width: "100%",
-            height: "400px",
+            height: "300px",
             backgroundImage: "url(./src/images/pano.jpg)",
             backgroundSize: "cover",
             display: "flex",
@@ -45,20 +45,28 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
 
         const images = this.state.images;
         return (
-            <div>
-                <div
-                    className = "header"
-                    style = {divStyle}
-                >
-                    <RoundedImage
-                        src = "./src/images/portrait_square_right.png"
-                        border = "7px solid white"
-                        width = "200"
-                    />
+            <div className = "web_page">
+
+                <div className = "header" style = {headerStyle}>
+                    <div>
+                        <RoundedImage
+                            src = "./src/images/portrait_square_right.png"
+                            width = "200"
+                            style =
+                            {{
+                                border: "7px solid white",
+                                borderRadius: "50%",
+                                display: "block",
+                                marginLeft: "auto",
+                                marginRight: "auto"
+                            }}
+                        />
+
+                        <h1 style = {{ color: "white"}}> Brad McCausland </h1>
+                    </div>
                 </div>
-                <div
-                    className = "body"
-                >
+
+                <div className = "body" >
                     <SlideShowView width={600} height={600} images={images} showLoadingAnimationWhenEmpty={true}/>
 
                     <Button

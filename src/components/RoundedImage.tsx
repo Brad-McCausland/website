@@ -8,10 +8,9 @@ interface RoundedImageProps
 {
     src: string,
     className?: string,
-    radius?: string,
-    border?: string,
     width: string,
     height?: string,
+    style?: React.CSSProperties,
     onClick?: () => void,
 }
 
@@ -28,10 +27,9 @@ export class RoundedImage extends React.Component<RoundedImageProps, RoundedImag
 
     render ()
     {
-        const style = 
+        const style = this.props.style ||
         {
-            borderRadius: this.props.radius || "50%",
-            border: this.props.border || ""
+            borderRadius: "50%"
         };
 
         return (
