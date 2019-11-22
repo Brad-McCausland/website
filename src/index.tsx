@@ -4,6 +4,7 @@ import * as ReactDOM from "react-dom";
 import { SlideShowView } from "./components/SlideShowView";
 import { fetchImages } from "./utils/ImageLoader";
 import { Button } from "./components/Button";
+import { RoundedImage } from './components/RoundedImage';
 
 interface WebPageProps
 {
@@ -31,19 +32,44 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
 
     render()
     {
+        const divStyle =
+        {
+            width: "100%",
+            height: "400px",
+            backgroundImage: "url(./src/images/pano.jpg)",
+            backgroundSize: "cover",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+        };
+
         const images = this.state.images;
         return (
             <div>
-                <SlideShowView width={600} height={600} images={images} showLoadingAnimationWhenEmpty={true}/>
+                <div
+                    className = "header"
+                    style = {divStyle}
+                >
+                    <RoundedImage
+                        src = "./src/images/portrait_square_right.png"
+                        border = "7px solid white"
+                        width = "200"
+                    />
+                </div>
+                <div
+                    className = "body"
+                >
+                    <SlideShowView width={600} height={600} images={images} showLoadingAnimationWhenEmpty={true}/>
 
-                <Button
-                    value="load images"
-                    onClick={() => this.loadImages()}
-                />
-                <Button
-                    value="clear images"
-                    onClick={() => this.clearImages()}
-                />
+                    <Button
+                        value="load images"
+                        onClick={() => this.loadImages()}
+                    />
+                    <Button
+                        value="clear images"
+                        onClick={() => this.clearImages()}
+                    />
+                </div>
             </div>
         );
     }

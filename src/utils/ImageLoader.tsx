@@ -1,4 +1,3 @@
-
 import { httpGet } from "./HttpGet";
 
 // Function fetchImages() takes a url to imageService and a time out duration as arguments, and attempts to retrieve and decode the images.
