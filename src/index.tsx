@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 
 import { SlideShowView } from "./components/SlideShowView";
 import { fetchImages } from "./utils/ImageLoader";
+import { Button } from "./components/Button";
 
 interface WebPageProps
 {
@@ -80,24 +81,6 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
             }
         );
     }
-}
-
-interface ButtonProps
-{
-    value: string,
-    onClick: () => void,
-}
-
-function Button(props: ButtonProps)
-{
-    return (
-        <button
-            className="reset_button"
-            onClick={props.onClick}
-        >
-            {props.value}
-        </button>
-    )
 }
 
 ReactDOM.render (
