@@ -61,12 +61,12 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                                 marginRight: "auto"
                             }}
                         />
-
                         <h1 style = {{ color: "white"}}> Brad McCausland </h1>
                     </div>
                 </div>
 
                 <div className = "body" >
+                    {/*
                     <SlideShowView width={600} height={600} images={images} showLoadingAnimationWhenEmpty={true}/>
 
                     <Button
@@ -77,6 +77,25 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         value="clear images"
                         onClick={() => this.clearImages()}
                     />
+                    */}
+                    <div className = "paragraph"
+                         style = 
+                         {{
+                             backgroundColor: "white",
+                             marginTop: "20px",
+                             marginLeft: "20vw",
+                             marginRight: "20vw",
+                             maxWidth: "1400px",
+                             minWidth: "400px",
+                             height: "1000px",
+                             display: "flex",
+                             justifyContent: "center",
+                             alignItems: "center"
+                         }}>
+                        <p>
+                            This is a paragraph
+                        </p>
+                    </div>
                 </div>
             </div>
         );
