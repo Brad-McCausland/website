@@ -9,3 +9,13 @@ Body:
 Helvetica
 Corbel?
 Lucida Console Semi-condensed for text entry
+
+Feature pages:
+- Blog (includes portfolio/projects)
+- Travel Photos
+- Education stuff
+
+Menu options:
+- Dark mode toggle
+- Language toggle
+- 
