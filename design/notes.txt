@@ -8,3 +8,4 @@ Museo Sans
 Body:
 Helvetica
 Corbel?
+Lucida Console Semi-condensed for text entry
