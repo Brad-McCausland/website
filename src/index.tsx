@@ -32,11 +32,11 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
 
     render()
     {
-        const headerStyle =
+        const heroStyle =
         {
             width: "100%",
-            height: "300px",
-            backgroundImage: "url(./src/images/pano.jpg)",
+            height: "1080px",
+            backgroundImage: "url(./src/images/hero_road.jpg)",
             backgroundSize: "cover",
             display: "flex",
             justifyContent: "center",
@@ -47,21 +47,9 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
         return (
             <div className = "web_page">
 
-                <div className = "header" style = {headerStyle}>
-                    <div>
-                        <RoundedImage
-                            src = "./src/images/portrait_square_right.png"
-                            width = "200"
-                            style =
-                            {{
-                                border: "7px solid white",
-                                borderRadius: "50%",
-                                display: "block",
-                                marginLeft: "auto",
-                                marginRight: "auto"
-                            }}
-                        />
-                        <h1 style = {{ color: "white"}}> Brad McCausland </h1>
+                <div className = "hero_image" style = {heroStyle}>
+                    <div style = {{height: 1000}}>
+                        <h1 style = {{ color: "white", fontSize: "96px", fontFamily: "Raleway"}}> BRAD MCCAUSLAND </h1>
                     </div>
                 </div>
 
@@ -85,7 +73,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                              marginTop: "20px",
                              marginLeft: "20vw",
                              marginRight: "20vw",
-                             maxWidth: "1400px",
+                             maxWidth: "1080px",
                              minWidth: "400px",
                              height: "1000px",
                              display: "flex",
