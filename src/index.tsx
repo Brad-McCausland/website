@@ -30,42 +30,21 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
             windowWidth: window.innerWidth,
             images: [],
         };
-
-        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-    }
-
-    componentDidMount()
-    {
-        this.updateWindowDimensions();
-        window.addEventListener('resize', this.updateWindowDimensions);
-    }
-
-    updateWindowDimensions()
-    {
-        this.setState({ windowWidth: window.outerWidth});
-        
-        console.log(this.state.windowWidth);
     }
 
     render()
     {
         const images = this.state.images;
-
-        const windowWidth = window.innerWidth;
-        const offsetToCenter = (1920 - windowWidth)/2;
-
+        
         return (
             <div className = "web_page">
                 <div className = "hero_image" style = {{
-                    width: this.state.windowWidth,
-                    height: this.state.windowWidth*.5625,
+                    width: "100%",
+                    height: "56.25vw",
                     backgroundImage: "url(./src/images/hero_road.jpg)",
                     backgroundSize: "cover",
                     display: "flex",
-                    flex: "1",
                     justifyContent: "center",
-                    alignItems: "center",
-                    margin: "auto"
                 }}>
                     <div>
                         <h1 style = {{ color: "white", fontSize: "96px", fontFamily: "Raleway", textAlign: 'center'}}> Brad McCausland </h1>
