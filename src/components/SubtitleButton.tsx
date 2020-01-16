@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./SubtitleButtonStyle.css";
 
 interface SubtitleButtonProps
 {
@@ -10,6 +11,8 @@ interface SubtitleButtonProps
 
 interface SubtitleButtonState
 {
+    wrapperRef: React.RefObject<HTMLDivElement>,
+    hovered: Boolean
 }
 
 export class SubtitleButton extends React.Component<SubtitleButtonProps, SubtitleButtonState>
@@ -17,29 +20,54 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
     constructor(props: SubtitleButtonProps)
     {
         super(props);
+        this.state = {
+            wrapperRef: React.createRef(),
+            hovered: false
+        };
     }
 
     render ()
     {
-        const style = this.props.style
+        const defaultStyle = {
+            color: this.state.hovered ? '#ff9100' : 'white',
+            fontSize: this.state.hovered ? '2.3vw' : '2vw',
+            fontFamily: 'Raleway',
+            display: 'inline',
+            marginLeft: '1.5vw',
+            marginRight: '1.5vw',
+        };
 
-        console.log(this.props.text);
         return (
-            <h1
-                style = {{
-                    color: 'white',
-                    fontSize: '2vw',
-                    fontFamily: 'Raleway',
-                    textAlign: 'center',
-                    display: 'inline',
-                    marginLeft: '1.5vw',
-                    marginRight: '1.5vw'
-                }}
-                className = {this.props.className || "SubtitleButton"}
-                onClick = {this.props.onClick}
-            >
-                {this.props.text}
-            </h1>
+            <div ref = {this.state.wrapperRef} className="wrapper">
+                <h1
+                    style = {defaultStyle}
+                    className = {this.props.className || "SubtitleButton"}
+                    onClick = {this.props.onClick}
+                    onMouseEnter = {this.mouseEnter.bind(this)}
+                    onMouseLeave = {this.mouseLeave.bind(this)}
+                >
+                    {this.props.text}
+                </h1>
+            </div>
+            
         )
+    }
+
+    mouseEnter()
+    {
+        /*
+        const wrapper = this.state.wrapperRef.current;
+        if (wrapper)
+        {
+            wrapper.classList.toggle("is-text-hovered");
+        }
+        */
+       this.setState({hovered: true});
+    }
+
+    mouseLeave()
+    {
+        //this.mouseEnter();
+        this.setState({hovered: false});
     }
 }
