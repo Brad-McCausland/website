@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 
 import { SlideShowView } from "./components/SlideShowView";
 import { fetchImages } from "./utils/ImageLoader";
+import { SubtitleButton } from "./components/SubtitleButton";
 import { Button } from "./components/Button";
 import { RoundedImage } from "./components/RoundedImage";
 
@@ -44,10 +45,29 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     backgroundImage: "url(./src/images/hero_road.jpg)",
                     backgroundSize: "cover",
                     display: "flex",
-                    justifyContent: "center",
+                    flexDirection: "column",
                 }}>
-                    <div>
-                        <h1 style = {{ color: "white", fontSize: "96px", fontFamily: "Raleway", textAlign: 'center'}}> Brad McCausland </h1>
+                    <div className = "name_title">
+                        <h1 style = {{
+                            color: "white",
+                            fontSize: "5vw",
+                            fontFamily: "Raleway",
+                            textAlign: 'center',
+                            marginTop: '8vw',
+                            marginBottom: '1vw'
+                        }}>
+                                Brad McCausland
+                        </h1>
+                    </div>
+                    <div
+                        className = "subtitle_buttons"
+                        style = {{
+                            display: "flex",
+                            justifyContent: "center",
+                    }}>
+                        <SubtitleButton text = "Educator"></SubtitleButton>
+                        <SubtitleButton text = "Traveller"></SubtitleButton>
+                        <SubtitleButton text = "Developer"></SubtitleButton>
                     </div>
                 </div>
 
