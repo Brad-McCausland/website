@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./SubtitleButtonStyle.css";
 
 interface SubtitleButtonProps
 {
@@ -29,12 +28,13 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
     render ()
     {
         const defaultStyle = {
-            color: this.state.hovered ? '#ff9100' : 'white',
-            fontSize: this.state.hovered ? '2.3vw' : '2vw',
+            color: this.state.hovered ? '#ffa000' : 'white',
+            fontSize: this.state.hovered ? '2.2vw' : '2vw',
             fontFamily: 'Raleway',
             display: 'inline',
             marginLeft: '1.5vw',
             marginRight: '1.5vw',
+            transition: "color 0.7s, font-size 0.7s",
         };
 
         return (
