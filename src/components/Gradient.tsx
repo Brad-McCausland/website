@@ -1,5 +1,9 @@
 import * as React from "react";
 
+/*
+ * Returns en empty div styled to fill it's parent with a black -> alpha gradient from top to bottom.
+ */
+
 interface GradientProps
 {
     style?: React.CSSProperties,
@@ -23,10 +27,8 @@ export class Gradient extends React.Component<GradientProps, GradientState>
                 className = "gradient"
                 style =
                 {{
-                    boxSizing: "border-box",
-                    bottom: "100px",
+                    height: "100%",
                     width: "100%",
-                    flex: "1",
                     position: "absolute",
                     background: "linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%, rgba(0,0,0,0) 100%)",
                 }}

@@ -56,7 +56,8 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     <Header
                         style =
                         {{
-                            minHeight: "100px",
+                            position: "relative",
+                            height: "100px",
                             display: "flex",
                         }}
                     >
