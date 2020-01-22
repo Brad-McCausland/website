@@ -51,9 +51,6 @@ body {
 }
 .icon-github:before {
   content: "\eab0";
-  color: #ffffff;
-  font-size: 48px;
-  font-family: 'icomoon';
 }
 .icon-linkedin:before {
   content: "\eac9";

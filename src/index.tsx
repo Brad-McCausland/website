@@ -41,6 +41,18 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
         
         return (
             <div className = "web_page">
+                <Header
+                    style =
+                    {{
+                        position: "fixed",
+                        top: "0",
+                        width: "100%",
+                        height: "100px",
+                        display: "flex",
+                    }}
+                >
+                </Header>
+                
                 <div
                     className = "hero_image"
                     style =
@@ -53,15 +65,6 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         flexDirection: "column",
                     }}
                 >
-                    <Header
-                        style =
-                        {{
-                            position: "relative",
-                            height: "100px",
-                            display: "flex",
-                        }}
-                    >
-                    </Header>
 
                     <div className = "name_title">
                         <h1 style =
