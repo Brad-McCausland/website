@@ -1,9 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import "../index.css"
 import { SlideShowView } from "./components/SlideShowView";
 import { fetchImages } from "./utils/ImageLoader";
 import { SubtitleButton } from "./components/SubtitleButton";
+import { Header } from "./components/Header";
 import { Button } from "./components/Button";
 import { RoundedImage } from "./components/RoundedImage";
 
@@ -39,16 +41,30 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
         
         return (
             <div className = "web_page">
-                <div className = "hero_image" style = {{
-                    width: "100%",
-                    height: "56.25vw",
-                    backgroundImage: "url(./src/images/hero_road.jpg)",
-                    backgroundSize: "cover",
-                    display: "flex",
-                    flexDirection: "column",
-                }}>
+                <div
+                    className = "hero_image"
+                    style =
+                    {{
+                        width: "100%",
+                        height: "56.25vw",
+                        backgroundImage: "url(./src/images/hero_road.jpg)",
+                        backgroundSize: "cover",
+                        display: "flex",
+                        flexDirection: "column",
+                    }}
+                >
+                    <Header
+                        style =
+                        {{
+                            minHeight: "100px",
+                            display: "flex",
+                        }}
+                    >
+                    </Header>
+
                     <div className = "name_title">
-                        <h1 style = {{
+                        <h1 style =
+                        {{
                             color: "white",
                             fontSize: "5vw",
                             fontFamily: "Raleway",
@@ -61,10 +77,12 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     </div>
                     <div
                         className = "subtitle_buttons"
-                        style = {{
+                        style =
+                        {{
                             display: "flex",
                             justifyContent: "center",
-                    }}>
+                        }}
+                    >
                         <SubtitleButton text = "Educator"></SubtitleButton>
                         <SubtitleButton text = "Traveller"></SubtitleButton>
                         <SubtitleButton text = "Developer"></SubtitleButton>
