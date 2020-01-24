@@ -19,6 +19,9 @@ interface WebPageState
 {
     windowWidth: number;
     images: HTMLImageElement[],
+    isAboveFold: boolean,
+    isMobileWidth: boolean,
+    heroImageHeight: number,
 }
 
 
@@ -32,11 +35,32 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
         {
             windowWidth: window.innerWidth,
             images: [],
+            isAboveFold: true,
+            isMobileWidth: false,
+            heroImageHeight: window.innerHeight,
         };
+    }
+    
+    componentDidMount()
+    {
+        window.addEventListener('scroll', this.handleScroll.bind(this), true);
+    }
+
+    handleScroll()
+    {
+        if ((window.pageYOffset > this.state.heroImageHeight) && this.state.isAboveFold)
+        {
+            this.setState({isAboveFold: false});
+        }
+        else if ((window.pageYOffset < this.state.heroImageHeight) && !this.state.isAboveFold)
+        {
+            this.setState({isAboveFold: true});
+        }
     }
 
     render()
     {
+        console.log("render");
         const images = this.state.images;
         
         return (
@@ -50,6 +74,8 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         height: "100px",
                         display: "flex",
                     }}
+                    isAboveFold = {this.state.isAboveFold}
+                    isMobileWidth = {window.innerWidth < 600}
                 >
                 </Header>
                 
@@ -58,7 +84,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     style =
                     {{
                         width: "100%",
-                        height: "56.25vw",
+                        height: this.state.heroImageHeight.toString() + "px",
                         backgroundImage: "url(./src/images/hero_road.jpg)",
                         backgroundSize: "cover",
                         display: "flex",
