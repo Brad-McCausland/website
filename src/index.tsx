@@ -44,6 +44,16 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
     componentDidMount()
     {
         window.addEventListener('scroll', this.handleScroll.bind(this), true);
+        window.addEventListener('resize', this.handleWindowResize.bind(this), true);
+    }
+
+    // Recalculate hero image height in case window resized
+    handleWindowResize()
+    {
+        this.setState
+        ({
+            heroImageHeight: window.innerHeight,
+        })
     }
 
     handleScroll()
@@ -60,9 +70,6 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
 
     render()
     {
-        console.log("render");
-        const images = this.state.images;
-        
         return (
             <div className = "web_page">
                 <Header
@@ -75,18 +82,19 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         display: "flex",
                     }}
                     isAboveFold = {this.state.isAboveFold}
-                    isMobileWidth = {window.innerWidth < 600}
+                    isMobileWidth = {window.innerWidth < 700}
                 >
                 </Header>
-                
+
                 <div
                     className = "hero_image"
                     style =
                     {{
                         width: "100%",
                         height: this.state.heroImageHeight.toString() + "px",
-                        backgroundImage: "url(./src/images/hero_road.jpg)",
+                        backgroundImage: "url(./src/images/hero_road_400_off.png)",
                         backgroundSize: "cover",
+                        backgroundPosition: "center",
                         display: "flex",
                         flexDirection: "column",
                     }}
@@ -99,7 +107,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                             fontSize: "5vw",
                             fontFamily: "Raleway",
                             textAlign: 'center',
-                            marginTop: '8vw',
+                            marginTop: '20vh',
                             marginBottom: '1vw'
                         }}>
                                 Brad McCausland

@@ -26,8 +26,8 @@ export class Header extends React.Component<HeaderProps, HeaderState>
 
     render ()
     {
-        console.log(this.props.isAboveFold);
-        // Question: Is it acceptable to re-render elements when window shrinks to mobile-sized? Or is there a way to do it using pure css?
+        const HEADER_ICON_MARGIN = "26px";
+
         return (
             <div className = "header" style = {this.props.style}>
                 <Gradient></Gradient>
@@ -53,8 +53,8 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                     className = "left_justified_elements"
                     style = 
                     {{
-                        marginTop: "26px",
-                        marginLeft: "max(100px, 8.3333vw)",
+                        marginTop: HEADER_ICON_MARGIN,
+                        marginLeft: this.props.isMobileWidth ? HEADER_ICON_MARGIN : "8.3333vw",
                         marginRight: "auto",
                         flexDirection: "row",
                         zIndex: 2,
@@ -69,7 +69,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                             fontSize: "40px",
                             fontFamily: "Raleway",
                             alignItems: "center",
-                            display: "inline",
+                            display: this.props.isMobileWidth ? "none" : "inline",
                             margin: "5px",
                             opacity: this.props.isAboveFold ? "0" : "1",
                             transition: "opacity 0.7s",
@@ -83,9 +83,9 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                     className = "right_justified_elements"
                     style = 
                     {{
-                        marginTop: "26px",
+                        marginTop: HEADER_ICON_MARGIN,
                         marginLeft: "auto",
-                        marginRight: "max(26px, 8.3333vw)",
+                        marginRight: this.props.isMobileWidth ? HEADER_ICON_MARGIN : "8.3333vw",
                         flexDirection: "row",
                         zIndex: 2,
                     }}
