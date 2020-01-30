@@ -36,7 +36,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
             windowWidth: window.innerWidth,
             images: [],
             isAboveFold: true,
-            isMobileWidth: false,
+            isMobileWidth: this.isMobileWidth(),
             heroImageHeight: window.innerHeight,
         };
     }
@@ -52,8 +52,14 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
     {
         this.setState
         ({
+            isMobileWidth: this.isMobileWidth(),
             heroImageHeight: window.innerHeight,
         })
+    }
+
+    isMobileWidth()
+    {
+        return window.innerWidth < 600;
     }
 
     handleScroll()
@@ -82,7 +88,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         display: "flex",
                     }}
                     isAboveFold = {this.state.isAboveFold}
-                    isMobileWidth = {window.innerWidth < 700}
+                    isMobileWidth = {this.state.isMobileWidth}
                 >
                 </Header>
 
@@ -90,8 +96,8 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     className = "hero_image"
                     style =
                     {{
-                        width: "100%",
-                        height: this.state.heroImageHeight.toString() + "px",
+                        width: "100vw",
+                        height: "100vh",
                         backgroundImage: "url(./src/images/hero_road_400_off.png)",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
@@ -104,11 +110,11 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         <h1 style =
                         {{
                             color: "white",
-                            fontSize: "5vw",
+                            fontSize: this.state.isMobileWidth ? "10vw" : "5vw",
                             fontFamily: "Raleway",
                             textAlign: 'center',
                             marginTop: '20vh',
-                            marginBottom: '1vw'
+                            marginBottom: '2vw'
                         }}>
                                 Brad McCausland
                         </h1>
@@ -121,9 +127,9 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                             justifyContent: "center",
                         }}
                     >
-                        <SubtitleButton text = "Educator"></SubtitleButton>
-                        <SubtitleButton text = "Traveller"></SubtitleButton>
-                        <SubtitleButton text = "Developer"></SubtitleButton>
+                        <SubtitleButton text = "Educator"  isMobileWidth = {this.state.isMobileWidth}></SubtitleButton>
+                        <SubtitleButton text = "Traveller" isMobileWidth = {this.state.isMobileWidth}></SubtitleButton>
+                        <SubtitleButton text = "Developer" isMobileWidth = {this.state.isMobileWidth}></SubtitleButton>
                     </div>
                 </div>
 
@@ -200,5 +206,5 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
 
 ReactDOM.render (
     <WebPage />,
-    document.getElementById("example")
+    document.getElementById("webpage_wrapper")
 );

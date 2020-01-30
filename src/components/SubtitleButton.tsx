@@ -3,8 +3,8 @@ import * as React from "react";
 interface SubtitleButtonProps
 {
     text: string,
+    isMobileWidth: boolean,
     className?: string,
-    style?: React.CSSProperties,
     onClick?: () => void,
 }
 
@@ -27,9 +27,12 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
 
     render ()
     {
+        const fontSize = this.props.isMobileWidth ? '5vw' : '2.5vw';
+        const hoveredFontSize = this.props.isMobileWidth ? '5.4 vw' : '2.7vw';
+
         const defaultStyle = {
             color: this.state.hovered ? '#ffa000' : 'white',
-            fontSize: this.state.hovered ? '2.2vw' : '2vw',
+            fontSize: this.state.hovered ? hoveredFontSize : fontSize,
             fontFamily: 'Raleway',
             display: 'inline',
             marginLeft: '1.5vw',
