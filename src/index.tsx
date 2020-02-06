@@ -6,6 +6,7 @@ import { SlideShowView } from "./components/SlideShowView";
 import { fetchImages } from "./utils/ImageLoader";
 import { SubtitleButton } from "./components/SubtitleButton";
 import { Header } from "./components/Header";
+import { Body5050Section } from "./components/Body5050Section"
 import { Button } from "./components/Button";
 import { RoundedImage } from "./components/RoundedImage";
 
@@ -59,7 +60,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
 
     isMobileWidth()
     {
-        return window.innerWidth < 600;
+        return window.innerWidth < 675;
     }
 
     handleScroll()
@@ -76,6 +77,8 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
 
     render()
     {
+        var sampleText = "Someone once told me that time is a predator that stalks us all our lives, but I rather believe that time is a companion who goes with us on the journey, reminds us to cherish every moment, because they’ll never come again."
+
         return (
             <div className = "web_page">
                 <Header
@@ -84,8 +87,9 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         position: "fixed",
                         top: "0",
                         width: "100%",
-                        height: "100px",
+                        height: "70px",
                         display: "flex",
+                        zIndex: 3,
                     }}
                     isAboveFold = {this.state.isAboveFold}
                     isMobileWidth = {this.state.isMobileWidth}
@@ -96,13 +100,15 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     className = "hero_image"
                     style =
                     {{
-                        width: "100vw",
+                        width: "100%",
                         height: "100vh",
                         backgroundImage: "url(./src/images/hero_road_400_off.png)",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
+                        position: "relative",
                         display: "flex",
                         flexDirection: "column",
+                        zIndex: 2,
                     }}
                 >
 
@@ -133,37 +139,19 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     </div>
                 </div>
 
-                <div className = "body" >
-                    {/*
-                    <SlideShowView width={600} height={600} images={images} showLoadingAnimationWhenEmpty={true}/>
-
-                    <Button
-                        value="load images"
-                        onClick={() => this.loadImages()}
-                    />
-                    <Button
-                        value="clear images"
-                        onClick={() => this.clearImages()}
-                    />
-                    */}
-                    <div className = "paragraph"
-                         style = 
-                         {{
-                             backgroundColor: "white",
-                             marginTop: "20px",
-                             marginLeft: "20vw",
-                             marginRight: "20vw",
-                             maxWidth: "1080px",
-                             minWidth: "400px",
-                             height: "1000px",
-                             display: "flex",
-                             justifyContent: "center",
-                             alignItems: "center"
-                         }}>
-                        <p>
-                            This is a paragraph
-                        </p>
-                    </div>
+                <div
+                    className = "body"
+                    style = 
+                    {{
+                        zIndex: 1,
+                        position: "relative",
+                        display: "flex",
+                        flexDirection: "column",
+                    }}
+                >
+                    <Body5050Section imageSrc = "./src/images/traveller_portrait.JPG" text = {sampleText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                    <Body5050Section imageSrc = "./src/images/educator_portrait2.jpg" text = "Flexbox is a one-dimensional layout method for laying out items in rows or columns. Items flex to fill additional space and shrink to fit into smaller spaces. This article explains all the fundamentals. Prerequisites: HTML basics (study Introduction to HTML)" height="600px" reverse = {true} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                    <Body5050Section imageSrc = "./src/images/traveller_portrait.JPG" text = {sampleText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
                 </div>
             </div>
         );

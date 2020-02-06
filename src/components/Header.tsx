@@ -26,10 +26,18 @@ export class Header extends React.Component<HeaderProps, HeaderState>
 
     render ()
     {
-        const HEADER_ICON_MARGIN = "26px";
+        // Problem: I need to set side margins of the header icons to match the space between the tops of the icons and the top of the header
+        // I could pass the height as a number, do all the math manually, and then convert them all to strings, but that feels hacky.
+        // Side margins = (parent height - icon height) / 2
+        const HEADER_ICON_MARGIN = "10px"; //10px = ((header height (70) - text element height (40)) / 2) - icon margin (5) Replace with calculated value
+        const headerStyle = 
+        {
+            alignItems: "center",
+        }
+        const mergedStyles = Object.assign({}, headerStyle, this.props.style)
 
         return (
-            <div className = "header" style = {this.props.style}>
+            <div className = "header" style = {mergedStyles}>
                 <Gradient></Gradient>
 
                 <div>
@@ -53,7 +61,6 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                     className = "left_justified_elements"
                     style = 
                     {{
-                        marginTop: HEADER_ICON_MARGIN,
                         marginLeft: this.props.isMobileWidth ? HEADER_ICON_MARGIN : "8.3333vw",
                         marginRight: "auto",
                         flexDirection: "row",
@@ -68,7 +75,6 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                             color: "white",
                             fontSize: "40px",
                             fontFamily: "Raleway",
-                            alignItems: "center",
                             display: this.props.isMobileWidth ? "none" : "inline",
                             margin: "5px",
                             opacity: this.props.isAboveFold ? "0" : "1",
@@ -83,7 +89,6 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                     className = "right_justified_elements"
                     style = 
                     {{
-                        marginTop: HEADER_ICON_MARGIN,
                         marginLeft: "auto",
                         marginRight: this.props.isMobileWidth ? HEADER_ICON_MARGIN : "8.3333vw",
                         flexDirection: "row",
