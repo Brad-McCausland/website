@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import "../index.css"
+import { BMStyle } from './BMStyle';
 import { SlideShowView } from "./components/SlideShowView";
 import { fetchImages } from "./utils/ImageLoader";
 import { SubtitleButton } from "./components/SubtitleButton";
@@ -78,10 +79,18 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
 
     render()
     {
-        var sampleText = "Someone once told me that time is a predator that stalks us all our lives, but I rather believe that time is a companion who goes with us on the journey, reminds us to cherish every moment, because they’ll never come again."
-
         return (
-            <div className = "web_page">
+            <div 
+                className = "web_page"
+                style = 
+                {{
+                    display: "block",
+                    margin: "0px",
+                    backgroundColor: BMStyle.UIBackgroundColor,
+                    fontFamily: BMStyle.UITitleFont,
+                    overflowX: "hidden",
+                }}
+            >
                 <Header
                     style =
                     {{
@@ -118,7 +127,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         {{
                             color: "white",
                             fontSize: this.state.isMobileWidth ? "10vw" : "5vw",
-                            fontFamily: "Raleway",
+                            fontFamily: BMStyle.UITitleFont,
                             textAlign: 'center',
                             marginTop: '20vh',
                             marginBottom: '2vw'
@@ -151,9 +160,9 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         marginBottom: "50px",
                     }}
                 >
-                    <Body5050Section imageSrc = "./src/images/traveller_portrait.JPG" text = {sampleText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
-                    <Body5050Section imageSrc = "./src/images/educator_portrait2.jpg" text = "Flexbox is a one-dimensional layout method for laying out items in rows or columns. Items flex to fill additional space and shrink to fit into smaller spaces. This article explains all the fundamentals. Prerequisites: HTML basics (study Introduction to HTML)" height="600px" reverse = {true} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
-                    <Body5050Section imageSrc = "./src/images/traveller_portrait.JPG" text = {sampleText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                    <Body5050Section imageSrc = {BMStyle.DeveloperPortrait} text = {BMStyle.DeveloperParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                    <Body5050Section imageSrc = {BMStyle.EducatorPortrait} text = {BMStyle.EducatorParagraphText} height="600px" reverse = {true} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                    <Body5050Section imageSrc = {BMStyle.TravellerPortrait} text = {BMStyle.TravellerParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
                 </div>
 
                 <ContactWidget isMobileWidth = {this.state.isMobileWidth}></ContactWidget>

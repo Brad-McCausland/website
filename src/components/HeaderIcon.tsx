@@ -1,4 +1,5 @@
 import * as React from "react";
+import { BMStyle } from '../BMStyle';
 
 /*
  * Returns a span object containing a single glypg from the icons font. The icon is determined by the class name, as specified in index.css
@@ -31,7 +32,7 @@ export class HeaderIcon extends React.Component<HeaderIconProps, HeaderIconState
                     alignItems: "center",
                     color: "#ffffff",
                     fontSize: "40px",
-                    fontFamily: "icomoon",
+                    fontFamily: BMStyle.UIIconFont,
                     marginLeft: "5px",
                     marginRight: "5px",
                 }}>

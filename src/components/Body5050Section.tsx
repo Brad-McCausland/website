@@ -1,4 +1,5 @@
 import * as React from "react";
+import { BMStyle } from '../BMStyle';
 
 /*
  * A body 50/50 object displays two elements, an image and a body of text. Elements are arranged side by side when in desktop mode, and overlaid in mobile mode
@@ -92,7 +93,7 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
                         style = 
                         {{
                             fontSize: this.props.isMobileWidth? "7vw" : "3vw",
-                            fontFamily: "cambria",
+                            fontFamily: BMStyle.UIContentFont,
                             color: this.props.isMobileWidth ? "#eeeeee" : "#666666",
                             margin: "0px",
                             padding: "2vw",

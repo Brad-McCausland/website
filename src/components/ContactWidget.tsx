@@ -1,5 +1,6 @@
 import * as React from "react";
 import { BMInput } from './BMInput';
+import { BMStyle } from '../BMStyle';
 
 /*
  * A collection of elements that makes up the "contact me" section of the site. Includes title, input fields for name, email address, message, and submit button
@@ -38,9 +39,9 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                     style =
                     {{
                         margin: "20px",
-                        fontFamily: "Raleway",
+                        fontFamily: BMStyle.UITitleFont,
                         fontSize: this.props.isMobileWidth? "15vw" : "64px",
-                        color: "#ffa000",
+                        color: BMStyle.UIMainColor,
                         textAlign: "center",
                     }}
                 >
@@ -82,9 +83,9 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                         border: "none",
                         outlineWidth: "0px",
                         fontSize: "32px",
-                        fontFamily: "Raleway",
+                        fontFamily: BMStyle.UITitleFont,
                         color: "white",
-                        backgroundColor: "#ffa000",
+                        backgroundColor: BMStyle.UIMainColor,
                         float: "right",
                     }}
                 >

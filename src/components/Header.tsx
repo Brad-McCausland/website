@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Gradient } from "./Gradient";
 import { HeaderIcon } from "./HeaderIcon";
+import { BMStyle } from '../BMStyle';
 
 /*
  * Header object which contains menu and link buttons. When above the fold, will display a black gradient as a background. When below, will switch to an orange background and display my name as well.
@@ -45,7 +46,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                         className = "orange_slider"
                         style = 
                         {{
-                            backgroundColor: "#ffa000",
+                            backgroundColor: BMStyle.UIMainColor,
                             height: "100%",
                             width: "100%",
                             position: "absolute",
@@ -74,7 +75,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                         {{
                             color: "white",
                             fontSize: "40px",
-                            fontFamily: "Raleway",
+                            fontFamily: BMStyle.UITitleFont,
                             display: this.props.isMobileWidth ? "none" : "inline",
                             margin: "5px",
                             opacity: this.props.isAboveFold ? "0" : "1",

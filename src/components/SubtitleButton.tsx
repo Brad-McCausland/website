@@ -1,4 +1,5 @@
 import * as React from "react";
+import { BMStyle } from '../BMStyle';
 
 interface SubtitleButtonProps
 {
@@ -33,7 +34,7 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
         const defaultStyle = {
             color: this.state.hovered ? '#ffa000' : 'white',
             fontSize: this.state.hovered ? hoveredFontSize : fontSize,
-            fontFamily: 'Raleway',
+            fontFamily: BMStyle.UITitleFont,
             display: 'inline',
             marginLeft: '1.5vw',
             marginRight: '1.5vw',
