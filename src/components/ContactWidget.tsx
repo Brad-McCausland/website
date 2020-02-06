@@ -7,6 +7,7 @@ import { BMInput } from './BMInput';
 
 interface ContactWidgetProps
 {
+    isMobileWidth: boolean,
 }
 
 interface ContactWidgetState
@@ -27,7 +28,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                 className = "contact_widget"
                 style = 
                 {{
-                    margin: "100px 24vw",
+                    margin: this.props.isMobileWidth? "100px 8px" : "100px 24vw",
                     display: "flex",
                     flexDirection: "column",
                 }}
@@ -38,7 +39,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                     {{
                         margin: "20px",
                         fontFamily: "Raleway",
-                        fontSize: "64px",
+                        fontSize: this.props.isMobileWidth? "15vw" : "64px",
                         color: "#ffa000",
                         textAlign: "center",
                     }}
@@ -71,7 +72,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                     className = "submit_button"
                     style = 
                     {{
-                        width: "200px",
+                        width: this.props.isMobileWidth? "100%" : "200px",
                         height: "48px",
                         marginTop: "4px",
                         marginLeft: "auto",

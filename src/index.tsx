@@ -156,7 +156,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     <Body5050Section imageSrc = "./src/images/traveller_portrait.JPG" text = {sampleText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
                 </div>
 
-                <ContactWidget></ContactWidget>
+                <ContactWidget isMobileWidth = {this.state.isMobileWidth}></ContactWidget>
                 
                 <Header
                     style =
