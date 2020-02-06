@@ -93,7 +93,7 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
                         {{
                             fontSize: this.props.isMobileWidth? "7vw" : "3vw",
                             fontFamily: "cambria",
-                            color: this.props.isMobileWidth ? "#eeeeee" : "#aaaaaa",
+                            color: this.props.isMobileWidth ? "#eeeeee" : "#888888",
                             margin: "0px",
                             padding: "2vw",
                             textAlign: "justify",

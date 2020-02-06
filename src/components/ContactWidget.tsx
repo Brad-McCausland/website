@@ -25,6 +25,12 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
         return (
             <div
                 className = "contact_widget"
+                style = 
+                {{
+                    margin: "100px 24vw",
+                    display: "flex",
+                    flexDirection: "column",
+                }}
             >
                 <h1
                     className = "contact_widget_header"
@@ -40,16 +46,16 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                     CONTACT
                 </h1>
 
-                <BMInput className = "name_field"  type = "text" height = "36px" placeholderText = "Name"></BMInput>
-                <BMInput className = "email_field" type = "text" height = "36px" placeholderText = "Email"></BMInput>
+                <BMInput className = "name_field"  type = "text" height = "60px" placeholderText = "Name"></BMInput>
+                <BMInput className = "email_field" type = "text" height = "60px" placeholderText = "Email"></BMInput>
                 <textarea
                     className = "message_field"
                     placeholder = "Your Message"
                     style =
                     {{
-                        width: "calc(100% - 40vw)",
+                        width: "100%",
                         height: "250px",
-                        margin: "4px 20vw",
+                        margin: "4px 0",
                         padding: "12px 20px",
                         fontSize: "24px",
                         color: "#090909",
@@ -57,6 +63,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                         outlineWidth: "0px",
                         border: "none",
                         resize: "none",
+                        boxSizing: "border-box",
                     }}
                 >
                 </textarea>
@@ -66,13 +73,18 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                     {{
                         width: "200px",
                         height: "48px",
-                        margin: "4px 20vw",
-                        padding: "0px",
-                        fontSize: "40px",
-                        fontFamily: "Raleway",
+                        marginTop: "4px",
+                        marginLeft: "auto",
+                        marginRight: "0",
+                        display: "block",
+                        padding: "4px",
                         border: "none",
+                        outlineWidth: "0px",
+                        fontSize: "32px",
+                        fontFamily: "Raleway",
                         color: "white",
                         backgroundColor: "#ffa000",
+                        float: "right",
                     }}
                 >
                     SUBMIT

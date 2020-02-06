@@ -32,15 +32,16 @@ export class BMInput extends React.Component<BMInputProps, BMInputState>
                 placeholder = {this.props.placeholderText}
                 style =
                 {{
-                    width: "calc(100% - 40vw)",
+                    width: "100%",
                     height: this.props.height,
-                    margin: "4px 20vw",
+                    margin: "4px 0",
                     padding: "12px 20px",
                     fontSize: "24px",
                     color: "#090909",
                     backgroundColor: "#dddddd",
                     outlineWidth: "0px",
                     border: "none",
+                    boxSizing: "border-box",
                 }}
             >
             </input>

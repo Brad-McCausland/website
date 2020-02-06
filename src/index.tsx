@@ -157,6 +157,21 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                 </div>
 
                 <ContactWidget></ContactWidget>
+                
+                <Header
+                    style =
+                    {{
+                        position: "relative",
+                        top: "0",
+                        width: "100%",
+                        height: "70px",
+                        display: "flex",
+                        zIndex: 3,
+                    }}
+                    isAboveFold = {this.state.isAboveFold}
+                    isMobileWidth = {this.state.isMobileWidth}
+                >
+                </Header>
             </div>
         );
     }
