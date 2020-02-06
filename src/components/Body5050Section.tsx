@@ -1,7 +1,7 @@
 import * as React from "react";
 
 /*
- * A body 50/50 object displays two elements, an image and a body of text, side by side when in desktop mode, and overlaid in mobile mode
+ * A body 50/50 object displays two elements, an image and a body of text. Elements are arranged side by side when in desktop mode, and overlaid in mobile mode
  */
 
 interface Body5050SectionProps

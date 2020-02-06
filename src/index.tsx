@@ -7,6 +7,7 @@ import { fetchImages } from "./utils/ImageLoader";
 import { SubtitleButton } from "./components/SubtitleButton";
 import { Header } from "./components/Header";
 import { Body5050Section } from "./components/Body5050Section"
+import { ContactWidget } from "./components/ContactWidget"
 import { Button } from "./components/Button";
 import { RoundedImage } from "./components/RoundedImage";
 
@@ -147,12 +148,15 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         position: "relative",
                         display: "flex",
                         flexDirection: "column",
+                        marginBottom: "50px",
                     }}
                 >
                     <Body5050Section imageSrc = "./src/images/traveller_portrait.JPG" text = {sampleText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
                     <Body5050Section imageSrc = "./src/images/educator_portrait2.jpg" text = "Flexbox is a one-dimensional layout method for laying out items in rows or columns. Items flex to fill additional space and shrink to fit into smaller spaces. This article explains all the fundamentals. Prerequisites: HTML basics (study Introduction to HTML)" height="600px" reverse = {true} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
                     <Body5050Section imageSrc = "./src/images/traveller_portrait.JPG" text = {sampleText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
                 </div>
+
+                <ContactWidget></ContactWidget>
             </div>
         );
     }
