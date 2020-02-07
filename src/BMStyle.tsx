@@ -21,4 +21,9 @@ export class BMStyle
     static DeveloperParagraphText = "Someone once told me that time is a predator that stalks us all our lives, but I rather believe that time is a companion who goes with us on the journey, reminds us to cherish every moment, because they’ll never come again."
     static EducatorParagraphText = "Someone once told me that time is a predator that stalks us all our lives, but I rather believe that time is a companion who goes with us on the journey, reminds us to cherish every moment, because they’ll never come again."
     static TravellerParagraphText = "Someone once told me that time is a predator that stalks us all our lives, but I rather believe that time is a companion who goes with us on the journey, reminds us to cherish every moment, because they’ll never come again."
+
+    // Links
+    static LinkedInUrl = "https://www.linkedin.com/in/bradleymccausland/";
+    static GithubUrl = "https://github.com/bmcc0605";
+    static MailToUrl = "mailto:bradmccausland20@gmail.com";
 }
