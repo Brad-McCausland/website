@@ -7,6 +7,7 @@ import { SlideShowView } from "./components/SlideShowView";
 import { fetchImages } from "./utils/ImageLoader";
 import { SubtitleButton } from "./components/SubtitleButton";
 import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 import { Body5050Section } from "./components/Body5050Section"
 import { ContactWidget } from "./components/ContactWidget"
 import { Button } from "./components/Button";
@@ -167,7 +168,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
 
                 <ContactWidget isMobileWidth = {this.state.isMobileWidth}></ContactWidget>
                 
-                <Header
+                <Footer
                     style =
                     {{
                         position: "relative",
@@ -177,10 +178,9 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         display: "flex",
                         zIndex: 3,
                     }}
-                    isAboveFold = {this.state.isAboveFold}
                     isMobileWidth = {this.state.isMobileWidth}
                 >
-                </Header>
+                </Footer>
             </div>
         );
     }
