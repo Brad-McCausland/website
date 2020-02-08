@@ -71,9 +71,9 @@ export class Footer extends React.Component<FooterProps, FooterState>
                         zIndex: 2,
                     }}
                 >
-                    <HeaderIcon className = "icon-envelope"></HeaderIcon>
-                    <HeaderIcon className = "icon-github"></HeaderIcon>
-                    <HeaderIcon className = "icon-linkedin"></HeaderIcon>
+                    <HeaderIcon className = "icon-envelope" onClick = {() => window.open(BMStyle.MailToUrl, "_blank")}></HeaderIcon>
+                    <HeaderIcon className = "icon-github" onClick = {() => window.open(BMStyle.GithubUrl, "_blank")}></HeaderIcon>
+                    <HeaderIcon className = "icon-linkedin" onClick = {() => window.open(BMStyle.LinkedInUrl, "_blank")}></HeaderIcon>
                 </div>
             </div>
         )
