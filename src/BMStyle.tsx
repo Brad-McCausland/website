@@ -4,6 +4,7 @@ export class BMStyle
 {
     // Colors
     static UIMainColor = "#ffa000";
+    static UIDisabledColor = "#aaaaaa";
     static UIBackgroundColor = "#eeeeee";
 
     // Fonts

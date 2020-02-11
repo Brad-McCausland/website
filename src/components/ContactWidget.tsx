@@ -13,6 +13,9 @@ interface ContactWidgetProps
 
 interface ContactWidgetState
 {
+    name: string,
+    email: string,
+    message: string,
 }
 
 export class ContactWidget extends React.Component<ContactWidgetProps, ContactWidgetState>
@@ -20,10 +23,78 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
     constructor(props: ContactWidgetProps)
     {
         super(props);
+        this.state = 
+        {
+            name: "",
+            email: "",
+            message: "",
+        }
+    }
+
+    
+    // Collection of styles used in each input field. Height and resize properties will need to be added for each individual element to complete the styling
+    static inputFieldStyle = 
+    {
+        width: "100%",
+        margin: "4px 0",
+        padding: "12px 20px",
+        fontSize: "24px",
+        color: "#090909",
+        backgroundColor: "#dddddd",
+        outlineWidth: "0px",
+        border: "none",
+        boxSizing: "border-box",
+    } as React.CSSProperties;
+
+    handleNameFieldChange(event: React.ChangeEvent<HTMLInputElement>)
+    {
+        this.setState(
+        {
+            name: event.target.value
+        });
+    }
+
+    handleEmailFieldChange(event: React.ChangeEvent<HTMLInputElement>)
+    {
+        this.setState(
+        {
+            email: event.target.value
+        });
+    }
+
+    handleMessageFieldChange(event: React.ChangeEvent<HTMLTextAreaElement>)
+    {
+        this.setState(
+        {
+            message: event.target.value
+        });
+    }
+
+    handleSubmitButtonClicked(event: React.MouseEvent<HTMLButtonElement, MouseEvent>)
+    {
+        window.alert(this.state.name + " : " + this.state.email + " : " + this.state.message)
+    }
+
+    checkIfSendable()
+    {
+        var isSendable = this.state.name !== "" && this.isEmailValid() && this.state.message !== "";
+        //console.log("name: |" + this.state.name + "|");
+        //console.log("email: " + this.isEmailValid());
+        //console.log("message: |" + this.state.message + "|");
+        //console.log("is sendable?: " + isSendable);
+        return isSendable;
+    }
+
+    isEmailValid()
+    {
+        const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+        return emailRegex.test(this.state.email);
     }
 
     render()
     {
+        var isSendable = this.checkIfSendable();
+
         return (
             <div
                 className = "contact_widget"
@@ -48,33 +119,38 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                     CONTACT
                 </h1>
 
-                <BMInput className = "name_field"  type = "text" height = "60px" placeholderText = "Name"></BMInput>
-                <BMInput className = "email_field" type = "text" height = "60px" placeholderText = "Email"></BMInput>
+                <input
+                    className = "name_field"
+                    type = "text"
+                    placeholder = "Name"
+                    value = {this.state.name}
+                    onChange = {this.handleNameFieldChange.bind(this)}
+                    style = {Object.assign({}, ContactWidget.inputFieldStyle, {height: "60px"})}
+                ></input>
+                <input
+                    className = "email_field"
+                    type = "text"
+                    placeholder = "Email"
+                    value = {this.state.email}
+                    onChange = {this.handleEmailFieldChange.bind(this)}
+                    style = {Object.assign({}, ContactWidget.inputFieldStyle, {height: "60px"})}
+                ></input>
                 <textarea
                     className = "message_field"
                     placeholder = "Your Message"
-                    style =
-                    {{
-                        width: "100%",
-                        height: "250px",
-                        margin: "4px 0",
-                        padding: "12px 20px",
-                        fontSize: "24px",
-                        color: "#090909",
-                        backgroundColor: "#dddddd",
-                        outlineWidth: "0px",
-                        border: "none",
-                        resize: "none",
-                        boxSizing: "border-box",
-                    }}
+                    value = {this.state.message}
+                    onChange = {this.handleMessageFieldChange.bind(this)}
+                    style = {Object.assign({}, ContactWidget.inputFieldStyle, {height: "250px", resize: "none"})}
                 >
                 </textarea>
+
                 <button
                     className = "submit_button"
+                    onClick = {isSendable? this.handleSubmitButtonClicked.bind(this) : (() => {return null})}
                     style = 
                     {{
                         width: this.props.isMobileWidth? "100%" : "200px",
-                        height: "48px",
+                        height: "64px",
                         marginTop: "4px",
                         marginLeft: "auto",
                         marginRight: "0",
@@ -82,11 +158,11 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                         padding: "4px",
                         border: "none",
                         outlineWidth: "0px",
-                        fontSize: "32px",
+                        fontSize: "36px",
                         fontFamily: BMStyle.UITitleFont,
                         color: "white",
-                        backgroundColor: BMStyle.UIMainColor,
-                        float: "right",
+                        cursor: isSendable? "pointer" : "auto",
+                        backgroundColor: isSendable? BMStyle.UIMainColor : BMStyle.UIDisabledColor,
                     }}
                 >
                     SUBMIT

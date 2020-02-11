@@ -2,6 +2,7 @@ import * as React from "react";
 import { Gradient } from "./Gradient";
 import { HeaderIcon } from "./HeaderIcon";
 import { BMStyle } from '../BMStyle';
+import { SlidingMenu } from './SlidingMenu';
 
 /*
  * Header object which contains menu and link buttons. When above the fold, will display a black gradient as a background. When below, will switch to an orange background and display my name as well.
