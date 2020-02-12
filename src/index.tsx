@@ -49,6 +49,10 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
     {
         window.addEventListener('scroll', this.handleScroll.bind(this), true);
         window.addEventListener('resize', this.handleWindowResize.bind(this), true);
+        
+        this.callBackendAPI()
+        .then(res => console.log(res.express))
+        .catch(err => console.log(err));
     }
 
     // Recalculate hero image height in case window resized
@@ -60,6 +64,17 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
             heroImageHeight: window.innerHeight,
         })
     }
+
+    callBackendAPI = async () =>
+    {
+        const response = await fetch('/express_backend');
+        const body = await response.json();
+    
+        if (response.status !== 200) {
+          throw Error(body.message) 
+        }
+        return body;
+    };
 
     isMobileWidth()
     {

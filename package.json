@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Personal website",
   "main": "index.js",
+  "proxy": "https://localhost:5000/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -31,6 +32,8 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "nodemailer": "^6.4.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-rounded-image": "^2.0.2"
