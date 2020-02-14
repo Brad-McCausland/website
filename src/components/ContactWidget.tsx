@@ -72,16 +72,45 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
 
     handleSubmitButtonClicked(event: React.MouseEvent<HTMLButtonElement, MouseEvent>)
     {
-        window.alert(this.state.name + " : " + this.state.email + " : " + this.state.message)
+        event.preventDefault();
+    
+        fetch('http://localhost:3002/send',
+        {
+            method: "POST",
+            body: JSON.stringify(this.state),
+            headers:
+            {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+            },
+            }).then(
+                (response) => (response.json())
+            ).then((response)=>
+            {
+                if (response.status === 'success'){
+                    alert("Message Sent."); 
+                    this.resetForm()
+                }else if(response.status === 'fail'){
+                    alert("Message failed to send.")
+                }
+            }
+        )
+    }
+
+    resetForm()
+    {
+        this.setState(
+            {
+                name: "",
+                email: "",
+                message: "",
+            }
+        )
     }
 
     checkIfSendable()
     {
         var isSendable = this.state.name !== "" && this.isEmailValid() && this.state.message !== "";
-        //console.log("name: |" + this.state.name + "|");
-        //console.log("email: " + this.isEmailValid());
-        //console.log("message: |" + this.state.message + "|");
-        //console.log("is sendable?: " + isSendable);
         return isSendable;
     }
 

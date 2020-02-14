@@ -1,1 +1,3 @@
 node_modules/*
+email_server/node_modules/*
+email_server/serverConfig.js
