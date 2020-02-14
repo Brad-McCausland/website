@@ -3,15 +3,11 @@ import * as ReactDOM from "react-dom";
 
 import "../index.css"
 import { BMStyle } from './BMStyle';
-import { SlideShowView } from "./components/SlideShowView";
-import { fetchImages } from "./utils/ImageLoader";
 import { SubtitleButton } from "./components/SubtitleButton";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Body5050Section } from "./components/Body5050Section"
 import { ContactWidget } from "./components/ContactWidget"
-import { Button } from "./components/Button";
-import { RoundedImage } from "./components/RoundedImage";
 
 interface WebPageProps
 {
@@ -113,7 +109,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     {{
                         width: "100%",
                         height: "100vh",
-                        backgroundImage: "url(./src/images/hero_road_400_off.png)",
+                        backgroundImage: "url(" + BMStyle.HeroImage + ")",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         position: "relative",
@@ -185,39 +181,6 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
         );
     }
 
-    loadImages()
-    {
-        this.clearImages();
-        const imageLoadPromise = fetchImages("http://localhost:8001/", 3000);
-        imageLoadPromise.then((result: HTMLImageElement[]) =>
-        {
-            this.setState (
-                {
-                    images: result,
-                }
-            );
-        }).catch((error: string) =>
-        {
-            console.log(error);
-            var errorImage = new Image();
-            errorImage.src = SlideShowView.ERROR_IMAGE_SRC;
-
-            this.setState (
-                {
-                    images: [errorImage],
-                }
-            );
-        });
-    }
-    
-    clearImages()
-    {
-        this.setState (
-            {
-                images: [],
-            }
-        );
-    }
 }
 
 ReactDOM.render (

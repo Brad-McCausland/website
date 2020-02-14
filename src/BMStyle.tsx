@@ -13,7 +13,7 @@ export class BMStyle
     static UIIconFont = "icomoon";
 
     // Images
-    static HeroImage = "./images/hero_road_400_off.png"
+    static HeroImage = "./src/images/hero_offset.png"
     static DeveloperPortrait = "./src/images/traveller_portrait.JPG"
     static EducatorPortrait = "./src/images/educator_portrait2.jpg"
     static TravellerPortrait = "./src/images/traveller_portrait.JPG"
