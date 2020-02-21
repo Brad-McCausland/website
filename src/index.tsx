@@ -8,6 +8,7 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Body5050Section } from "./components/Body5050Section"
 import { ContactWidget } from "./components/ContactWidget"
+import { UnderConstructionPane } from './components/UnderConstructionPane';
 
 interface WebPageProps
 {
@@ -27,6 +28,8 @@ interface WebPageState
 
 class WebPage extends React.Component<WebPageProps, WebPageState>
 {
+    isUnderConstruction = true;
+
     constructor(props: WebPageProps)
     {
         super(props);
@@ -112,7 +115,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         backgroundImage: "url(" + BMStyle.HeroImage + ")",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
-                        position: "relative",
+                        position: this.isUnderConstruction? "absolute" : "relative",
                         display: "flex",
                         flexDirection: "column",
                         zIndex: 2,
@@ -146,6 +149,11 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     </div>
                 </div>
 
+                {this.isUnderConstruction &&
+                    <UnderConstructionPane></UnderConstructionPane>
+                }
+
+                {!this.isUnderConstruction &&
                 <div
                     className = "body"
                     style = 
@@ -161,22 +169,28 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     <Body5050Section imageSrc = {BMStyle.EducatorPortrait} text = {BMStyle.EducatorParagraphText} height="600px" reverse = {true} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
                     <Body5050Section imageSrc = {BMStyle.TravellerPortrait} text = {BMStyle.TravellerParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
                 </div>
+                }
 
-                <ContactWidget isMobileWidth = {this.state.isMobileWidth}></ContactWidget>
+                {!this.isUnderConstruction &&
+                    <ContactWidget isMobileWidth = {this.state.isMobileWidth}></ContactWidget>
+                }
                 
-                <Footer
-                    style =
-                    {{
-                        position: "relative",
-                        top: "0",
-                        width: "100%",
-                        height: "70px",
-                        display: "flex",
-                        zIndex: 3,
-                    }}
-                    isMobileWidth = {this.state.isMobileWidth}
-                >
-                </Footer>
+                
+                {!this.isUnderConstruction &&
+                    <Footer
+                        style =
+                        {{
+                            position: "relative",
+                            top: "0",
+                            width: "100%",
+                            height: "70px",
+                            display: "flex",
+                            zIndex: 3,
+                        }}
+                        isMobileWidth = {this.state.isMobileWidth}
+                    >
+                    </Footer>
+                }
             </div>
         );
     }
