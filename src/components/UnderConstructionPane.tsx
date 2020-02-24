@@ -7,10 +7,13 @@ import { BMStyle } from '../BMStyle';
 
 interface UnderConstructionPaneProps
 {
+    isMobileWidth: boolean,
+    onThreeClicks?: () => void,
 }
 
 interface UnderConstructionPaneState
 {
+    hiddenButtonClickCount: number,
 }
 
 export class UnderConstructionPane extends React.Component<UnderConstructionPaneProps, UnderConstructionPaneState>
@@ -18,6 +21,24 @@ export class UnderConstructionPane extends React.Component<UnderConstructionPane
     constructor(props: UnderConstructionPaneProps)
     {
         super(props);
+        this.state =
+        {
+            hiddenButtonClickCount: 4,
+        }
+    }
+
+    // The hidden button, when clicked three times, will remove the under construction pane and unlock the full site.
+    handleHiddenButtonClicked()
+    {
+        this.setState
+        ({
+            hiddenButtonClickCount: this.state.hiddenButtonClickCount - 1,
+        })
+
+        if (this.state.hiddenButtonClickCount === 1 && this.props.onThreeClicks)
+        {
+            this.props.onThreeClicks();
+        }
     }
 
     render ()
@@ -43,15 +64,33 @@ export class UnderConstructionPane extends React.Component<UnderConstructionPane
                     className = "under_construction_text"
                     style = 
                     {{
-                        width: "40vw",
-                        height: "40vh",
+                        width: this.props.isMobileWidth ? "80vw" : "50vw",
+                        height: this.props.isMobileWidth ? "80vh" : "50vh",
                         position: "relative",
                         backgroundColor: "rgba(0, 0, 0, 0.8)",
                         borderRadius: "16px",
                         justifyContent: "center",
                         textAlign: "center",
+                        overflow: "auto",
                     }}
                 >
+                    <button
+                        className = "hidden_button"
+                        onClick = {() => this.handleHiddenButtonClicked()}
+                        style = 
+                        {{
+                            position: "relative",
+                            width: "40px",
+                            height: "40px",
+                            marginLeft: "0px",
+                            color: "white",
+                            backgroundColor: "rgba(0, 0, 0, 0.0)",
+                            border: "none",
+                            outline: "none",
+                        }}
+                    >
+                        {this.state.hiddenButtonClickCount < 4 ? this.state.hiddenButtonClickCount : ""}
+                    </button>
                     <h1
                         style = 
                         {{

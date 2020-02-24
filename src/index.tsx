@@ -23,13 +23,12 @@ interface WebPageState
     isAboveFold: boolean,
     isMobileWidth: boolean,
     heroImageHeight: number,
+    isUnderConstruction: boolean,
 }
 
 
 class WebPage extends React.Component<WebPageProps, WebPageState>
 {
-    isUnderConstruction = true;
-
     constructor(props: WebPageProps)
     {
         super(props);
@@ -41,6 +40,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
             isAboveFold: true,
             isMobileWidth: this.isMobileWidth(),
             heroImageHeight: window.innerHeight,
+            isUnderConstruction: true,
         };
     }
     
@@ -115,7 +115,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         backgroundImage: "url(" + BMStyle.HeroImage + ")",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
-                        position: this.isUnderConstruction? "absolute" : "relative",
+                        position: this.state.isUnderConstruction? "absolute" : "relative",
                         display: "flex",
                         flexDirection: "column",
                         zIndex: 2,
@@ -149,11 +149,11 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     </div>
                 </div>
 
-                {this.isUnderConstruction &&
-                    <UnderConstructionPane></UnderConstructionPane>
+                {this.state.isUnderConstruction &&
+                    <UnderConstructionPane isMobileWidth = {this.state.isMobileWidth} onThreeClicks = {() => this.setState({isUnderConstruction: false})}></UnderConstructionPane>
                 }
 
-                {!this.isUnderConstruction &&
+                {!this.state.isUnderConstruction &&
                 <div
                     className = "body"
                     style = 
@@ -171,12 +171,12 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                 </div>
                 }
 
-                {!this.isUnderConstruction &&
+                {!this.state.isUnderConstruction &&
                     <ContactWidget isMobileWidth = {this.state.isMobileWidth}></ContactWidget>
                 }
                 
                 
-                {!this.isUnderConstruction &&
+                {!this.state.isUnderConstruction &&
                     <Footer
                         style =
                         {{
