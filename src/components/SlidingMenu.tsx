@@ -9,12 +9,14 @@ import { HeaderIcon } from "./HeaderIcon";
 
 interface SlidingMenuProps
 {
-    menuItems: {},
+    menuItems?: {},
+    crossButtonAction: () => void,
+    isExtended: boolean,
+    isAboveFold: boolean,
 }
 
 interface SlidingMenuState
 {
-    isExtended: boolean,
 }
 
 export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuState>
@@ -28,29 +30,53 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
         }
     }
 
-    toggleMenuIsExtended()
-    {
-        this.setState(
-        {
-            isExtended: !this.state.isExtended
-        })
-    }
-
     render()
     {
         return (
             <div
-                className = "drop_down_menu"
+                className = "sliding_menu"
                 style = 
                 {{
                     position: "absolute",
-                    width: "100px",
+                    width: "300px",
                     height: "100vh",
-                    left: this.state.isExtended ? "0px" : "-100px",
-                    transition: "left 1s",
-                    backgroundColor: BMStyle.UIMainColor,
+                    top: this.props.isAboveFold ? "0px" : BMStyle.HeaderHeight,
+                    left: this.props.isExtended ? "0px" : "-300px",
+                    transition: "left 1s" + ", " + `top ${BMStyle.HeaderSlideTransitionTime}`,
+                    backgroundColor: BMStyle.UIDarkColor,
+                    zIndex: this.props.isAboveFold ? 4 : 1,
                 }}
             >
+                <div
+                    className = "menu_header"
+                    style = 
+                    {{
+                        width: "100%",
+                        height: BMStyle.HeaderHeight,
+                    }}
+                >
+
+                    <span
+                        className = "close_menu_button"
+                        onClick = {this.props.crossButtonAction}
+                        style = 
+                        {{
+                            textAlign: "center",
+                            alignItems: "center",
+                            verticalAlign: "center",
+                            color: "#ffffff",
+                            height: "100%",
+                            fontSize: "40px",
+                            fontFamily: BMStyle.UIIconFont,
+                            marginLeft: "auto",
+                            marginRight: "12px",
+                            float: "right",
+                            cursor: "pointer",
+                        }}
+                    >
+                        🞨
+                    </span>
+                </div>
             </div>
         )
     }

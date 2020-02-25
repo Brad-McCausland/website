@@ -45,7 +45,8 @@ export class Header extends React.Component<HeaderProps, HeaderState>
         // Problem: I need to set side margins of the header icons to match the space between the tops of the icons and the top of the header
         // I could pass the height as a number, do all the math manually, and then convert them all to strings, but that feels hacky.
         // Side margins = (parent height - icon height) / 2
-        const HEADER_ICON_MARGIN = "10px"; //10px = ((header height (70) - text element height (40)) / 2) - icon margin (5) Replace with calculated value
+        const HEADER_ICON_FULL_WIDTH_MARGIN = "8.3333vw";
+        const HEADER_ICON_MOBILE_WIDTH_MARGIN = "10px"; //10px = ((header height (70) - text element height (40)) / 2) - icon margin (5) Replace with calculated value
         const headerStyle = 
         {
             alignItems: "center",
@@ -56,22 +57,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
             <div className = "header" style = {mergedStyles}>
                 <Gradient></Gradient>
 
-                
-                <div
-                    className = "sliding_menu"
-                    style = 
-                    {{
-                        position: "absolute",
-                        width: "220px",
-                        height: "100vh",
-                        top: "0px",
-                        left: this.state.isMenuExtended ? "0px" : "-220px",
-                        transition: "left 1s",
-                        backgroundColor: BMStyle.UIDarkColor,
-                        zIndex: 2,
-                    }}
-                >
-                </div>
+                <SlidingMenu isAboveFold = {this.props.isAboveFold} isExtended = {this.state.isMenuExtended} crossButtonAction = {this.toggleExtendMenu.bind(this)}></SlidingMenu>
 
                 <div>
                     <div
@@ -84,7 +70,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                             position: "absolute",
                             zIndex: 1,
                             top: this.props.isAboveFold ? "-100%" : "0px",
-                            transition: "top 0.7s",
+                            transition: `top ${BMStyle.HeaderSlideTransitionTime}`,
                         }}
                     >
                     </div>
@@ -94,7 +80,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                     className = "left_justified_elements"
                     style = 
                     {{
-                        marginLeft: this.props.isMobileWidth ? HEADER_ICON_MARGIN : "8.3333vw",
+                        marginLeft: this.props.isMobileWidth ? HEADER_ICON_MOBILE_WIDTH_MARGIN : HEADER_ICON_FULL_WIDTH_MARGIN,
                         marginRight: "auto",
                         flexDirection: "row",
                         zIndex: 3,
@@ -123,7 +109,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                     style = 
                     {{
                         marginLeft: "auto",
-                        marginRight: this.props.isMobileWidth ? HEADER_ICON_MARGIN : "8.3333vw",
+                        marginRight: this.props.isMobileWidth ? HEADER_ICON_MOBILE_WIDTH_MARGIN : HEADER_ICON_FULL_WIDTH_MARGIN,
                         flexDirection: "row",
                         zIndex: 3,
                     }}

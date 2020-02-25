@@ -4,7 +4,7 @@ export class BMStyle
 {
     // Colors
     static UIMainColor = "#ffa000";
-    static UIDarkColor = "#e68a00";
+    static UIDarkColor = "#d17627"; //"#ff7700";
     static UIDisabledColor = "#aaaaaa";
     static UIBackgroundColor = "#eeeeee";
 
@@ -28,4 +28,10 @@ export class BMStyle
     static LinkedInUrl = "https://www.linkedin.com/in/bradleymccausland/";
     static GithubUrl = "https://github.com/bmcc0605";
     static MailToUrl = "mailto:bradmccausland20@gmail.com";
+
+    // Dimensions
+    static HeaderHeight = "70px";
+
+    // Durations
+    static HeaderSlideTransitionTime = "0.7s";
 }

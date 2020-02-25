@@ -97,7 +97,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         position: "fixed",
                         top: "0",
                         width: "100%",
-                        height: "70px",
+                        height: BMStyle.HeaderHeight,
                         display: "flex",
                         zIndex: 3,
                     }}
