@@ -31,10 +31,9 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
     toggleMenuIsExtended()
     {
         this.setState(
-            {
-                isExtended: !this.state.isExtended
-            }
-        )
+        {
+            isExtended: !this.state.isExtended
+        })
     }
 
     render()
@@ -45,34 +44,13 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
                 style = 
                 {{
                     position: "absolute",
-                    top: this.state.isExtended ? "0px" : "-100px",
-                    transition: "top 1s",
+                    width: "100px",
+                    height: "100vh",
+                    left: this.state.isExtended ? "0px" : "-100px",
+                    transition: "left 1s",
+                    backgroundColor: BMStyle.UIMainColor,
                 }}
             >
-                <div
-                    className = "menu_body"
-                    style = 
-                    {{
-                        width: "100%",
-                        height: "100px",
-                        marginLeft: "auto",
-                        marginRight: "0",
-                        backgroundColor: BMStyle.UIMainColor,
-                    }}
-                >
-                </div>
-                <div
-                    className = "menu_icon_tab"
-                    style = 
-                    {{
-                        width: "44px",
-                        height: "44px",
-                        backgroundColor: BMStyle.UIMainColor,
-                        borderRadius: "4px",
-                    }}
-                >
-                    <HeaderIcon className = "icon-menu" onClick = {this.toggleMenuIsExtended.bind(this)}></HeaderIcon>
-                </div>
             </div>
         )
     }

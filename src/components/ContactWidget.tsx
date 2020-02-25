@@ -83,18 +83,21 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
             },
-            }).then(
-                (response) => (response.json())
-            ).then((response)=>
-            {
-                if (response.status === 'success'){
-                    alert("Message Sent."); 
-                    this.resetForm()
-                }else if(response.status === 'fail'){
-                    alert("Message failed to send.")
-                }
+        })
+        .then((response) => (response.json()))
+        .then((response) =>
+        {
+            if (response.status === 'success'){
+                alert("Message Sent."); 
+                this.resetForm()
+            }else if(response.status === 'fail'){
+                alert("Message failed to send.")
             }
-        )
+        })
+        .catch(() =>
+        {
+            alert("Error: email server not reachable.")
+        })
     }
 
     resetForm()

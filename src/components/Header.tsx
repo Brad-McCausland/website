@@ -17,6 +17,7 @@ interface HeaderProps
 
 interface HeaderState
 {
+    isMenuExtended: boolean,
 }
 
 export class Header extends React.Component<HeaderProps, HeaderState>
@@ -24,6 +25,19 @@ export class Header extends React.Component<HeaderProps, HeaderState>
     constructor(props: HeaderProps)
     {
         super(props);
+        this.state = 
+        {
+            isMenuExtended: false,
+        }
+    }
+
+    toggleExtendMenu()
+    {
+        this.setState(
+            {
+                isMenuExtended: !this.state.isMenuExtended,
+            }
+        )
     }
 
     render ()
@@ -41,6 +55,23 @@ export class Header extends React.Component<HeaderProps, HeaderState>
         return (
             <div className = "header" style = {mergedStyles}>
                 <Gradient></Gradient>
+
+                
+                <div
+                    className = "sliding_menu"
+                    style = 
+                    {{
+                        position: "absolute",
+                        width: "220px",
+                        height: "100vh",
+                        top: "0px",
+                        left: this.state.isMenuExtended ? "0px" : "-220px",
+                        transition: "left 1s",
+                        backgroundColor: BMStyle.UIDarkColor,
+                        zIndex: 2,
+                    }}
+                >
+                </div>
 
                 <div>
                     <div
@@ -66,10 +97,10 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                         marginLeft: this.props.isMobileWidth ? HEADER_ICON_MARGIN : "8.3333vw",
                         marginRight: "auto",
                         flexDirection: "row",
-                        zIndex: 2,
+                        zIndex: 3,
                     }}
                 >
-                    <HeaderIcon className = "icon-menu"></HeaderIcon>
+                    <HeaderIcon className = "icon-menu" onClick = {() => this.toggleExtendMenu()}></HeaderIcon>
                     <h1 
                         className = "name_in_header"
                         style =
@@ -94,7 +125,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                         marginLeft: "auto",
                         marginRight: this.props.isMobileWidth ? HEADER_ICON_MARGIN : "8.3333vw",
                         flexDirection: "row",
-                        zIndex: 2,
+                        zIndex: 3,
                     }}
                 >
                     <HeaderIcon className = "icon-envelope" onClick = {() => window.open(BMStyle.MailToUrl, "_blank")}></HeaderIcon>

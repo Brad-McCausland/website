@@ -42,7 +42,6 @@ export class Footer extends React.Component<FooterProps, FooterState>
                         marginLeft: this.props.isMobileWidth ? Footer_ICON_MARGIN : "8.3333vw",
                         marginRight: "auto",
                         flexDirection: "row",
-                        zIndex: 2,
                     }}
                 >
                     <h1 
@@ -68,7 +67,6 @@ export class Footer extends React.Component<FooterProps, FooterState>
                         marginLeft: "auto",
                         marginRight: this.props.isMobileWidth ? Footer_ICON_MARGIN : "8.3333vw",
                         flexDirection: "row",
-                        zIndex: 2,
                     }}
                 >
                     <HeaderIcon className = "icon-envelope" onClick = {() => window.open(BMStyle.MailToUrl, "_blank")}></HeaderIcon>
