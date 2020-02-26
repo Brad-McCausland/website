@@ -39,8 +39,10 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
 
     render ()
     {
-        let minDimension = Math.min(this.props.width, this.props.height);
         let margin = 4;
+        let minDimension = Math.min(this.props.width, this.props.height);
+        let sliderRadius = minDimension - (2 * margin);
+        let inverseMargin = this.props.width - margin;
         return (
             <div
                 className = "toggle_outer_element"
@@ -49,23 +51,27 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
                 {{
                     width: this.props.width + "px",
                     height: this.props.height + "px",
-                    borderRadius: minDimension/2 + "px",
+                    borderRadius: minDimension + "px",
                     backgroundColor: this.state.toggled? "rgba(0, 0, 0, 0.8)" : "rgba(0, 0, 0, 0.2)",
+                    position: "relative",
+                    transition: "background-color 0.3s",
                 }}
             >
                 <div
                     className = "toggle_inner_element"
                     style = 
                     {{
-                        // TODO: How to set width to parent's or (self's) height to create a squared element dynamically???
-                        width: (minDimension - (2 * margin)) + "px",
-                        height: (minDimension - (2 * margin)) + "px",
-                        borderRadius: "20px",
-                        margin: margin + "px",
-                        float: this.state.toggled? "right" : "left",
+                        position: "absolute",
+                        top: `0`,
+                        bottom: `0`,
+                        right: "auto",
+                        left: this.state.toggled? `${inverseMargin - sliderRadius}px` : `${margin}px`,
+                        width: `${sliderRadius}px`,
+                        height: `${sliderRadius}px`,
+                        transition: "left 0.3s",
+                        borderRadius: `${sliderRadius}px`,
+                        margin: "auto",
                         backgroundColor: BMStyle.UIMainColor,
-                        boxSizing: "content-box",
-                        position: "relative",
                     }}
                 >
                 </div>

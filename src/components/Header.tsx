@@ -59,7 +59,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                 <Gradient></Gradient>
 
                 <SlidingMenu isAboveFold = {this.props.isAboveFold} isExtended = {this.state.isMenuExtended} crossButtonAction = {this.toggleExtendMenu.bind(this)}>
-                    <ToggleSwitch width = {80} height = {40}></ToggleSwitch>
+                    <ToggleSwitch width = {160} height = {40}></ToggleSwitch>
                 </SlidingMenu>
 
                 <div>
