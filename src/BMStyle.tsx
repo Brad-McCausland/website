@@ -31,6 +31,7 @@ export class BMStyle
 
     // Dimensions
     static HeaderHeight = "70px";
+    static MenuItemheight = "70px";
 
     // Durations
     static HeaderSlideTransitionTime = "0.7s";

@@ -4,6 +4,7 @@ import { HeaderIcon } from "./HeaderIcon";
 import { BMStyle } from '../BMStyle';
 import { SlidingMenu } from './SlidingMenu';
 import { ToggleSwitch } from "./ToggleSwitch";
+import { SlidingMenuItem } from './SlidingMenuItem';
 
 /*
  * Header object which contains menu and link buttons. When above the fold, will display a black gradient as a background. When below, will switch to an orange background and display my name as well.
@@ -59,7 +60,12 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                 <Gradient></Gradient>
 
                 <SlidingMenu isAboveFold = {this.props.isAboveFold} isExtended = {this.state.isMenuExtended} crossButtonAction = {this.toggleExtendMenu.bind(this)}>
-                    <ToggleSwitch width = {160} height = {40}></ToggleSwitch>
+                    <SlidingMenuItem text = "Dark Mode">
+                        <ToggleSwitch width = {80} height = {40}></ToggleSwitch>
+                    </SlidingMenuItem>
+                    <SlidingMenuItem text = "Language">
+                        <ToggleSwitch width = {80} height = {40}></ToggleSwitch>
+                    </SlidingMenuItem>
                 </SlidingMenu>
 
                 <div>

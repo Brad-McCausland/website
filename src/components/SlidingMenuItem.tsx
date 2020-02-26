@@ -27,8 +27,46 @@ export class SlidingMenuItem extends React.Component<SlidingMenuItemProps, Slidi
     render()
     {
         return (
-            <div>
-                {this.props.children}
+            <div
+                className = "menu_item"
+                style = 
+                {{
+                    width: "100%",
+                    height: BMStyle.MenuItemheight,
+                    alignItems: "center",
+                }}>
+                <text
+                    className = "menu_item_text"
+                    style = 
+                    {{
+                        flex: "1",
+                        height: "100%",
+                        fontSize: "28px",
+                        color: "white",
+                        paddingLeft: "16px",
+                        float: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                    }}
+                >
+                    {this.props.text}
+                </text>
+                <div
+                    className = "menu_item_controller"
+                    style =
+                    {{
+                        flex: "1",
+                        height: "100%",
+                        paddingRight: "16px",
+                        float: "right",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                    }}
+                >
+                    {this.props.children}
+                </div>
             </div>
         )
     }
