@@ -3,6 +3,7 @@ import { Gradient } from "./Gradient";
 import { HeaderIcon } from "./HeaderIcon";
 import { BMStyle } from '../BMStyle';
 import { SlidingMenu } from './SlidingMenu';
+import { ToggleSwitch } from "./ToggleSwitch";
 
 /*
  * Header object which contains menu and link buttons. When above the fold, will display a black gradient as a background. When below, will switch to an orange background and display my name as well.
@@ -57,7 +58,9 @@ export class Header extends React.Component<HeaderProps, HeaderState>
             <div className = "header" style = {mergedStyles}>
                 <Gradient></Gradient>
 
-                <SlidingMenu isAboveFold = {this.props.isAboveFold} isExtended = {this.state.isMenuExtended} crossButtonAction = {this.toggleExtendMenu.bind(this)}></SlidingMenu>
+                <SlidingMenu isAboveFold = {this.props.isAboveFold} isExtended = {this.state.isMenuExtended} crossButtonAction = {this.toggleExtendMenu.bind(this)}>
+                    <ToggleSwitch width = {80} height = {40}></ToggleSwitch>
+                </SlidingMenu>
 
                 <div>
                     <div

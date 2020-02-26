@@ -40,7 +40,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
             isAboveFold: true,
             isMobileWidth: this.isMobileWidth(),
             heroImageHeight: window.innerHeight,
-            isUnderConstruction: true,
+            isUnderConstruction: false,
         };
     }
     

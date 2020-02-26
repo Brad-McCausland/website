@@ -1,6 +1,5 @@
 import * as React from "react";
 import { BMStyle } from '../BMStyle';
-import { HeaderIcon } from "./HeaderIcon";
 
 /*
  * Returns a drop down menu which contains language and display options. Controllers are passed to the menu object as menuItems, a dictionary of arbitrary length which pair the text to be displayed
@@ -55,7 +54,6 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
                         height: BMStyle.HeaderHeight,
                     }}
                 >
-
                     <span
                         className = "close_menu_button"
                         onClick = {this.props.crossButtonAction}
@@ -77,6 +75,7 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
                         🞨
                     </span>
                 </div>
+                {this.props.children}
             </div>
         )
     }
