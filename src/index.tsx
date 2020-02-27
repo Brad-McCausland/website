@@ -143,9 +143,9 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                             justifyContent: "center",
                         }}
                     >
-                        <SubtitleButton text = "Educator"  isMobileWidth = {this.state.isMobileWidth}></SubtitleButton>
-                        <SubtitleButton text = "Traveller" isMobileWidth = {this.state.isMobileWidth}></SubtitleButton>
-                        <SubtitleButton text = "Developer" isMobileWidth = {this.state.isMobileWidth}></SubtitleButton>
+                        <SubtitleButton text = {BMStyle.sharedInstance.text().Educator}  isMobileWidth = {this.state.isMobileWidth}></SubtitleButton>
+                        <SubtitleButton text = {BMStyle.sharedInstance.text().Traveller}  isMobileWidth = {this.state.isMobileWidth}></SubtitleButton>
+                        <SubtitleButton text = {BMStyle.sharedInstance.text().Developer}  isMobileWidth = {this.state.isMobileWidth}></SubtitleButton>
                     </div>
                 </div>
 
@@ -165,9 +165,9 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         marginBottom: "50px",
                     }}
                 >
-                    <Body5050Section imageSrc = {BMStyle.sharedInstance.images().DeveloperPortrait} text = {BMStyle.DeveloperParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
-                    <Body5050Section imageSrc = {BMStyle.sharedInstance.images().EducatorPortrait} text = {BMStyle.EducatorParagraphText} height="600px" reverse = {true} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
-                    <Body5050Section imageSrc = {BMStyle.sharedInstance.images().TravellerPortrait} text = {BMStyle.TravellerParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                    <Body5050Section imageSrc = {BMStyle.sharedInstance.images().DeveloperPortrait} text = {BMStyle.sharedInstance.text().DeveloperParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                    <Body5050Section imageSrc = {BMStyle.sharedInstance.images().EducatorPortrait} text = {BMStyle.sharedInstance.text().EducatorParagraphText} height="600px" reverse = {true} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                    <Body5050Section imageSrc = {BMStyle.sharedInstance.images().TravellerPortrait} text = {BMStyle.sharedInstance.text().TravellerParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
                 </div>
                 }
 

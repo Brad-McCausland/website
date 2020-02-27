@@ -1,5 +1,4 @@
 import * as React from "react";
-import { BMInput } from './BMInput';
 import { BMStyle } from '../BMStyle';
 
 /*
@@ -147,13 +146,13 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                         textAlign: "center",
                     }}
                 >
-                    CONTACT
+                    {BMStyle.sharedInstance.text().Contact} 
                 </h1>
 
                 <input
                     className = "name_field"
                     type = "text"
-                    placeholder = "Name"
+                    placeholder = {BMStyle.sharedInstance.text().Name}
                     value = {this.state.name}
                     onChange = {this.handleNameFieldChange.bind(this)}
                     style = {Object.assign({}, inputFieldStyle, {height: "60px"})}
@@ -161,14 +160,14 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                 <input
                     className = "email_field"
                     type = "text"
-                    placeholder = "Email"
+                    placeholder = {BMStyle.sharedInstance.text().Email}
                     value = {this.state.email}
                     onChange = {this.handleEmailFieldChange.bind(this)}
                     style = {Object.assign({}, inputFieldStyle, {height: "60px"})}
                 ></input>
                 <textarea
                     className = "message_field"
-                    placeholder = "Your Message"
+                    placeholder = {BMStyle.sharedInstance.text().YourMessage}
                     value = {this.state.message}
                     onChange = {this.handleMessageFieldChange.bind(this)}
                     style = {Object.assign({}, inputFieldStyle, {height: "250px", resize: "none"})}
@@ -196,7 +195,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                         backgroundColor: isSendable? BMStyle.sharedInstance.colors().UIMainColor : BMStyle.sharedInstance.colors().UIDisabledColor,
                     }}
                 >
-                    SUBMIT
+                    {BMStyle.sharedInstance.text().Submit}
                 </button>
             </div>
         )

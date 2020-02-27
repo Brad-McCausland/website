@@ -5,6 +5,7 @@ import { BMStyle } from '../BMStyle';
 import { SlidingMenu } from './SlidingMenu';
 import { ToggleSwitch } from "./ToggleSwitch";
 import { SlidingMenuItem } from './SlidingMenuItem';
+import { Enum } from '../Enums';
 
 /*
  * Header object which contains menu and link buttons. When above the fold, will display a black gradient as a background. When below, will switch to an orange background and display my name as well.
@@ -60,11 +61,21 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                 <Gradient></Gradient>
 
                 <SlidingMenu isAboveFold = {this.props.isAboveFold} isExtended = {this.state.isMenuExtended} crossButtonAction = {this.toggleExtendMenu.bind(this)}>
-                    <SlidingMenuItem text = "Dark Mode">
-                        <ToggleSwitch width = {80} height = {40} toggleAction = {() => BMStyle.sharedInstance.isDarkMode = !BMStyle.sharedInstance.isDarkMode}></ToggleSwitch>
+                    <SlidingMenuItem text = {BMStyle.sharedInstance.text().DarkMode}>
+                        <ToggleSwitch width = {80} height = {40} toggleAction = {
+                            (value: boolean) => BMStyle.sharedInstance.setDarkMode(value)}
+                        >
+                        </ToggleSwitch>
                     </SlidingMenuItem>
-                    <SlidingMenuItem text = "Language">
-                        <ToggleSwitch width = {80} height = {40}></ToggleSwitch>
+                    <SlidingMenuItem text = {BMStyle.sharedInstance.text().Language}>
+                        <ToggleSwitch width = {80} height = {40} toggleAction = {
+                            (value: boolean) =>
+                            {
+                                var newLanguage = value? Enum.Language.German : Enum.Language.English;
+                                BMStyle.sharedInstance.setLanguage(newLanguage);
+                            }}
+                        >
+                        </ToggleSwitch>
                     </SlidingMenuItem>
                 </SlidingMenu>
 

@@ -9,12 +9,12 @@ interface ToggleSwitchProps
 {
     width: number,
     height: number,
-    toggleAction?: () => void,
+    toggleAction?: (isToggled: boolean) => void,
 }
 
 interface ToggleSwitchState
 {
-    toggled: boolean,
+    isToggled: boolean,
 }
 
 export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitchState>
@@ -24,19 +24,23 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
         super(props);
         this.state = 
         {
-            toggled: false,
+            isToggled: false,
         }
     }
 
     toggle()
     {
-        if (this.props.toggleAction)
-        {
-            this.props.toggleAction();
-        }
         this.setState(
             {
-                toggled: !this.state.toggled,
+                isToggled: !this.state.isToggled,
+            },
+            
+            // Perform the toggle action only after state has been updated
+            () => {
+                if (this.props.toggleAction)
+                {
+                    this.props.toggleAction(this.state.isToggled);
+                }
             }
         )
     }
@@ -56,7 +60,7 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
                     width: this.props.width + "px",
                     height: this.props.height + "px",
                     borderRadius: minDimension + "px",
-                    backgroundColor: this.state.toggled? "rgba(0, 0, 0, 0.8)" : "rgba(0, 0, 0, 0.2)",
+                    backgroundColor: this.state.isToggled? "rgba(0, 0, 0, 0.8)" : "rgba(0, 0, 0, 0.2)",
                     position: "relative",
                     transition: "background-color 0.3s",
                 }}
@@ -69,7 +73,7 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
                         top: `0`,
                         bottom: `0`,
                         right: "auto",
-                        left: this.state.toggled? `${inverseMargin - sliderRadius}px` : `${margin}px`,
+                        left: this.state.isToggled? `${inverseMargin - sliderRadius}px` : `${margin}px`,
                         width: `${sliderRadius}px`,
                         height: `${sliderRadius}px`,
                         transition: "left 0.3s",
