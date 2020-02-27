@@ -30,6 +30,10 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
 
     toggle()
     {
+        if (this.props.toggleAction)
+        {
+            this.props.toggleAction();
+        }
         this.setState(
             {
                 toggled: !this.state.toggled,
@@ -71,7 +75,7 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
                         transition: "left 0.3s",
                         borderRadius: `${sliderRadius}px`,
                         margin: "auto",
-                        backgroundColor: BMStyle.UIMainColor,
+                        backgroundColor: BMStyle.sharedInstance.colors().UIMainColor,
                     }}
                 >
                 </div>

@@ -42,7 +42,7 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
                     top: this.props.isAboveFold ? "0px" : BMStyle.HeaderHeight,
                     left: this.props.isExtended ? "0px" : "-300px",
                     transition: "left 1s" + ", " + `top ${BMStyle.HeaderSlideTransitionTime}`,
-                    backgroundColor: BMStyle.UIDarkColor,
+                    backgroundColor: BMStyle.sharedInstance.colors().UIDarkColor,
                     zIndex: this.props.isAboveFold ? 4 : 1,
                 }}
             >

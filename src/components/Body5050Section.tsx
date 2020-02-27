@@ -94,7 +94,7 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
                         {{
                             fontSize: this.props.isMobileWidth? "7vw" : "3vw",
                             fontFamily: BMStyle.UIContentFont,
-                            color: this.props.isMobileWidth ? "#eeeeee" : "#666666",
+                            color: this.props.isMobileWidth ? BMStyle.sharedInstance.colors().BodyTextMobileWidthColor : BMStyle.sharedInstance.colors().BodyTextColor,
                             margin: "0px",
                             padding: "2vw",
                             textAlign: "justify",

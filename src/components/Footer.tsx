@@ -29,7 +29,7 @@ export class Footer extends React.Component<FooterProps, FooterState>
         const FooterStyle = 
         {
             alignItems: "center",
-            backgroundColor: BMStyle.UIMainColor,
+            backgroundColor: BMStyle.sharedInstance.colors().UIMainColor,
         }
         const mergedStyles = Object.assign({}, FooterStyle, this.props.style)
 

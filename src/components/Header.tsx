@@ -61,7 +61,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
 
                 <SlidingMenu isAboveFold = {this.props.isAboveFold} isExtended = {this.state.isMenuExtended} crossButtonAction = {this.toggleExtendMenu.bind(this)}>
                     <SlidingMenuItem text = "Dark Mode">
-                        <ToggleSwitch width = {80} height = {40}></ToggleSwitch>
+                        <ToggleSwitch width = {80} height = {40} toggleAction = {() => BMStyle.sharedInstance.isDarkMode = !BMStyle.sharedInstance.isDarkMode}></ToggleSwitch>
                     </SlidingMenuItem>
                     <SlidingMenuItem text = "Language">
                         <ToggleSwitch width = {80} height = {40}></ToggleSwitch>
@@ -73,7 +73,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                         className = "orange_slider"
                         style = 
                         {{
-                            backgroundColor: BMStyle.UIMainColor,
+                            backgroundColor: BMStyle.sharedInstance.colors().UIMainColor,
                             height: "100%",
                             width: "100%",
                             position: "absolute",

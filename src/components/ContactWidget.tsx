@@ -31,21 +31,6 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
         }
     }
 
-    
-    // Collection of styles used in each input field. Height and resize properties will need to be added for each individual element to complete the styling
-    static inputFieldStyle = 
-    {
-        width: "100%",
-        margin: "4px 0",
-        padding: "12px 20px",
-        fontSize: "24px",
-        color: "#090909",
-        backgroundColor: "#dddddd",
-        outlineWidth: "0px",
-        border: "none",
-        boxSizing: "border-box",
-    } as React.CSSProperties;
-
     handleNameFieldChange(event: React.ChangeEvent<HTMLInputElement>)
     {
         this.setState(
@@ -127,6 +112,20 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
     {
         var isSendable = this.checkIfSendable();
 
+        // Collection of styles used in each input field. Height and resize properties will need to be added for each individual element to complete the styling
+        const inputFieldStyle = 
+        {
+            width: "100%",
+            margin: "4px 0",
+            padding: "12px 20px",
+            fontSize: "24px",
+            color: BMStyle.sharedInstance.colors().ContactTextColor,
+            backgroundColor: BMStyle.sharedInstance.colors().ContactBackgroundColor,
+            outlineWidth: "0px",
+            border: "none",
+            boxSizing: "border-box",
+        } as React.CSSProperties;
+
         return (
             <div
                 className = "contact_widget"
@@ -144,7 +143,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                         margin: "20px",
                         fontFamily: BMStyle.UITitleFont,
                         fontSize: this.props.isMobileWidth? "15vw" : "64px",
-                        color: BMStyle.UIMainColor,
+                        color: BMStyle.sharedInstance.colors().UIMainColor,
                         textAlign: "center",
                     }}
                 >
@@ -157,7 +156,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                     placeholder = "Name"
                     value = {this.state.name}
                     onChange = {this.handleNameFieldChange.bind(this)}
-                    style = {Object.assign({}, ContactWidget.inputFieldStyle, {height: "60px"})}
+                    style = {Object.assign({}, inputFieldStyle, {height: "60px"})}
                 ></input>
                 <input
                     className = "email_field"
@@ -165,14 +164,14 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                     placeholder = "Email"
                     value = {this.state.email}
                     onChange = {this.handleEmailFieldChange.bind(this)}
-                    style = {Object.assign({}, ContactWidget.inputFieldStyle, {height: "60px"})}
+                    style = {Object.assign({}, inputFieldStyle, {height: "60px"})}
                 ></input>
                 <textarea
                     className = "message_field"
                     placeholder = "Your Message"
                     value = {this.state.message}
                     onChange = {this.handleMessageFieldChange.bind(this)}
-                    style = {Object.assign({}, ContactWidget.inputFieldStyle, {height: "250px", resize: "none"})}
+                    style = {Object.assign({}, inputFieldStyle, {height: "250px", resize: "none"})}
                 >
                 </textarea>
 
@@ -194,7 +193,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                         fontFamily: BMStyle.UITitleFont,
                         color: "white",
                         cursor: isSendable? "pointer" : "auto",
-                        backgroundColor: isSendable? BMStyle.UIMainColor : BMStyle.UIDisabledColor,
+                        backgroundColor: isSendable? BMStyle.sharedInstance.colors().UIMainColor : BMStyle.sharedInstance.colors().UIDisabledColor,
                     }}
                 >
                     SUBMIT

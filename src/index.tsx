@@ -86,7 +86,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                 {{
                     display: "block",
                     margin: "0px",
-                    backgroundColor: BMStyle.UIBackgroundColor,
+                    backgroundColor: BMStyle.sharedInstance.colors().BackgroundColor,
                     fontFamily: BMStyle.UITitleFont,
                     overflowX: "hidden",
                 }}
@@ -112,7 +112,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     {{
                         width: "100%",
                         height: "100vh",
-                        backgroundImage: "url(" + BMStyle.HeroImage + ")",
+                        backgroundImage: "url(" + BMStyle.sharedInstance.images().HeroImage + ")",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         position: this.state.isUnderConstruction? "absolute" : "relative",
@@ -165,9 +165,9 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         marginBottom: "50px",
                     }}
                 >
-                    <Body5050Section imageSrc = {BMStyle.DeveloperPortrait} text = {BMStyle.DeveloperParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
-                    <Body5050Section imageSrc = {BMStyle.EducatorPortrait} text = {BMStyle.EducatorParagraphText} height="600px" reverse = {true} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
-                    <Body5050Section imageSrc = {BMStyle.TravellerPortrait} text = {BMStyle.TravellerParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                    <Body5050Section imageSrc = {BMStyle.sharedInstance.images().DeveloperPortrait} text = {BMStyle.DeveloperParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                    <Body5050Section imageSrc = {BMStyle.sharedInstance.images().EducatorPortrait} text = {BMStyle.EducatorParagraphText} height="600px" reverse = {true} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                    <Body5050Section imageSrc = {BMStyle.sharedInstance.images().TravellerPortrait} text = {BMStyle.TravellerParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
                 </div>
                 }
 

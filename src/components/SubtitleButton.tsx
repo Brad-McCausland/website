@@ -32,7 +32,7 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
         const hoveredFontSize = this.props.isMobileWidth ? '5.4 vw' : '2.7vw';
 
         const defaultStyle = {
-            color: this.state.hovered ? '#ffa000' : 'white',
+            color: this.state.hovered ? BMStyle.sharedInstance.colors().HeroTitleHoveredColor : BMStyle.sharedInstance.colors().HeroTitleColor,
             fontSize: this.state.hovered ? hoveredFontSize : fontSize,
             fontFamily: BMStyle.UITitleFont,
             display: 'inline',
