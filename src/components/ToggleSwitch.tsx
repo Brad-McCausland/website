@@ -10,6 +10,8 @@ interface ToggleSwitchProps
     width: number,
     height: number,
     toggleAction?: (isToggled: boolean) => void,
+    toggledOffText?: string,
+    toggledOnText?: string,
 }
 
 interface ToggleSwitchState
@@ -34,7 +36,7 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
             {
                 isToggled: !this.state.isToggled,
             },
-            
+
             // Perform the toggle action only after state has been updated
             () => {
                 if (this.props.toggleAction)
@@ -65,6 +67,40 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
                     transition: "background-color 0.3s",
                 }}
             >
+                <text
+                    className = "toggled_on_text"
+                    style = 
+                    {{
+                        height: "100%",
+                        fontSize: "125%",
+                        color: "white",
+                        paddingLeft: "8px",
+                        float: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        userSelect: "none",
+                    }}
+                >
+                    {this.props.toggledOnText}
+                </text>
+                <text
+                    className = "toggled_off_text"
+                    style = 
+                    {{
+                        height: "100%",
+                        fontSize: "125%",
+                        color: "white",
+                        paddingRight: "8px",
+                        float: "right",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        userSelect: "none",
+                    }}
+                >
+                    {this.props.toggledOffText}
+                </text>
                 <div
                     className = "toggle_inner_element"
                     style = 

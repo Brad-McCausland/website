@@ -68,7 +68,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                         </ToggleSwitch>
                     </SlidingMenuItem>
                     <SlidingMenuItem text = {BMStyle.sharedInstance.text().Language}>
-                        <ToggleSwitch width = {80} height = {40} toggleAction = {
+                        <ToggleSwitch width = {80} height = {40} toggledOffText = {"EN"} toggledOnText = {"DE"} toggleAction = {
                             (value: boolean) =>
                             {
                                 var newLanguage = value? Enum.Language.German : Enum.Language.English;
