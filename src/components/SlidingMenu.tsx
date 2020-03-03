@@ -31,52 +31,57 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
 
     render()
     {
+        let ThemeContext = BMStyle.ThemeContext;
         return (
-            <div
-                className = "sliding_menu"
-                style = 
-                {{
-                    position: "absolute",
-                    width: "300px",
-                    height: "100vh",
-                    top: this.props.isAboveFold ? "0px" : BMStyle.HeaderHeight,
-                    left: this.props.isExtended ? "0px" : "-300px",
-                    transition: "left 1s" + ", " + `top ${BMStyle.HeaderSlideTransitionTime}`,
-                    backgroundColor: BMStyle.sharedInstance.colors().UIDarkColor,
-                    zIndex: this.props.isAboveFold ? 4 : 1,
-                }}
-            >
+            <ThemeContext.Consumer>
+            {theme => (
                 <div
-                    className = "menu_header"
+                    className = "sliding_menu"
                     style = 
                     {{
-                        width: "100%",
-                        height: BMStyle.HeaderHeight,
+                        position: "absolute",
+                        width: "300px",
+                        height: "100vh",
+                        top: this.props.isAboveFold ? "0px" : BMStyle.HeaderHeight,
+                        left: this.props.isExtended ? "0px" : "-300px",
+                        transition: "left 1s" + ", " + `top ${BMStyle.HeaderSlideTransitionTime}`,
+                        backgroundColor: theme.colors.UIDarkColor,
+                        zIndex: this.props.isAboveFold ? 4 : 1,
                     }}
                 >
-                    <span
-                        className = "close_menu_button"
-                        onClick = {this.props.crossButtonAction}
+                    <div
+                        className = "menu_header"
                         style = 
                         {{
-                            textAlign: "center",
-                            alignItems: "center",
-                            verticalAlign: "center",
-                            color: "#ffffff",
-                            height: "100%",
-                            fontSize: "40px",
-                            fontFamily: BMStyle.UIIconFont,
-                            marginLeft: "auto",
-                            marginRight: "12px",
-                            float: "right",
-                            cursor: "pointer",
+                            width: "100%",
+                            height: BMStyle.HeaderHeight,
                         }}
                     >
-                        🞨
-                    </span>
+                        <span
+                            className = "close_menu_button"
+                            onClick = {this.props.crossButtonAction}
+                            style = 
+                            {{
+                                textAlign: "center",
+                                alignItems: "center",
+                                verticalAlign: "center",
+                                color: "#ffffff",
+                                height: "100%",
+                                fontSize: "40px",
+                                fontFamily: BMStyle.UIIconFont,
+                                marginLeft: "auto",
+                                marginRight: "12px",
+                                float: "right",
+                                cursor: "pointer",
+                            }}
+                        >
+                            🞨
+                        </span>
+                    </div>
+                    {this.props.children}
                 </div>
-                {this.props.children}
-            </div>
+            )}
+            </ThemeContext.Consumer>
         )
     }
 }

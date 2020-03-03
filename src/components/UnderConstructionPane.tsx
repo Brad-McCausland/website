@@ -43,8 +43,8 @@ export class UnderConstructionPane extends React.Component<UnderConstructionPane
 
     render ()
     {
-        var githubLink = <a href={BMStyle.GithubUrl} target="_blank" style = {{color: BMStyle.sharedInstance.colors().UIMainColor}}>Github</a>;
-        var linkedinLink = <a href={BMStyle.LinkedInUrl} target="_blank" style = {{color: BMStyle.sharedInstance.colors().UIMainColor}}>Linkedin</a>;
+        var githubLink = <a href={BMStyle.GithubUrl} target="_blank" style = {{color: BMStyle.LightTheme.colors.UIMainColor}}>Github</a>;
+        var linkedinLink = <a href={BMStyle.LinkedInUrl} target="_blank" style = {{color: BMStyle.LightTheme.colors.UIMainColor}}>Linkedin</a>;
         return (
             <div
             className = "under_construction_pane"

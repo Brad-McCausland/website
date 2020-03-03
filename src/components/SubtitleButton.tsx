@@ -30,30 +30,32 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
     {
         const fontSize = this.props.isMobileWidth ? '5vw' : '2.5vw';
         const hoveredFontSize = this.props.isMobileWidth ? '5.4 vw' : '2.7vw';
-
-        const defaultStyle = {
-            color: this.state.hovered ? BMStyle.sharedInstance.colors().HeroTitleHoveredColor : BMStyle.sharedInstance.colors().HeroTitleColor,
-            fontSize: this.state.hovered ? hoveredFontSize : fontSize,
-            fontFamily: BMStyle.UITitleFont,
-            display: 'inline',
-            marginLeft: '1.5vw',
-            marginRight: '1.5vw',
-            transition: "color 0.7s, font-size 0.7s",
-        };
+        let ThemeContext = BMStyle.ThemeContext;
 
         return (
-            <div ref = {this.state.wrapperRef} className="wrapper">
-                <h1
-                    style = {defaultStyle}
-                    className = {this.props.className || "SubtitleButton"}
-                    onClick = {this.props.onClick}
-                    onMouseEnter = {this.mouseEnter.bind(this)}
-                    onMouseLeave = {this.mouseLeave.bind(this)}
-                >
-                    {this.props.text}
-                </h1>
-            </div>
-            
+            <ThemeContext.Consumer>
+                {theme => (
+                    <div ref = {this.state.wrapperRef} className="wrapper">
+                        <h1
+                            className = {this.props.className || "SubtitleButton"}
+                            onClick = {this.props.onClick}
+                            onMouseEnter = {this.mouseEnter.bind(this)}
+                            onMouseLeave = {this.mouseLeave.bind(this)}
+                            style = {{
+                                color: this.state.hovered ? theme.colors.HeroTitleHoveredColor : theme.colors.HeroTitleColor,
+                                fontSize: this.state.hovered ? hoveredFontSize : fontSize,
+                                fontFamily: BMStyle.UITitleFont,
+                                display: 'inline',
+                                marginLeft: '1.5vw',
+                                marginRight: '1.5vw',
+                                transition: "color 0.7s, font-size 0.7s",
+                            }}
+                        >
+                            {this.props.text}
+                        </h1>
+                    </div>
+                )}
+            </ThemeContext.Consumer>
         )
     }
 

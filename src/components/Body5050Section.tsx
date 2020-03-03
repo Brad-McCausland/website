@@ -27,6 +27,8 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
 
     render()
     {
+        let ThemeContext = BMStyle.ThemeContext
+
         return (
             <div
                 className = "body_5050_section"
@@ -89,20 +91,24 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
                         alignItems: "center",
                     }}
                 >
-                    <p
-                        style = 
-                        {{
-                            fontSize: this.props.isMobileWidth? "7vw" : "3vw",
-                            fontFamily: BMStyle.UIContentFont,
-                            color: this.props.isMobileWidth ? BMStyle.sharedInstance.colors().BodyTextMobileWidthColor : BMStyle.sharedInstance.colors().BodyTextColor,
-                            margin: "0px",
-                            padding: "2vw",
-                            textAlign: "justify",
-                            textAlignLast: "center",
-                        }}
-                    >
-                        {this.props.text}
-                    </p>
+                    <ThemeContext.Consumer>
+                        {theme => (
+                            <p
+                                style = 
+                                {{
+                                    fontSize: this.props.isMobileWidth? "7vw" : "3vw",
+                                    fontFamily: BMStyle.UIContentFont,
+                                    color: this.props.isMobileWidth ? theme.colors.BodyTextMobileWidthColor : theme.colors.BodyTextColor,
+                                    margin: "0px",
+                                    padding: "2vw",
+                                    textAlign: "justify",
+                                    textAlignLast: "center",
+                                }}
+                            >
+                                {this.props.text}
+                            </p>
+                        )}
+                    </ThemeContext.Consumer>
                 </div>
             </div>
         )
