@@ -31,9 +31,8 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
 
     render()
     {
-        let ThemeContext = BMStyle.ThemeContext;
         return (
-            <ThemeContext.Consumer>
+            <BMStyle.ThemeContext.Consumer>
             {theme => (
                 <div
                     className = "sliding_menu"
@@ -81,7 +80,7 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
                     {this.props.children}
                 </div>
             )}
-            </ThemeContext.Consumer>
+            </BMStyle.ThemeContext.Consumer>
         )
     }
 }

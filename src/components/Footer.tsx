@@ -24,11 +24,10 @@ export class Footer extends React.Component<FooterProps, FooterState>
 
     render ()
     {
-        let ThemeContext = BMStyle.ThemeContext
         const Footer_ICON_MARGIN = "10px"; //10px = ((Footer height (70) - text element height (40)) / 2) - icon margin (5) Replace with calculated value
 
         return (
-            <ThemeContext.Consumer>
+            <BMStyle.ThemeContext.Consumer>
                 {theme => (
                     <div className = "Footer" style =
                     {{
@@ -82,7 +81,7 @@ export class Footer extends React.Component<FooterProps, FooterState>
                     </div>
                     
                 )}
-            </ThemeContext.Consumer>
+            </BMStyle.ThemeContext.Consumer>
         )
     }
 }

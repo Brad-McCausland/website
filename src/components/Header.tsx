@@ -48,13 +48,11 @@ export class Header extends React.Component<HeaderProps, HeaderState>
         // Side margins = (parent height - icon height) / 2
         const HEADER_ICON_FULL_WIDTH_MARGIN = "8.3333vw";
         const HEADER_ICON_MOBILE_WIDTH_MARGIN = "10px"; //10px = ((header height (70) - text element height (40)) / 2) - icon margin (5) Replace with calculated value
-        let ThemeContext = BMStyle.ThemeContext;
-        let LanguageContext = BMStyle.LanguageContext
 
         return (
-            <ThemeContext.Consumer>
+            <BMStyle.ThemeContext.Consumer>
             {theme => (
-                <LanguageContext.Consumer>
+                <BMStyle.LanguageContext.Consumer>
                 {language => (
                     <div className = "header" style =
                         {{
@@ -148,9 +146,9 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                         </div>
                     </div>
                 )}
-                </LanguageContext.Consumer>
+                </BMStyle.LanguageContext.Consumer>
             )}
-            </ThemeContext.Consumer>
+            </BMStyle.ThemeContext.Consumer>
         )
     }
 }

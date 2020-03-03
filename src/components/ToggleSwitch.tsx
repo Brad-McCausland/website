@@ -54,10 +54,9 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
         let minDimension = Math.min(this.props.width, this.props.height);
         let sliderRadius = minDimension - (2 * margin);
         let inverseMargin = this.props.width - margin;
-
-        let ThemeContext = BMStyle.ThemeContext;
+        
         return (
-            <ThemeContext.Consumer>
+            <BMStyle.ThemeContext.Consumer>
                 {theme => (
                     <div
                         className = "toggle_outer_element"
@@ -126,7 +125,7 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
                         </div>
                     </div>
                 )}
-            </ThemeContext.Consumer>
+            </BMStyle.ThemeContext.Consumer>
         )
     }
 }
