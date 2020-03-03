@@ -27,8 +27,6 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
 
     render()
     {
-        let ThemeContext = BMStyle.ThemeContext
-
         return (
             <div
                 className = "body_5050_section"
@@ -91,7 +89,7 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
                         alignItems: "center",
                     }}
                 >
-                    <ThemeContext.Consumer>
+                    <BMStyle.ThemeContext.Consumer>
                         {theme => (
                             <p
                                 style = 
@@ -108,7 +106,7 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
                                 {this.props.text}
                             </p>
                         )}
-                    </ThemeContext.Consumer>
+                    </BMStyle.ThemeContext.Consumer>
                 </div>
             </div>
         )

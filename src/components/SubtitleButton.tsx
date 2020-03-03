@@ -30,10 +30,9 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
     {
         const fontSize = this.props.isMobileWidth ? '5vw' : '2.5vw';
         const hoveredFontSize = this.props.isMobileWidth ? '5.4 vw' : '2.7vw';
-        let ThemeContext = BMStyle.ThemeContext;
 
         return (
-            <ThemeContext.Consumer>
+            <BMStyle.ThemeContext.Consumer>
                 {theme => (
                     <div ref = {this.state.wrapperRef} className="wrapper">
                         <h1
@@ -55,7 +54,7 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
                         </h1>
                     </div>
                 )}
-            </ThemeContext.Consumer>
+            </BMStyle.ThemeContext.Consumer>
         )
     }
 

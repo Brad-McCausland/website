@@ -109,14 +109,12 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
 
     render()
     {
-        let themeContext = BMStyle.ThemeContext;
-        let languageContext = BMStyle.LanguageContext;
         var isSendable = this.checkIfSendable();
 
         return (
-            <themeContext.Consumer>
+            <BMStyle.ThemeContext.Consumer>
             {theme => (
-                <languageContext.Consumer>
+                <BMStyle.LanguageContext.Consumer>
                 {language => (
                 
                     <div
@@ -231,9 +229,9 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                         </button>
                     </div>
                 )}
-                </languageContext.Consumer>
+                </BMStyle.LanguageContext.Consumer>
             )}
-            </themeContext.Consumer>
+            </BMStyle.ThemeContext.Consumer>
         )
     }
 }

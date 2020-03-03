@@ -4,6 +4,7 @@ import * as React from "react";
 
 export interface BMThemeContext
 {
+    // Constants
     colors:
     {
         UIMainColor: string,
@@ -27,6 +28,8 @@ export interface BMThemeContext
         EducatorPortrait: string,
         TravellerPortrait: string,
     },
+
+    // Function given and implemented by provider objects and called by consumers to handle theme switching.
     toggleTheme: () => void,
 }
 
@@ -45,7 +48,8 @@ export interface BMLanguageContext
     DeveloperParagraphText: string,
     EducatorParagraphText: string,
     TravellerParagraphText: string,
-    
+
+    // Function given and implemented by provider objects and called by consumers to handle language switching.
     toggleLanguage: () => void,
 }
 
