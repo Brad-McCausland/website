@@ -199,7 +199,8 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                                 border: "none",
                                 boxSizing: "border-box",
                                 fontFamily: BMStyle.UITextEntryFont,
-                                height: "250px"
+                                height: "250px",
+                                resize: "none",
                             }}
                         >
                         </textarea>
