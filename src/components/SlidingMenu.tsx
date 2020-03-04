@@ -31,8 +31,8 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
 
     render()
     {
-        var isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
-        console.log("Is firefox: ", isFirefox);
+        //var isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
+        //console.log("Is firefox: ", isFirefox);
 
         return (
             <BMStyle.ThemeContext.Consumer>
@@ -46,7 +46,7 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
                         minWidth: "300px",
                         height: "100vh",
                         top: this.props.isAboveFold ? "0px" : BMStyle.HeaderHeight,
-                        left: this.props.isExtended ? "0px" : isFirefox? "-moz-min(-300px, -12vw)" : "min(-300px, -12vw)",
+                        left: this.props.isExtended ? "0px" : /*isFirefox? "-moz-min(-300px, -12vw)" : */"min(-300px, -12vw)",
                         transition: "left 1s" + ", " + `top ${BMStyle.HeaderSlideTransitionTime}`,
                         backgroundColor: theme.colors.UIDarkColor,
                         zIndex: this.props.isAboveFold ? 4 : 1,
