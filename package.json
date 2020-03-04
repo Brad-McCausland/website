@@ -31,6 +31,8 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "@types/inline-style-prefixer": "^5.0.0",
+    "inline-style-prefixer": "^5.1.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-rounded-image": "^2.0.2"

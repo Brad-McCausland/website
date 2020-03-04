@@ -17,15 +17,7 @@ interface WebPageProps
 
 /* TODO:
  * Set up emailer on live server
- * Get whole site to rerender when toggling BMStyle attributes
  * Write content
- * Fix 
- * 
- * Ryan feedback: Set event listener on toggle button to set style state
- * 
- * React context: allows elements to access global state. Create a 'provider' that contains light and dark themes and the setState().
- * 
- * Maintain theme (light or dark) as a state method here. Read off of local state instead of sharedInstance. Pass callback to setState() on root to the toggle. Toggling will cause state to be set, causing elemenmts to rerender.
  */
 
 // State defines all private properties
