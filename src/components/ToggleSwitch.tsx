@@ -39,7 +39,6 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
 
             // Perform the toggle action only after state has been updated
             () => {
-                console.log(this.props.toggleAction);
                 if (this.props.toggleAction)
                 {
                     this.props.toggleAction(this.state.isToggled);

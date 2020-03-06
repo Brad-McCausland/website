@@ -18,6 +18,7 @@ interface WebPageProps
 /* TODO:
  * Set up emailer on live server
  * Write content
+ * Get more photos
  */
 
 // State defines all private properties
@@ -28,6 +29,7 @@ interface WebPageState
     isAboveFold: boolean,
     isMobileWidth: boolean,
     heroImageHeight: number,
+    heroImageSrc?: string,
     isUnderConstruction: boolean,
     theme: BMThemeContext,
     language: BMLanguageContext,
@@ -47,18 +49,38 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
             isAboveFold: true,
             isMobileWidth: this.isMobileWidth(),
             heroImageHeight: window.innerHeight,
-            isUnderConstruction: true,
+            heroImageSrc: undefined,
+            isUnderConstruction: false,
             theme: BMStyle.LightTheme,
             language: BMStyle.EnglishText
         };
-
-        BMStyle
     }
     
     componentDidMount()
     {
         window.addEventListener('scroll', this.handleScroll.bind(this), true);
         window.addEventListener('resize', this.handleWindowResize.bind(this), true);
+
+        this.lazyLoadHeroImage();
+    }
+
+    lazyLoadHeroImage()
+    {
+        // Initialize hero image with smaller placeholder and replace with full res version when loaded
+        this.setState
+        ({
+            heroImageSrc: this.state.theme.images.HeroImagePlaceholder,
+        })
+        const imageLoader = new Image()
+        imageLoader.src = this.state.theme.images.HeroImage;
+        imageLoader.onload = () =>
+        {
+            console.log("reloading")
+            this.setState
+            ({
+                heroImageSrc: this.state.theme.images.HeroImage,
+            })
+        }
     }
 
     // Recalculate hero image height in case window resized
@@ -94,6 +116,8 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
         ({
             theme: this.state.theme == BMStyle.LightTheme ? BMStyle.DarkTheme : BMStyle.LightTheme
         });
+        
+        this.lazyLoadHeroImage();
     }
 
     toggleLanguage()
@@ -103,7 +127,6 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
             language: this.state.language == BMStyle.EnglishText ? BMStyle.GermanText : BMStyle.EnglishText
         });
     }
-
 
     render()
     {
@@ -133,7 +156,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         {{
                             width: "100%",
                             height: "100vh",
-                            backgroundImage: "url(" + this.state.theme.images.HeroImage + ")",
+                            backgroundImage: "url(" + this.state.heroImageSrc + ")",
                             backgroundSize: "cover",
                             backgroundPosition: "center",
                             position: this.state.isUnderConstruction? "absolute" : "relative",
