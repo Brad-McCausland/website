@@ -75,7 +75,6 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
         imageLoader.src = this.state.theme.images.HeroImage;
         imageLoader.onload = () =>
         {
-            console.log("reloading")
             this.setState
             ({
                 heroImageSrc: this.state.theme.images.HeroImage,
@@ -116,7 +115,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
         ({
             theme: this.state.theme == BMStyle.LightTheme ? BMStyle.DarkTheme : BMStyle.LightTheme
         });
-        
+
         this.lazyLoadHeroImage();
     }
 
