@@ -31,9 +31,9 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
 
     render()
     {
-        var isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
-        console.log("Is firefox: ", isFirefox);
-        console.log("Is extended: ", this.props.isExtended);
+        //var isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
+        //console.log("Is firefox: ", isFirefox);
+        //console.log("Is extended: ", this.props.isExtended);
 
         return (
             <BMStyle.ThemeContext.Consumer>
