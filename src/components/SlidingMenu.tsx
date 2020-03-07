@@ -77,7 +77,7 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
                                 cursor: "pointer",
                             }}
                         >
-                            🞨
+                            x
                         </span>
                     </div>
                     {this.props.children}
