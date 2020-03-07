@@ -77,9 +77,9 @@ export class BMStyle
         {
             HeroImage: "./src/images/hero_light.png",
             HeroImagePlaceholder: "./src/images/hero_light_placeholder.png",
-            DeveloperPortrait: "./src/images/traveller_portrait.png",
+            DeveloperPortrait: "./src/images/portrait_light.png",
             EducatorPortrait: "./src/images/educator_portrait2.png",
-            TravellerPortrait: "./src/images/traveller_portrait.png"
+            TravellerPortrait: "./src/images/traveller_image_light.png"
         }
     } as BMThemeContext
 
@@ -106,8 +106,8 @@ export class BMStyle
             HeroImage: "./src/images/hero_dark.png",
             HeroImagePlaceholder: "./src/images/hero_dark_placeholder.png",
             DeveloperPortrait: "./src/images/portrait_dark.png",
-            EducatorPortrait: "./src/images/portrait_dark.png",
-            TravellerPortrait: "./src/images/steingasse.png",
+            EducatorPortrait: "./src/images/educator_portrait2.png",
+            TravellerPortrait: "./src/images/traveller_image_dark.png",
         }
     } as BMThemeContext
 
