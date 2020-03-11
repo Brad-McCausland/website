@@ -59,7 +59,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                             position: "fixed",
                             top: "0",
                             width: "100%",
-                            height: BMStyle.HeaderHeight,
+                            height: BMStyle.HeaderHeightString,
                             display: "flex",
                             zIndex: 3,
                             alignItems: "center",

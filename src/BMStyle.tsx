@@ -169,8 +169,10 @@ export class BMStyle
     static MailToUrl = "mailto:bradmccausland20@gmail.com";
 
     // Dimensions
-    static HeaderHeight = "70px";
-    static MenuItemheight = "70px";
+    static HeaderHeight = 70;
+    static HeaderHeightString = BMStyle.HeaderHeight + "px";
+    static MenuItemHeight = 70;
+    static MenuItemHeightString = BMStyle.MenuItemHeight + "px";
 
     // Durations
     static HeaderSlideTransitionTime = "0.7s";

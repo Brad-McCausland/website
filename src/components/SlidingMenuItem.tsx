@@ -32,7 +32,7 @@ export class SlidingMenuItem extends React.Component<SlidingMenuItemProps, Slidi
                 style = 
                 {{
                     width: "100%",
-                    height: BMStyle.MenuItemheight,
+                    height: BMStyle.MenuItemHeightString,
                     alignItems: "center",
                 }}>
                 <text

@@ -20,6 +20,7 @@
   "devDependencies": {
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
+    "@types/react-scroll": "^1.5.4",
     "css-loader": "^3.4.2",
     "file-loader": "^5.0.2",
     "source-map-loader": "^0.2.4",
@@ -35,6 +36,7 @@
     "inline-style-prefixer": "^5.1.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-rounded-image": "^2.0.2"
+    "react-rounded-image": "^2.0.2",
+    "react-scroll": "^1.7.16"
   }
 }

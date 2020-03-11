@@ -48,6 +48,7 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
                                 marginLeft: '1.5vw',
                                 marginRight: '1.5vw',
                                 transition: "color 0.7s, font-size 0.7s",
+                                cursor: this.props.onClick? "pointer" : "auto",
                             }}
                         >
                             {this.props.text}
@@ -60,19 +61,11 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
 
     mouseEnter()
     {
-        /*
-        const wrapper = this.state.wrapperRef.current;
-        if (wrapper)
-        {
-            wrapper.classList.toggle("is-text-hovered");
-        }
-        */
        this.setState({hovered: true});
     }
 
     mouseLeave()
     {
-        //this.mouseEnter();
         this.setState({hovered: false});
     }
 }

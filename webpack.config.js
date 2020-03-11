@@ -8,7 +8,7 @@ module.exports =
     resolve:
     {
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".ts", ".tsx"]
+        extensions: [".js", ".ts", ".tsx"]
     },
 
     module:
@@ -62,6 +62,6 @@ module.exports =
     externals:
     {
         "react": "React",
-        "react-dom": "ReactDOM"
+        "react-dom": "ReactDOM",
     }
 };

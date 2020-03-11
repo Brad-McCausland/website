@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import * as Scroll from "react-scroll";
 
 import "../index.css"
 import { BMStyle, BMThemeContext, BMLanguageContext } from './BMStyle';
@@ -9,6 +10,13 @@ import { Footer } from "./components/Footer";
 import { Body5050Section } from "./components/Body5050Section"
 import { ContactWidget } from "./components/ContactWidget"
 import { UnderConstructionPane } from './components/UnderConstructionPane';
+
+const scrollableSectionNames = 
+{
+    developerSectionName: "DeveloperScrollElement",
+    educatorSectionName: "EducatorScrollElement",
+    travellerSectionName: "TravellerScrollElement",
+}
 
 interface WebPageProps
 {
@@ -99,11 +107,12 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
 
     handleScroll()
     {
-        if ((window.pageYOffset > this.state.heroImageHeight) && this.state.isAboveFold)
+        var fold = (this.state.heroImageHeight - BMStyle.HeaderHeight)
+        if ((window.pageYOffset > fold) && this.state.isAboveFold)
         {
             this.setState({isAboveFold: false});
         }
-        else if ((window.pageYOffset < this.state.heroImageHeight) && !this.state.isAboveFold)
+        else if ((window.pageYOffset < fold) && !this.state.isAboveFold)
         {
             this.setState({isAboveFold: true});
         }
@@ -127,8 +136,20 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
         });
     }
 
+    scrollToSection(section: string)
+    {
+        Scroll.scroller.scrollTo(section, 
+        {
+            duration: 1000,
+            delay: 0,
+            offset: (-1 * BMStyle.HeaderHeight) + 1, //Offset scroll by header height to account for sliding header, plus one pixel to handle off-by-one error
+            smooth: 'easeInOutQuart'
+        });
+    }
+
     render()
     {
+        var ScrollElement = Scroll.Element;
         return (
             <BMStyle.ThemeContext.Provider value = {{...this.state.theme, ...{toggleTheme: this.toggleDarkMode.bind(this)}}}>
             <BMStyle.LanguageContext.Provider value = {{...this.state.language, ...{toggleLanguage: this.toggleLanguage.bind(this)}}}>
@@ -186,9 +207,9 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                                 justifyContent: "center",
                             }}
                         >
-                            <SubtitleButton text = {this.state.language.Educator}  isMobileWidth = {this.state.isMobileWidth}></SubtitleButton>
-                            <SubtitleButton text = {this.state.language.Traveller}  isMobileWidth = {this.state.isMobileWidth}></SubtitleButton>
-                            <SubtitleButton text = {this.state.language.Developer}  isMobileWidth = {this.state.isMobileWidth}></SubtitleButton>
+                            <SubtitleButton text = {this.state.language.Educator}  isMobileWidth = {this.state.isMobileWidth} onClick = {() => this.scrollToSection(scrollableSectionNames.educatorSectionName)}></SubtitleButton>
+                            <SubtitleButton text = {this.state.language.Traveller}  isMobileWidth = {this.state.isMobileWidth} onClick = {() => this.scrollToSection(scrollableSectionNames.travellerSectionName)}></SubtitleButton>
+                            <SubtitleButton text = {this.state.language.Developer}  isMobileWidth = {this.state.isMobileWidth} onClick = {() => this.scrollToSection(scrollableSectionNames.developerSectionName)}></SubtitleButton>
                         </div>
                     </div>
 
@@ -208,9 +229,15 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                             marginBottom: "50px",
                         }}
                     >
-                        <Body5050Section imageSrc = {this.state.theme.images.DeveloperPortrait} text = {this.state.language.DeveloperParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
-                        <Body5050Section imageSrc = {this.state.theme.images.EducatorPortrait} text = {this.state.language.EducatorParagraphText} height="600px" reverse = {true} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
-                        <Body5050Section imageSrc = {this.state.theme.images.TravellerPortrait} text = {this.state.language.TravellerParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                        <ScrollElement name = {scrollableSectionNames.developerSectionName}>
+                            <Body5050Section imageSrc = {this.state.theme.images.DeveloperPortrait} text = {this.state.language.DeveloperParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                        </ScrollElement>
+                        <ScrollElement name = {scrollableSectionNames.educatorSectionName}>
+                            <Body5050Section imageSrc = {this.state.theme.images.EducatorPortrait} text = {this.state.language.EducatorParagraphText} height="600px" reverse = {true} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                        </ScrollElement>
+                        <ScrollElement name = {scrollableSectionNames.travellerSectionName}>
+                            <Body5050Section imageSrc = {this.state.theme.images.TravellerPortrait} text = {this.state.language.TravellerParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                        </ScrollElement>
                     </div>
                     }
 
