@@ -124,9 +124,9 @@ export class BMStyle
         Email: "Email",
         YourMessage: "Your Message",
         Submit: "SUBMIT",
-        DeveloperParagraphText: "Someone once told me that time is a predator that stalks us all our lives, but I rather believe that time is a companion who goes with us on the journey, reminds us to cherish every moment, because they’ll never come again.",
-        EducatorParagraphText: "Someone once told me that time is a predator that stalks us all our lives, but I rather believe that time is a companion who goes with us on the journey, reminds us to cherish every moment, because they’ll never come again.",
-        TravellerParagraphText: "Someone once told me that time is a predator that stalks us all our lives, but I rather believe that time is a companion who goes with us on the journey, reminds us to cherish every moment, because they’ll never come again.",  
+        DeveloperParagraphText: "I'm a Seattle-based software developer with 2.5 years experience in iOS development, and I like to build cool stuff. Any language, stack, or framework. Front-end or back-end. I enjoy building robust applications with an emphasis on secure design and extensibility, especially when working towards a social good. See /my resume/ for more, or check out /my blog/ to see what I've been working on.",
+        EducatorParagraphText: "Studying computer science has opened up a world of opportunities to me, and I owe a great deal to the educators who helped me take the first steps into the field. To give back, I've volunteered with a number of educational organizations inclusing ACM mentors, Microsoft TEALS, and Hour of Code over the years, to help expose students to the field and to practice my own communication skills.",
+        TravellerParagraphText: "Travel is fatal to prejudice, bigotry, and narrow-mindedness, and many of our people need it sorely on these accounts. Broad, wholesome, charitable views of men and things cannot be acquired by vegetating in one little corner of the earth all one's lifetime. Check out some of my photos in /this stupid photo album component/ I guess or something.",  
     } as BMLanguageContext
 
     static GermanText =

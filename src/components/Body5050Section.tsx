@@ -94,11 +94,11 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
                             <p
                                 style = 
                                 {{
-                                    fontSize: this.props.isMobileWidth? "7vw" : "3vw",
+                                    fontSize: this.props.isMobileWidth? "5vw" : "2vw",
                                     fontFamily: BMStyle.UIContentFont,
                                     color: this.props.isMobileWidth ? theme.colors.BodyTextMobileWidthColor : theme.colors.BodyTextColor,
                                     margin: "0px",
-                                    padding: "2vw",
+                                    padding: this.props.isMobileWidth? "5vw" : "2vw",
                                     textAlign: "justify",
                                     textAlignLast: "center",
                                 }}
