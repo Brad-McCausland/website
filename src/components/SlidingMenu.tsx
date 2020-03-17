@@ -62,22 +62,20 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
                         }}
                     >
                         <span
-                            className = "close_menu_button"
+                            className = "icon-cross"
                             onClick = {this.props.crossButtonAction}
                             style = 
                             {{
                                 textAlign: "center",
                                 color: "#ffffff",
-                                height: "100%",
-                                fontSize: "40px",
+                                height: "20px",
+                                fontSize: "20px",
                                 fontFamily: BMStyle.UIIconFont,
-                                marginLeft: "auto",
-                                marginRight: "12px",
+                                padding: "25px",
                                 float: "right",
                                 cursor: "pointer",
                             }}
                         >
-                            🞨
                         </span>
                     </div>
                     {this.props.children}
