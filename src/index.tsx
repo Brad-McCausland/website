@@ -240,14 +240,18 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                     >
                         <ScrollElement name = {scrollableSectionNames.developerSectionName}>
                             <Body5050Section imageSrc = {this.state.theme.images.DeveloperPortrait} height="600px" reverse = {false}>
-                                    {Linkify(this.state.language.DeveloperParagraphSubstrings, this.state.language.DeveloperResumeLinkTuple, this.state.language.DeveloperBlogLinkTuple)}
+                                {Linkify(this.state.language.DeveloperParagraph, this.state.language.DeveloperResumeTextLinkPair, this.state.language.DeveloperBlogTextLinkPair)}
                             </Body5050Section>
                         </ScrollElement>
                         <ScrollElement name = {scrollableSectionNames.educatorSectionName}>
-                            <Body5050Section imageSrc = {this.state.theme.images.EducatorPortrait} height="600px" reverse = {true}></Body5050Section>
+                            <Body5050Section imageSrc = {this.state.theme.images.EducatorPortrait} height="600px" reverse = {true}>
+                                {Linkify(this.state.language.EducatorParagraph)}
+                            </Body5050Section>
                         </ScrollElement>
                         <ScrollElement name = {scrollableSectionNames.travellerSectionName}>
-                            <Body5050Section imageSrc = {this.state.theme.images.TravellerPortrait} height="600px" reverse = {false}></Body5050Section>
+                            <Body5050Section imageSrc = {this.state.theme.images.TravellerPortrait} height="600px" reverse = {false}>
+                                {Linkify(this.state.language.TravellerParagraph, this.state.language.TravellerPhotoTextLinkPair)}
+                            </Body5050Section>
                         </ScrollElement>
                     </div>
                     }
