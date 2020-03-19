@@ -11,7 +11,6 @@ interface SlidingMenuProps
     menuItems?: {},
     crossButtonAction: () => void,
     isExtended: boolean,
-    isAboveFold: boolean,
 }
 
 interface SlidingMenuState
@@ -38,48 +37,52 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
         return (
             <BMStyle.ThemeContext.Consumer>
             {theme => (
-                <div
-                    className = "sliding_menu"
-                    style = 
-                    {{
-                        position: "absolute",
-                        //width: "12vw",
-                        minWidth: "300px",
-                        height: "100vh",
-                        top: this.props.isAboveFold ? "0px" : BMStyle.HeaderHeight,
-                        left: this.props.isExtended ? "0px" : /*(isFirefox? "-moz-calc(-300px -12vw)" : "min(-300px, -12vw)")*/ "-300px",
-                        transition: "left 1s" + ", " + `top ${BMStyle.HeaderSlideTransitionTime}`,
-                        backgroundColor: theme.colors.UIDarkColor,
-                        zIndex: this.props.isAboveFold ? 4 : 1,
-                    }}
-                >
+                <BMStyle.StateContext.Consumer>
+                {({IsAboveFold, IsMobileWidth}) => (
                     <div
-                        className = "menu_header"
+                        className = "sliding_menu"
                         style = 
                         {{
-                            width: "100%",
-                            height: BMStyle.HeaderHeight,
+                            position: "absolute",
+                            //width: "12vw",
+                            minWidth: "300px",
+                            height: "100vh",
+                            top: IsAboveFold ? "0px" : BMStyle.HeaderHeight,
+                            left: this.props.isExtended ? "0px" : /*(isFirefox? "-moz-calc(-300px -12vw)" : "min(-300px, -12vw)")*/ "-300px",
+                            transition: "left 1s" + ", " + `top ${BMStyle.HeaderSlideTransitionTime}`,
+                            backgroundColor: theme.colors.UIDarkColor,
+                            zIndex: IsAboveFold ? 4 : 1,
                         }}
                     >
-                        <span
-                            className = "icon-cross"
-                            onClick = {this.props.crossButtonAction}
+                        <div
+                            className = "menu_header"
                             style = 
                             {{
-                                textAlign: "center",
-                                color: "#ffffff",
-                                height: "20px",
-                                fontSize: "20px",
-                                fontFamily: BMStyle.UIIconFont,
-                                padding: "25px",
-                                float: "right",
-                                cursor: "pointer",
+                                width: "100%",
+                                height: BMStyle.HeaderHeight,
                             }}
                         >
-                        </span>
+                            <span
+                                className = "icon-cross"
+                                onClick = {this.props.crossButtonAction}
+                                style = 
+                                {{
+                                    textAlign: "center",
+                                    color: "#ffffff",
+                                    height: "20px",
+                                    fontSize: "20px",
+                                    fontFamily: BMStyle.UIIconFont,
+                                    padding: "25px",
+                                    float: "right",
+                                    cursor: "pointer",
+                                }}
+                            >
+                            </span>
+                        </div>
+                        {this.props.children}
                     </div>
-                    {this.props.children}
-                </div>
+                )}
+                </BMStyle.StateContext.Consumer>
             )}
             </BMStyle.ThemeContext.Consumer>
         )

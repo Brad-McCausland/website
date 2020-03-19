@@ -10,6 +10,7 @@ import { Footer } from "./components/Footer";
 import { Body5050Section } from "./components/Body5050Section"
 import { ContactWidget } from "./components/ContactWidget"
 import { UnderConstructionPane } from './components/UnderConstructionPane';
+import { Linkify } from './utils/Linkify';
 
 const scrollableSectionNames = 
 {
@@ -105,16 +106,27 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
         return window.innerWidth < 675;
     }
 
+    isAboveFold(): boolean
+    {
+        var fold = (this.state.heroImageHeight - BMStyle.HeaderHeight);
+        return window.pageYOffset < fold;
+    }
+
     handleScroll()
     {
-        var fold = (this.state.heroImageHeight - BMStyle.HeaderHeight)
-        if ((window.pageYOffset > fold) && this.state.isAboveFold)
+        if (this.isAboveFold() && !this.state.isAboveFold)
         {
-            this.setState({isAboveFold: false});
+            this.setState
+            ({
+                isAboveFold: true,
+            })
         }
-        else if ((window.pageYOffset < fold) && !this.state.isAboveFold)
+        else if (!this.isAboveFold() && this.state.isAboveFold)
         {
-            this.setState({isAboveFold: true});
+            this.setState
+            ({
+                isAboveFold: false,
+            })
         }
     }
 
@@ -153,6 +165,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
         return (
             <BMStyle.ThemeContext.Provider value = {{...this.state.theme, ...{toggleTheme: this.toggleDarkMode.bind(this)}}}>
             <BMStyle.LanguageContext.Provider value = {{...this.state.language, ...{toggleLanguage: this.toggleLanguage.bind(this)}}}>
+            <BMStyle.StateContext.Provider value = {{IsAboveFold: this.state.isAboveFold, IsMobileWidth: this.state.isMobileWidth}}>
                 <div 
                     className = "web_page"
                     style = 
@@ -164,11 +177,7 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         overflowX: "hidden",
                     }}
                 >
-                    <Header
-                        isAboveFold = {this.state.isAboveFold}
-                        isMobileWidth = {this.state.isMobileWidth}
-                    >
-                    </Header>
+                    <Header></Header>
 
                     <div
                         className = "hero_image"
@@ -207,14 +216,14 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                                 justifyContent: "center",
                             }}
                         >
-                            <SubtitleButton text = {this.state.language.Educator}  isMobileWidth = {this.state.isMobileWidth} onClick = {() => this.scrollToSection(scrollableSectionNames.educatorSectionName)}></SubtitleButton>
-                            <SubtitleButton text = {this.state.language.Traveller}  isMobileWidth = {this.state.isMobileWidth} onClick = {() => this.scrollToSection(scrollableSectionNames.travellerSectionName)}></SubtitleButton>
-                            <SubtitleButton text = {this.state.language.Developer}  isMobileWidth = {this.state.isMobileWidth} onClick = {() => this.scrollToSection(scrollableSectionNames.developerSectionName)}></SubtitleButton>
+                            <SubtitleButton text = {this.state.language.Educator}  onClick = {() => this.scrollToSection(scrollableSectionNames.educatorSectionName)}></SubtitleButton>
+                            <SubtitleButton text = {this.state.language.Traveller}  onClick = {() => this.scrollToSection(scrollableSectionNames.travellerSectionName)}></SubtitleButton>
+                            <SubtitleButton text = {this.state.language.Developer}  onClick = {() => this.scrollToSection(scrollableSectionNames.developerSectionName)}></SubtitleButton>
                         </div>
                     </div>
 
                     {this.state.isUnderConstruction &&
-                        <UnderConstructionPane isMobileWidth = {this.state.isMobileWidth} onThreeClicks = {() => this.setState({isUnderConstruction: false})}></UnderConstructionPane>
+                        <UnderConstructionPane onThreeClicks = {() => this.setState({isUnderConstruction: false})}></UnderConstructionPane>
                     }
 
                     {!this.state.isUnderConstruction &&
@@ -230,26 +239,29 @@ class WebPage extends React.Component<WebPageProps, WebPageState>
                         }}
                     >
                         <ScrollElement name = {scrollableSectionNames.developerSectionName}>
-                            <Body5050Section imageSrc = {this.state.theme.images.DeveloperPortrait} text = {this.state.language.DeveloperParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                            <Body5050Section imageSrc = {this.state.theme.images.DeveloperPortrait} height="600px" reverse = {false}>
+                                    {Linkify(this.state.language.DeveloperParagraphSubstrings, this.state.language.DeveloperResumeLinkTuple, this.state.language.DeveloperBlogLinkTuple)}
+                            </Body5050Section>
                         </ScrollElement>
                         <ScrollElement name = {scrollableSectionNames.educatorSectionName}>
-                            <Body5050Section imageSrc = {this.state.theme.images.EducatorPortrait} text = {this.state.language.EducatorParagraphText} height="600px" reverse = {true} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                            <Body5050Section imageSrc = {this.state.theme.images.EducatorPortrait} height="600px" reverse = {true}></Body5050Section>
                         </ScrollElement>
                         <ScrollElement name = {scrollableSectionNames.travellerSectionName}>
-                            <Body5050Section imageSrc = {this.state.theme.images.TravellerPortrait} text = {this.state.language.TravellerParagraphText} height="600px" reverse = {false} isMobileWidth = {this.state.isMobileWidth}></Body5050Section>
+                            <Body5050Section imageSrc = {this.state.theme.images.TravellerPortrait} height="600px" reverse = {false}></Body5050Section>
                         </ScrollElement>
                     </div>
                     }
 
                     {!this.state.isUnderConstruction &&
-                        <ContactWidget isMobileWidth = {this.state.isMobileWidth}></ContactWidget>
+                        <ContactWidget></ContactWidget>
                     }
                     
                     
                     {!this.state.isUnderConstruction &&
-                        <Footer isMobileWidth = {this.state.isMobileWidth}></Footer>
+                        <Footer></Footer>
                     }
                 </div>
+            </BMStyle.StateContext.Provider>
             </BMStyle.LanguageContext.Provider>
             </BMStyle.ThemeContext.Provider>
         );

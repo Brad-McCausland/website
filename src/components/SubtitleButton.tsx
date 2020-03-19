@@ -4,7 +4,6 @@ import { BMStyle } from '../BMStyle';
 interface SubtitleButtonProps
 {
     text: string,
-    isMobileWidth: boolean,
     className?: string,
     onClick?: () => void,
 }
@@ -28,12 +27,11 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
 
     render ()
     {
-        const fontSize = this.props.isMobileWidth ? '5vw' : '2.5vw';
-        const hoveredFontSize = this.props.isMobileWidth ? '5.4 vw' : '2.7vw';
-
         return (
             <BMStyle.ThemeContext.Consumer>
-                {theme => (
+            {theme => (
+                <BMStyle.StateContext.Consumer>
+                {({IsAboveFold, IsMobileWidth}) => (
                     <div ref = {this.state.wrapperRef} className="wrapper">
                         <h1
                             className = {this.props.className || "SubtitleButton"}
@@ -42,7 +40,7 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
                             onMouseLeave = {this.mouseLeave.bind(this)}
                             style = {{
                                 color: this.state.hovered ? theme.colors.HeroTitleHoveredColor : theme.colors.HeroTitleColor,
-                                fontSize: this.state.hovered ? hoveredFontSize : fontSize,
+                                fontSize: this.state.hovered ? (IsMobileWidth? '5.4vw' : '2.7vw') : (IsMobileWidth? '5vw' : '2.5vw'),
                                 fontFamily: BMStyle.UITitleFont,
                                 display: 'inline',
                                 marginLeft: '1.5vw',
@@ -55,6 +53,8 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
                         </h1>
                     </div>
                 )}
+                </BMStyle.StateContext.Consumer>
+            )}
             </BMStyle.ThemeContext.Consumer>
         )
     }

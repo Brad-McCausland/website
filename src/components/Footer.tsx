@@ -8,7 +8,6 @@ import { BMStyle } from '../BMStyle';
 
 interface FooterProps
 {
-    isMobileWidth: boolean,
 }
 
 interface FooterState
@@ -28,7 +27,9 @@ export class Footer extends React.Component<FooterProps, FooterState>
 
         return (
             <BMStyle.ThemeContext.Consumer>
-                {theme => (
+            {theme => (
+                <BMStyle.StateContext.Consumer>
+                {({IsAboveFold, IsMobileWidth}) => (
                     <div className = "Footer" style =
                     {{
                         position: "relative",
@@ -44,7 +45,7 @@ export class Footer extends React.Component<FooterProps, FooterState>
                             className = "left_justified_elements"
                             style = 
                             {{
-                                marginLeft: this.props.isMobileWidth ? Footer_ICON_MARGIN : "8.3333vw",
+                                marginLeft: IsMobileWidth? Footer_ICON_MARGIN : "8.3333vw",
                                 marginRight: "auto",
                                 flexDirection: "row",
                             }}
@@ -56,7 +57,7 @@ export class Footer extends React.Component<FooterProps, FooterState>
                                     color: "white",
                                     fontSize: "24px",
                                     fontFamily: BMStyle.UITitleFont,
-                                    display: this.props.isMobileWidth ? "none" : "inline",
+                                    display: IsMobileWidth? "none" : "inline",
                                     margin: "5px",
                                     transition: "opacity 0.7s",
                                 }}
@@ -70,7 +71,7 @@ export class Footer extends React.Component<FooterProps, FooterState>
                             style = 
                             {{
                                 marginLeft: "auto",
-                                marginRight: this.props.isMobileWidth ? Footer_ICON_MARGIN : "8.3333vw",
+                                marginRight: IsMobileWidth? Footer_ICON_MARGIN : "8.3333vw",
                                 flexDirection: "row",
                             }}
                         >
@@ -79,8 +80,9 @@ export class Footer extends React.Component<FooterProps, FooterState>
                             <HeaderIcon className = "icon-linkedin" onClick = {() => window.open(BMStyle.LinkedInUrl, "_blank")}></HeaderIcon>
                         </div>
                     </div>
-                    
                 )}
+                </BMStyle.StateContext.Consumer>
+            )}
             </BMStyle.ThemeContext.Consumer>
         )
     }

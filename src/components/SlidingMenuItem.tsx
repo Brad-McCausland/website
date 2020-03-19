@@ -1,6 +1,5 @@
 import * as React from "react";
 import { BMStyle } from '../BMStyle';
-import { HeaderIcon } from "./HeaderIcon";
 
 /*
  * Parent class for different elements that can be displayed in the slide out menu.
