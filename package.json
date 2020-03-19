@@ -4,7 +4,7 @@
   "description": "Personal website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -r ts-node/register tests/*.tsx"
   },
   "repository": {
     "type": "git",
@@ -18,15 +18,20 @@
   },
   "homepage": "https://github.com/bmcc0605/website#readme",
   "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
     "@types/react-scroll": "^1.5.4",
+    "chai": "^4.2.0",
     "css-loader": "^3.4.2",
     "file-loader": "^5.0.2",
+    "mocha": "^7.1.1",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.1.2",
     "svg-inline-loader": "^0.8.0",
     "ts-loader": "^6.2.1",
+    "ts-node": "^8.7.0",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
