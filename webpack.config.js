@@ -1,9 +1,21 @@
+var path = require('path');
 module.exports =
 {
     mode: "production",
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
+
+    devServer:
+    {
+        historyApiFallback: true
+    },
+    output:
+    {
+        path: path.resolve(__dirname, 'dist'),
+        filename: "main.js",
+        publicPath: "/"
+    },
 
     resolve:
     {

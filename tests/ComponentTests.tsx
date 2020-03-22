@@ -13,6 +13,7 @@ describe('Test Functions', () =>
         expect(val).to.equal(true);
     });
 
+    /*
     it("Should return a <p> component with all keywords replaced with <a> components with the same text and an href", () =>
     {
         //TODO: Ask Ryan how to provide context for consumer components in unit test
@@ -45,4 +46,5 @@ describe('Test Functions', () =>
         )
         </BMStyle.ThemeContext.Provider>
     });
+    */
 });

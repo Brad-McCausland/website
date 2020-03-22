@@ -1,25 +1,60 @@
 import * as React from 'react';
 import { BMStyle, inLineTextLinkPair } from '../BMStyle';
+import { UnderConstructionPage } from '../components/UnderConstructionPage';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 /*
- * Function clickableTextLink takes a text/link pair and returns an <a> component with it's href set to the supplied url
+ * Function clickableTextLink takes a text/link pair. If the url starts with a '/' it will be treated as an internal url and the function will return a
+ * <link> component that can be routed on the client side. Otherwise, it returns an <a> component with it's href set to the supplied url.
  */
 function clickableTextLink(link: inLineTextLinkPair)
 {
-    return (
-        <BMStyle.ThemeContext.Consumer>
-        {theme => (
-            <a
-                href = {link.url}
-                style = 
-                {{
-                    color: theme.colors.UIMainColor,
-                    textDecoration: "none",
-                }}
-            > {link.text} </a>
-        )}
-        </BMStyle.ThemeContext.Consumer>
-    )
+    // Return clint-side routed link if given an internal url
+    if (link.url.charAt(0) === "/")
+    {
+        return (
+            <BMStyle.ThemeContext.Consumer>
+            {theme => (
+                <Link 
+                    style = 
+                    {{
+                        color: theme.colors.UIMainColor,
+                        textDecoration: "none",
+                    }}
+                    to={link.url}
+                >
+                    {link.text}
+                </Link>
+            )}
+            </BMStyle.ThemeContext.Consumer>
+        )
+    }
+    // Else return an <a> component when given an external link
+    else
+    {
+        return (
+            <BMStyle.ThemeContext.Consumer>
+            {theme => (
+                <a
+                    style = 
+                    {{
+                        color: theme.colors.UIMainColor,
+                        textDecoration: "none",
+                    }}
+                    href={link.url}
+                    target="_blank"
+                >
+                    {link.text}
+                </a>
+            )}
+            </BMStyle.ThemeContext.Consumer>
+        )
+    }
 }
 
 /*
@@ -71,6 +106,8 @@ function recursiveSplicer(input: string, ...linkWords: inLineTextLinkPair[])
  *     - text: a string which contains substrings that need to be converted into links.
  *     - substrings: an arbitrary amount of substring/url pairs to be inserted into the text.
  */
+
+//TODO: Return only the concatenated components and let the client code put them in an element
 export function Linkify(text: string, ...linkWords: inLineTextLinkPair[])
 {
     var content = recursiveSplicer(text, ...linkWords);
