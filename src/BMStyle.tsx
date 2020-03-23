@@ -16,6 +16,7 @@ export interface BMThemeContext
         UIMainColor: string,
         UIDarkColor: string,
         UIDisabledColor: string,
+        UIButtonIndentedColor: string,
         
         BackgroundColor: string,
         BodyTextColor: string,
@@ -75,6 +76,7 @@ export class BMStyle
             UIMainColor: "#ffa000",
             UIDarkColor: "#d17627", //"#ff7700";
             UIDisabledColor: "#aaaaaa",
+            UIButtonIndentedColor: "#e06d00",
             
             BackgroundColor: "#eeeeee",
             BodyTextColor: "#666666",
@@ -102,6 +104,7 @@ export class BMStyle
             UIMainColor: "#ef7e00",
             UIDarkColor: "#d17627",
             UIDisabledColor: "#666666",
+            UIButtonIndentedColor: "#c15500",
             
             BackgroundColor: "#010011",
             BodyTextColor: "#ebebeb",

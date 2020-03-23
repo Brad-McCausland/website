@@ -14,6 +14,8 @@ interface ContactWidgetState
     name: string,
     email: string,
     message: string,
+    isSendable: boolean,
+    isSending: boolean,
 }
 
 export class ContactWidget extends React.Component<ContactWidgetProps, ContactWidgetState>
@@ -26,6 +28,8 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
             name: "",
             email: "",
             message: "",
+            isSendable: false,
+            isSending: false,
         }
     }
 
@@ -35,6 +39,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
         {
             name: event.target.value
         });
+        this.checkIfSendable();
     }
 
     handleEmailFieldChange(event: React.ChangeEvent<HTMLInputElement>)
@@ -43,6 +48,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
         {
             email: event.target.value
         });
+        this.checkIfSendable();
     }
 
     handleMessageFieldChange(event: React.ChangeEvent<HTMLTextAreaElement>)
@@ -51,11 +57,14 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
         {
             message: event.target.value
         });
+        this.checkIfSendable();
     }
 
     handleSubmitButtonClicked(event: React.MouseEvent<HTMLButtonElement, MouseEvent>)
     {
         event.preventDefault();
+
+        this.setState({isSending: true,})
     
         fetch('http://localhost:3002/send',
         {
@@ -72,14 +81,15 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
         {
             if (response.status === 'success'){
                 alert("Message Sent."); 
-                this.resetForm()
             }else if(response.status === 'fail'){
                 alert("Message failed to send.")
             }
+            this.resetForm()
         })
         .catch(() =>
         {
             alert("Error: email server not reachable.")
+            this.resetForm()
         })
     }
 
@@ -90,6 +100,8 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                 name: "",
                 email: "",
                 message: "",
+                isSendable: false,
+                isSending: false,
             }
         )
     }
@@ -97,7 +109,11 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
     checkIfSendable()
     {
         var isSendable = this.state.name !== "" && this.isEmailValid() && this.state.message !== "";
-        return isSendable;
+        this.setState(
+            {
+                isSendable: isSendable,
+            }
+        )
     }
 
     isEmailValid()
@@ -108,8 +124,6 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
 
     render()
     {
-        var isSendable = this.checkIfSendable();
-
         return (
             <BMStyle.ThemeContext.Consumer>
             {theme => (
@@ -207,7 +221,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
 
                             <button
                                 className = "submit_button"
-                                onClick = {isSendable? this.handleSubmitButtonClicked.bind(this) : (() => {return null})}
+                                onClick = {this.state.isSendable? this.handleSubmitButtonClicked.bind(this) : (() => {return null})}
                                 style = 
                                 {{
                                     width: IsMobileWidth? "100%" : "200px",
@@ -222,8 +236,8 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                                     fontSize: "36px",
                                     fontFamily: BMStyle.UITitleFont,
                                     color: "white",
-                                    cursor: isSendable? "pointer" : "auto",
-                                    backgroundColor: isSendable? theme.colors.UIMainColor : theme.colors.UIDisabledColor,
+                                    cursor: this.state.isSendable? "pointer" : "auto",
+                                    backgroundColor: this.state.isSendable? (this.state.isSending? theme.colors.UIButtonIndentedColor : theme.colors.UIMainColor) : theme.colors.UIDisabledColor,
                                 }}
                             >
                                 {language.Submit}
