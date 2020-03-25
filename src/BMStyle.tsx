@@ -203,6 +203,9 @@ export class BMStyle
     static GithubUrl = "https://github.com/bmcc0605";
     static MailToUrl = "mailto:bradmccausland20@gmail.com";
 
+    // Service urls
+    static EBMailServerUrl = "http://bmwebsiteemailer-env.eba-32hxveme.us-east-2.elasticbeanstalk.com/"
+
     // Dimensions
     static HeaderHeight = 70;
     static HeaderHeightString = BMStyle.HeaderHeight + "px";

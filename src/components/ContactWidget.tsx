@@ -66,29 +66,34 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
 
         this.setState({isSending: true,})
     
-        fetch('http://localhost:3002/send',
+        // Send request to AWS service
+        fetch(BMStyle.EBMailServerUrl,
         {
             method: "POST",
             body: JSON.stringify(this.state),
             headers:
             {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Accept': 'text/plain',
+                    'Content-Type': 'text/plain'
             },
         })
-        .then((response) => (response.json()))
         .then((response) =>
         {
-            if (response.status === 'success'){
-                alert("Message Sent."); 
-            }else if(response.status === 'fail'){
-                alert("Message failed to send.")
+            if (response.status == 200)
+            {
+                //TODO: Replace alerts with more pleasing UI feedback
+                alert("Message sent successfully!");
+                this.resetForm()
             }
-            this.resetForm()
+            else
+            {
+                alert("Error: email server not reachable. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
+                this.resetForm()
+            }
         })
         .catch(() =>
         {
-            alert("Error: email server not reachable.")
+            alert("Error: email server not reachable. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
             this.resetForm()
         })
     }
