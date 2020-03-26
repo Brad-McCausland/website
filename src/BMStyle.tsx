@@ -43,6 +43,7 @@ export interface BMThemeContext
 
 export interface BMLanguageContext
 {
+    LangCode: string,
     Educator: string,
     Traveller: string,
     Developer: string,
@@ -130,6 +131,7 @@ export class BMStyle
     // Text
     static EnglishText =
     {
+        LangCode: "EN",
         Educator: "Educator",
         Traveller: "Traveller",
         Developer: "Developer",
@@ -141,7 +143,7 @@ export class BMStyle
         YourMessage: "Your Message",
         Submit: "SUBMIT",
         DeveloperParagraph: "I'm a Seattle-based software developer with 2.5 years experience in iOS development, and I like to build cool stuff. Any language, stack, or framework. Front-end or back-end. I enjoy building robust applications with an emphasis on secure design and extensibility, especially when working towards a social good. See my resume for more, or check out my blog to see what I've been working on.",
-        EducatorParagraph:  "Studying computer science has opened up a world of opportunities to me, and I owe a great deal to the educators who helped me take the first steps into the field. To give back, I've volunteered with a number of educational organizations including ACM mentors, Microsoft TEALS, and Hour of Code over the years, to help expose students to the field and to practice my own communication skills.",
+        EducatorParagraph:  "Studying computer science has opened up a world of opportunities to me, and I owe a great deal to the educators who helped me take the first steps into the field. To give back, I've volunteered with a number of educational organizations including ACM mentors, Microsoft TEALS, and Hour of Code over the years, to help expose students to the field and to practice my communication skills.",
         TravellerParagraph: "Travel is fatal to prejudice, bigotry, and narrow-mindedness, and many of our people need it sorely on these accounts. Broad, wholesome, charitable views of men and things cannot be acquired by vegetating in one little corner of the earth all one's lifetime. Check out some of my photos in this stupid photo album component I guess or something.",  
         UnderConstruction: "Under Construction!",
         UnderConstructionSubtitle: "Looks like I haven't gotten around to this part of the site yet, but you can check up on my progress here!",
@@ -153,6 +155,7 @@ export class BMStyle
 
     static GermanText =
     {
+        LangCode: "DE",
         Educator: "Erzieher",
         Traveller: "Reisender",
         Developer: "Entwickler",
@@ -201,7 +204,7 @@ export class BMStyle
     // Links
     static LinkedInUrl = "https://www.linkedin.com/in/bradleymccausland/";
     static GithubUrl = "https://github.com/bmcc0605";
-    static MailToUrl = "mailto:bradmccausland20@gmail.com";
+    static MailToUrl = "mailto:me@bradmccausland.com";
 
     // Service urls
     static EBMailServerUrl = "http://bmwebsiteemailer-env.eba-32hxveme.us-east-2.elasticbeanstalk.com/"

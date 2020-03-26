@@ -25,8 +25,6 @@ interface HomePageProps
 }
 
 /* TODO:
- * Set up emailer on live server
- * Write content
  * Get more photos
  */
 

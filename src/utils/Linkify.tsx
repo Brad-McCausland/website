@@ -100,40 +100,14 @@ function recursiveSplicer(input: string, ...linkWords: inLineTextLinkPair[])
 }
 
 /*
- * Function Linkify takes a string and an arbitrary number of substring/link pairs, and returns a paragraph object containing the first string with each instance of
- * a supplied substring replaced with a link to the corresponding url
+ * Function Linkify takes a string and an arbitrary number of substring/link pairs, and an array of text and link snippets which can be wrapped in a text element
  * Input
  *     - text: a string which contains substrings that need to be converted into links.
  *     - substrings: an arbitrary amount of substring/url pairs to be inserted into the text.
  */
 
-//TODO: Return only the concatenated components and let the client code put them in an element
 export function Linkify(text: string, ...linkWords: inLineTextLinkPair[])
 {
     var content = recursiveSplicer(text, ...linkWords);
-    
-    return (
-        <BMStyle.ThemeContext.Consumer>
-        {theme => (
-            <BMStyle.StateContext.Consumer>
-            {({IsAboveFold, IsMobileWidth}) => (
-                <p
-                    style = 
-                    {{
-                        fontSize: IsMobileWidth? "5vw" : "2vw",
-                        fontFamily: BMStyle.UIContentFont,
-                        color: IsMobileWidth ? theme.colors.BodyTextMobileWidthColor : theme.colors.BodyTextColor,
-                        margin: "0px",
-                        padding: IsMobileWidth? "5vw" : "2vw",
-                        textAlign: "justify",
-                        textAlignLast: "center",
-                    }}
-                >
-                    {content}
-                </p>
-            )}
-            </BMStyle.StateContext.Consumer>
-        )}
-        </BMStyle.ThemeContext.Consumer>
-    )
+    return (content);
 }
