@@ -4,6 +4,7 @@ import { BMStyle, BMThemeContext, BMLanguageContext } from '../BMStyle';
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Linkify } from '../utils/Linkify';
+import Cookies from 'js-cookie';
 import ReactFitText = require("react-fittext");
 
 interface UnderConstructionPageProps
@@ -27,8 +28,8 @@ export class UnderConstructionPage extends React.Component<UnderConstructionPage
         this.state =
         {
             isMobileWidth: this.isMobileWidth(),
-            theme: BMStyle.LightTheme,
-            language: BMStyle.EnglishText
+            theme: Cookies.get(BMStyle.DarkModeCookie) === 'true'? BMStyle.DarkTheme : BMStyle.LightTheme,
+            language: Cookies.get(BMStyle.LanguageCookie) === 'DE'? BMStyle.GermanText : BMStyle.EnglishText,
         };
     }
     
@@ -52,19 +53,23 @@ export class UnderConstructionPage extends React.Component<UnderConstructionPage
         return window.innerWidth < 675;
     }
 
-    toggleDarkMode()
+    toggleDarkMode(toggled: boolean)
     {
         this.setState
         ({
-            theme: this.state.theme == BMStyle.LightTheme ? BMStyle.DarkTheme : BMStyle.LightTheme
+            theme: toggled? BMStyle.DarkTheme : BMStyle.LightTheme
+        }, () => {
+            Cookies.set(BMStyle.DarkModeCookie, (this.state.theme === BMStyle.DarkTheme)? "true" : "false");
         });
     }
 
-    toggleLanguage()
+    toggleLanguage(toggled: boolean)
     {
         this.setState
         ({
-            language: this.state.language == BMStyle.EnglishText ? BMStyle.GermanText : BMStyle.EnglishText
+            language: toggled? BMStyle.GermanText : BMStyle.EnglishText
+        }, () => {
+            Cookies.set(BMStyle.LanguageCookie, this.state.language.LangCode);
         });
     }
     //////////////

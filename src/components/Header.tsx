@@ -71,16 +71,16 @@ export class Header extends React.Component<HeaderProps, HeaderState>
 
                             <SlidingMenu isExtended = {this.state.isMenuExtended} crossButtonAction = {this.toggleExtendMenu.bind(this)}>
                                 <SlidingMenuItem text = {language.DarkMode}>
-                                    <ToggleSwitch width = {80} height = {40} toggleAction = {
-                                        (value: boolean) => theme.toggleTheme()}
+                                    <ToggleSwitch width = {80} height = {40} startToggled = {theme.name === 'dark'} toggleAction = {
+                                        (value: boolean) => theme.toggleTheme(value)}
                                     >
                                     </ToggleSwitch>
                                 </SlidingMenuItem>
                                 <SlidingMenuItem text = {language.Language}>
-                                    <ToggleSwitch width = {80} height = {40} toggledOffText = {"EN"} toggledOnText = {"DE"} toggleAction = {
+                                    <ToggleSwitch width = {80} height = {40} startToggled = {language.LangCode === 'DE'} toggledOffText = {"EN"} toggledOnText = {"DE"} toggleAction = {
                                         (value: boolean) =>
                                         {
-                                            language.toggleLanguage();
+                                            language.toggleLanguage(value);
                                         }}
                                     >
                                     </ToggleSwitch>

@@ -11,6 +11,7 @@ export interface inLineTextLinkPair
 export interface BMThemeContext
 {
     // Constants
+    name: string,
     colors:
     {
         UIMainColor: string,
@@ -38,7 +39,7 @@ export interface BMThemeContext
     },
 
     // Function given and implemented by provider objects and called by consumers to handle theme switching.
-    toggleTheme: () => void,
+    toggleTheme: (toggled: boolean) => void,
 }
 
 export interface BMLanguageContext
@@ -65,13 +66,14 @@ export interface BMLanguageContext
     WebsiteGitubTextLinkPair: inLineTextLinkPair,
 
     // Function given and implemented by provider objects and called by consumers to handle language switching.
-    toggleLanguage: () => void,
+    toggleLanguage: (toggled: boolean) => void,
 }
 
 export class BMStyle
 {
     static LightTheme = 
     {
+        name: "light",
         colors:
         {
             UIMainColor: "#ffa000",
@@ -100,6 +102,7 @@ export class BMStyle
 
     static DarkTheme = 
     {
+        name: "dark",
         colors:
         {
             UIMainColor: "#ef7e00",
@@ -217,4 +220,8 @@ export class BMStyle
 
     // Durations
     static HeaderSlideTransitionTime = "0.7s";
+
+    // Cookies
+    static DarkModeCookie = "BM_DarkMode";
+    static LanguageCookie = "BM_Language";
 }

@@ -9,6 +9,7 @@ interface ToggleSwitchProps
 {
     width: number,
     height: number,
+    startToggled?: boolean,
     toggleAction?: (isToggled: boolean) => void,
     toggledOffText?: string,
     toggledOnText?: string,
@@ -16,7 +17,7 @@ interface ToggleSwitchProps
 
 interface ToggleSwitchState
 {
-    isToggled: boolean,
+    isToggled: boolean
 }
 
 export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitchState>
@@ -26,7 +27,7 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
         super(props);
         this.state = 
         {
-            isToggled: false,
+            isToggled: this.props.startToggled || false,
         }
     }
 
