@@ -207,7 +207,7 @@ export class BMStyle
     static MailToUrl = "mailto:me@bradmccausland.com";
 
     // Service urls
-    static EBMailServerUrl = "http://bmwebsiteemailer-env.eba-32hxveme.us-east-2.elasticbeanstalk.com/"
+    static EBMailServerUrl = "https://bmwebsiteemailer-env.eba-32hxveme.us-east-2.elasticbeanstalk.com/"
 
     // Dimensions
     static HeaderHeight = 70;

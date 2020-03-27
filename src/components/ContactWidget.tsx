@@ -87,14 +87,12 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
             }
             else
             {
-                alert("Error: email server not reachable. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
-                this.resetForm()
+                alert("Error: something went wrong with my mailer server. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
             }
         })
         .catch(() =>
         {
             alert("Error: email server not reachable. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
-            this.resetForm()
         })
     }
 
@@ -140,7 +138,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                             className = "contact_widget"
                             style = 
                             {{
-                                margin: IsMobileWidth? "100px 8px" : "100px 24vw",
+                                margin: IsMobileWidth? "100px 8px 150px" : "100px 24vw 150px",
                                 display: "flex",
                                 flexDirection: "column",
                             }}

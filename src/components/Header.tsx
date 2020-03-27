@@ -12,6 +12,8 @@ import { SlidingMenuItem } from './SlidingMenuItem';
 
 interface HeaderProps
 {
+    // Setting isDynamic to true will cause the header's orange background to only appear when scrolling below the fold. Otherwise, it will always be visible.
+    isDynamic: boolean
 }
 
 interface HeaderState
@@ -95,7 +97,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                                         width: "100%",
                                         position: "absolute",
                                         zIndex: 1,
-                                        top: IsAboveFold ? "-100%" : "0px",
+                                        top: (IsAboveFold && this.props.isDynamic) ? "-100%" : "0px",
                                         transition: `top ${BMStyle.HeaderSlideTransitionTime}`,
                                     }}
                                 >

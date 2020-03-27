@@ -1,6 +1,5 @@
 import * as React from "react";
 import { BMStyle, BMLanguageContext } from '../BMStyle';
-import { Linkify } from '../utils/Linkify';
 import ReactFitText = require("react-fittext");
 export enum BodySectionType
 {
@@ -101,7 +100,7 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
                                     alignItems: "center",
                                 }}
                             >
-                                <ReactFitText compressor={2.0} minFontSize={language.LangCode === "EN"? 26 : 22} maxFontSize={language.LangCode === "EN"? 48 : 40}>
+                                <ReactFitText compressor={2.1} minFontSize={language.LangCode === "EN"? 26 : 22} maxFontSize={language.LangCode === "EN"? 48 : 40}>
                                     <p
                                         style = 
                                         {{

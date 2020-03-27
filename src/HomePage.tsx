@@ -31,8 +31,6 @@ interface HomePageProps
 // State defines all private properties
 interface HomePageState
 {
-    windowWidth: number;
-    images: HTMLImageElement[],
     isAboveFold: boolean,
     isMobileWidth: boolean,
     heroImageHeight: number,
@@ -49,10 +47,9 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
     {
         super(props);
 
+        // TODO: Init with info from browser cookies
         this.state =
         {
-            windowWidth: window.innerWidth,
-            images: [],
             isAboveFold: true,
             isMobileWidth: this.isMobileWidth(),
             heroImageHeight: window.innerHeight,
@@ -169,13 +166,14 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
                     style = 
                     {{
                         display: "block",
+                        position: "relative",
                         margin: "0px",
                         backgroundColor: this.state.theme.colors.BackgroundColor,
                         fontFamily: BMStyle.UITitleFont,
                         overflowX: "hidden",
                     }}
                 >
-                    <Header></Header>
+                    <Header isDynamic={true}/>
 
                     <div
                         className = "hero_image"
