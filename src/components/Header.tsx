@@ -5,6 +5,7 @@ import { BMStyle } from '../BMStyle';
 import { SlidingMenu } from './SlidingMenu';
 import { ToggleSwitch } from "./ToggleSwitch";
 import { SlidingMenuItem } from './SlidingMenuItem';
+import { Link } from "react-router-dom";
 
 /*
  * Header object which contains menu and link buttons. When above the fold, will display a black gradient as a background. When below, will switch to an orange background and display my name as well.
@@ -115,21 +116,30 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                                 }}
                             >
                                 <HeaderIcon className = "icon-menu" onClick = {() => this.toggleExtendMenu()}></HeaderIcon>
-                                <h1 
-                                    className = "name_in_header"
-                                    style =
+
+                                <Link 
+                                    style = 
                                     {{
-                                        color: "white",
-                                        fontSize: "40px",
-                                        fontFamily: BMStyle.UITitleFont,
-                                        display: IsMobileWidth ? "none" : "inline",
-                                        margin: "5px",
-                                        opacity: IsAboveFold ? "0" : "1",
-                                        transition: "opacity 0.7s",
+                                        textDecoration: "none",
                                     }}
+                                    to={BMStyle.HomePageLink}
                                 >
-                                    Brad McCausland
-                                </h1>
+                                    <h1 
+                                        className = "name_in_header"
+                                        style =
+                                        {{
+                                            color: "white",
+                                            fontSize: "40px",
+                                            fontFamily: BMStyle.UITitleFont,
+                                            display: IsMobileWidth ? "none" : "inline",
+                                            margin: "5px",
+                                            opacity: IsAboveFold ? "0" : "1",
+                                            transition: "opacity 0.7s",
+                                        }}
+                                    >
+                                        Brad McCausland
+                                    </h1>
+                                </Link>
                             </div>
 
                             <div 

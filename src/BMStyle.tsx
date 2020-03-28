@@ -71,6 +71,45 @@ export interface BMLanguageContext
 
 export class BMStyle
 {
+    static StateContext = React.createContext(
+        {
+            IsAboveFold: true,
+            IsMobileWidth: false,
+        }
+    );
+
+    // Fonts
+    static UITitleFont = "Raleway";
+    static UIContentFont = "work sans";
+    static UITextEntryFont = "Roboto Slab";
+    static UIIconFont = "icomoon";
+
+    // Links
+    static LinkedInUrl = "https://www.linkedin.com/in/bradleymccausland/";
+    static GithubUrl = "https://github.com/bmcc0605";
+    static MailToUrl = "mailto:me@bradmccausland.com";
+
+    // Client Side Links
+    static HomePageLink = "/"
+    static ResumePageLink = "/resume"
+    static BlogPageLink = "/blog"
+    static TravelPageLink = "/travel"
+
+    // Service urls
+    static EBMailServerUrl = "https://bmwebsiteemailer-env.eba-32hxveme.us-east-2.elasticbeanstalk.com/"
+
+    // Dimensions
+    static HeaderHeight = 70;
+    static HeaderHeightString = BMStyle.HeaderHeight + "px";
+    static MenuItemHeight = 70;
+    static MenuItemHeightString = BMStyle.MenuItemHeight + "px";
+
+    // Durations
+    static HeaderSlideTransitionTime = "0.7s";
+
+    // Cookies
+    static DarkModeCookie = "BM_DarkMode";
+    static LanguageCookie = "BM_Language";
     static LightTheme = 
     {
         name: "light",
@@ -130,7 +169,6 @@ export class BMStyle
         }
     } as BMThemeContext
 
-    private static resumeDownloadLink = <a href="http://bradmccausland.com/">my resume</a>;
     // Text
     static EnglishText =
     {
@@ -150,9 +188,9 @@ export class BMStyle
         TravellerParagraph: "Travel is fatal to prejudice, bigotry, and narrow-mindedness, and many of our people need it sorely on these accounts. Broad, wholesome, charitable views of men and things cannot be acquired by vegetating in one little corner of the earth all one's lifetime. Check out some of my photos in this stupid photo album component I guess or something.",  
         UnderConstruction: "Under Construction!",
         UnderConstructionSubtitle: "Looks like I haven't gotten around to this part of the site yet, but you can check up on my progress here!",
-        DeveloperResumeTextLinkPair: {text: "my resume", url: "/resume"},
-        DeveloperBlogTextLinkPair:   {text: "my blog", url: "/blog"},
-        TravellerPhotoTextLinkPair:  {text: "this stupid photo album component", url: "/travel"},
+        DeveloperResumeTextLinkPair: {text: "my resume", url: BMStyle.ResumePageLink},
+        DeveloperBlogTextLinkPair:   {text: "my blog", url: BMStyle.BlogPageLink},
+        TravellerPhotoTextLinkPair:  {text: "this stupid photo album component", url: BMStyle.TravelPageLink},
         WebsiteGitubTextLinkPair:    {text: "here", url: "https://github.com/bmcc0605/website"},
     } as BMLanguageContext
 
@@ -174,9 +212,9 @@ export class BMStyle
         TravellerParagraph: "Reisen ist tödlich für Vorurteile, Bigotterie und Engstirnigkeit, und viele unserer Leute brauchen es an diesen Gründen schlecht. Breite, gesunde, und freigebige Meinungen zu Menschen und Dingen kann man durch vegetieren in ihrer Ecke der Welt nicht erhalten. Ich reise sehr gern, und Ich kann auch ein bisschen Deutsch sprechen!",
         UnderConstruction: "Im Bau!",
         UnderConstructionSubtitle: "Es sieht aus, als Ich deisen Teil der Website noch nicht gemacht hatte. Sie können meine Fortschritte hier sehen!",
-        DeveloperResumeTextLinkPair: {text: "meinen Lebenslauf", url: "/resume"},
-        DeveloperBlogTextLinkPair:   {text: "meinen Blog", url: "/blog"},
-        TravellerPhotoTextLinkPair:  {text: "Ich reise sehr gern", url: "/travel"},
+        DeveloperResumeTextLinkPair: {text: "meinen Lebenslauf", url: BMStyle.ResumePageLink},
+        DeveloperBlogTextLinkPair:   {text: "meinen Blog", url: BMStyle.BlogPageLink},
+        TravellerPhotoTextLinkPair:  {text: "Ich reise sehr gern", url: BMStyle.TravelPageLink},
         WebsiteGitubTextLinkPair:    {text: "hier", url: "https://github.com/bmcc0605/website"},
     } as BMLanguageContext
     
@@ -190,38 +228,4 @@ export class BMStyle
         // Default to English
         BMStyle.EnglishText
     );
-
-    static StateContext = React.createContext(
-        {
-            IsAboveFold: true,
-            IsMobileWidth: false,
-        }
-    );
-
-    // Fonts
-    static UITitleFont = "Raleway";
-    static UIContentFont = "work sans";
-    static UITextEntryFont = "Roboto Slab";
-    static UIIconFont = "icomoon";
-
-    // Links
-    static LinkedInUrl = "https://www.linkedin.com/in/bradleymccausland/";
-    static GithubUrl = "https://github.com/bmcc0605";
-    static MailToUrl = "mailto:me@bradmccausland.com";
-
-    // Service urls
-    static EBMailServerUrl = "https://bmwebsiteemailer-env.eba-32hxveme.us-east-2.elasticbeanstalk.com/"
-
-    // Dimensions
-    static HeaderHeight = 70;
-    static HeaderHeightString = BMStyle.HeaderHeight + "px";
-    static MenuItemHeight = 70;
-    static MenuItemHeightString = BMStyle.MenuItemHeight + "px";
-
-    // Durations
-    static HeaderSlideTransitionTime = "0.7s";
-
-    // Cookies
-    static DarkModeCookie = "BM_DarkMode";
-    static LanguageCookie = "BM_Language";
 }

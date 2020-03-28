@@ -1,12 +1,6 @@
 import * as React from 'react';
 import { BMStyle, inLineTextLinkPair } from '../BMStyle';
-import { UnderConstructionPage } from '../components/UnderConstructionPage';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 /*
  * Function clickableTextLink takes a text/link pair. If the url starts with a '/' it will be treated as an internal url and the function will return a
