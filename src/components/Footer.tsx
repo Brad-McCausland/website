@@ -75,9 +75,10 @@ export class Footer extends React.Component<FooterProps, FooterState>
                                 flexDirection: "row",
                             }}
                         >
-                            <HeaderIcon className = "icon-envelope" onClick = {() => window.open(BMStyle.MailToUrl, "_blank")}></HeaderIcon>
-                            <HeaderIcon className = "icon-github" onClick = {() => window.open(BMStyle.GithubUrl, "_blank")}></HeaderIcon>
-                            <HeaderIcon className = "icon-linkedin" onClick = {() => window.open(BMStyle.LinkedInUrl, "_blank")}></HeaderIcon>
+                            <HeaderIcon className = "icon-aws"></HeaderIcon>
+                            <HeaderIcon className = "icon-nodejs"></HeaderIcon>
+                            <HeaderIcon className = "icon-react"></HeaderIcon>
+                            <HeaderIcon className = "icon-typescript"></HeaderIcon>
                         </div>
                     </div>
                 )}
