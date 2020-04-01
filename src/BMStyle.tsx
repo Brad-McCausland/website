@@ -8,7 +8,7 @@ export interface inLineTextLinkPair
 
 // This file acts as a centralized location to store all style elements that are used more than once throughout the site
 
-export interface BMThemeContext
+export interface BMThemeContextInterface
 {
     // Constants
     name: string,
@@ -42,7 +42,7 @@ export interface BMThemeContext
     toggleTheme: (toggled: boolean) => void,
 }
 
-export interface BMLanguageContext
+export interface BMLanguageContextInterface
 {
     LangCode: string,
     Educator: string,
@@ -69,15 +69,15 @@ export interface BMLanguageContext
     toggleLanguage: (toggled: boolean) => void,
 }
 
+export interface BMStateContextInterface
+{
+    IsMobileWidth: boolean,
+    IsAboveFold: boolean,
+    setIsAboveFold: (isAboveFold: boolean) => void,
+}
+
 export class BMStyle
 {
-    static StateContext = React.createContext(
-        {
-            IsAboveFold: true,
-            IsMobileWidth: false,
-        }
-    );
-
     // Fonts
     static UITitleFont = "Raleway";
     static UIContentFont = "work sans";
@@ -137,7 +137,7 @@ export class BMStyle
             EducatorPortrait: "./src/images/educator_portrait2.png",
             TravellerPortrait: "./src/images/traveller_image_light.png"
         }
-    } as BMThemeContext
+    } as BMThemeContextInterface
 
     static DarkTheme = 
     {
@@ -167,7 +167,7 @@ export class BMStyle
             EducatorPortrait: "./src/images/educator_portrait2.png",
             TravellerPortrait: "./src/images/traveller_image_dark.png",
         }
-    } as BMThemeContext
+    } as BMThemeContextInterface
 
     // Text
     static EnglishText =
@@ -192,7 +192,7 @@ export class BMStyle
         DeveloperBlogTextLinkPair:   {text: "my blog", url: BMStyle.BlogPageLink},
         TravellerPhotoTextLinkPair:  {text: "this stupid photo album component", url: BMStyle.TravelPageLink},
         WebsiteGitubTextLinkPair:    {text: "here", url: "https://github.com/bmcc0605/website"},
-    } as BMLanguageContext
+    } as BMLanguageContextInterface
 
     static GermanText =
     {
@@ -216,7 +216,13 @@ export class BMStyle
         DeveloperBlogTextLinkPair:   {text: "meinen Blog", url: BMStyle.BlogPageLink},
         TravellerPhotoTextLinkPair:  {text: "Ich reise sehr gern", url: BMStyle.TravelPageLink},
         WebsiteGitubTextLinkPair:    {text: "hier", url: "https://github.com/bmcc0605/website"},
-    } as BMLanguageContext
+    } as BMLanguageContextInterface
+
+    static DefaultStateContext =
+    {
+        IsMobileWidth: false,
+        IsAboveFold: true,
+    } as BMStateContextInterface
     
     // Contexts
     static ThemeContext = React.createContext(
@@ -227,5 +233,9 @@ export class BMStyle
     static LanguageContext = React.createContext(
         // Default to English
         BMStyle.EnglishText
+    );
+
+    static StateContext = React.createContext(
+        BMStyle.DefaultStateContext
     );
 }

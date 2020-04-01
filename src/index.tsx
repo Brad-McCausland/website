@@ -1,7 +1,7 @@
 import React from "react";
 import * as ReactDOM from "react-dom";
-import { HomePage } from './HomePage';
-import { UnderConstructionPage } from './components/UnderConstructionPage';
+import { HomePage } from './pages/HomePage';
+import { UnderConstructionPage } from './pages/UnderConstructionPage';
 import {
   BrowserRouter as Router,
   Switch,

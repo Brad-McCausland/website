@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BMStyle, BMLanguageContext } from '../BMStyle';
+import { BMStyle } from '../BMStyle';
 import ReactFitText = require("react-fittext");
 export enum BodySectionType
 {
