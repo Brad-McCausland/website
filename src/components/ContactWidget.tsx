@@ -133,12 +133,12 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                 <BMStyle.LanguageContext.Consumer>
                 {language => (
                     <BMStyle.StateContext.Consumer>
-                    {({IsAboveFold, IsMobileWidth}) => (
+                    {({IsMobileWidth}) => (
                         <div
                             className = "contact_widget"
                             style = 
                             {{
-                                margin: IsMobileWidth? "100px 8px 150px" : "100px 24vw 150px",
+                                padding: IsMobileWidth? "100px 8px 150px" : "100px 24vw 150px",
                                 display: "flex",
                                 flexDirection: "column",
                             }}

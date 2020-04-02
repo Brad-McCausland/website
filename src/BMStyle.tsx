@@ -72,8 +72,6 @@ export interface BMLanguageContextInterface
 export interface BMStateContextInterface
 {
     IsMobileWidth: boolean,
-    IsAboveFold: boolean,
-    setIsAboveFold: (isAboveFold: boolean) => void,
 }
 
 export class BMStyle
@@ -221,7 +219,6 @@ export class BMStyle
     static DefaultStateContext =
     {
         IsMobileWidth: false,
-        IsAboveFold: true,
     } as BMStateContextInterface
     
     // Contexts

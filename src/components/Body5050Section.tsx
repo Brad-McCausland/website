@@ -36,7 +36,7 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
             <BMStyle.ThemeContext.Consumer>
             {theme => (
                 <BMStyle.StateContext.Consumer>
-                {({IsAboveFold, IsMobileWidth}) => (
+                {({IsMobileWidth}) => (
                     <BMStyle.LanguageContext.Consumer>
                     {language => (
                         <div

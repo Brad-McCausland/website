@@ -23,7 +23,7 @@ export class UnderConstructionPage extends React.Component<UnderConstructionPage
     render ()
     {
         return (
-            <BMWebPage headerIsDynamic = {false}>
+            <BMWebPage headerIsExtended = {true}>
                 <BMStyle.ThemeContext.Consumer>
                 {theme => (
                 <BMStyle.LanguageContext.Consumer>

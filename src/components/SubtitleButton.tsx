@@ -31,7 +31,7 @@ export class SubtitleButton extends React.Component<SubtitleButtonProps, Subtitl
             <BMStyle.ThemeContext.Consumer>
             {theme => (
                 <BMStyle.StateContext.Consumer>
-                {({IsAboveFold, IsMobileWidth}) => (
+                {({IsMobileWidth}) => (
                     <div ref = {this.state.wrapperRef} className="wrapper">
                         <h1
                             className = {this.props.className || "SubtitleButton"}

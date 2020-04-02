@@ -29,13 +29,13 @@ export class Footer extends React.Component<FooterProps, FooterState>
             <BMStyle.ThemeContext.Consumer>
             {theme => (
                 <BMStyle.StateContext.Consumer>
-                {({IsAboveFold, IsMobileWidth}) => (
+                {({IsMobileWidth}) => (
                     <div className = "Footer" style =
                     {{
-                        position: "absolute",
-                        bottom: "0",
+                        position: "relative",
+                        bottom: BMStyle.HeaderHeightString,
                         width: "100%",
-                        height: "70px",
+                        height: BMStyle.HeaderHeightString,
                         display: "flex",
                         zIndex: 3,
                         alignItems: "center",

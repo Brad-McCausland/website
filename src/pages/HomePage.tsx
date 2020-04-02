@@ -12,7 +12,7 @@ import { ContactWidget } from "../components/ContactWidget"
 import { UnderConstructionPane } from '../components/UnderConstructionPane';
 import { Linkify } from '../utils/Linkify';
 import Cookies from 'js-cookie';
-import { BMWebPage } from "./BMWebPage";
+import { BMWebPage } from './BMWebPage';
 
 const scrollableSectionNames = 
 {
@@ -46,7 +46,6 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
     {
         super(props);
 
-        // TODO: Init with info from browser cookies
         this.state =
         {
             isAboveFold: true,
@@ -90,7 +89,13 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
     handleScroll()
     {
         const isAboveFold = this.isAboveFold()
-        // TODO: Use callback to set isAboveFold in BMWebPage.
+        if (isAboveFold !== this.state.isAboveFold)
+        {
+            this.setState(
+            {
+                isAboveFold: isAboveFold,
+            })
+        }
     }
 
     scrollToSection(section: string)
@@ -108,14 +113,14 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
     {
         var ScrollElement = Scroll.Element;
         return (
-            <BMStyle.ThemeContext.Consumer>
-            {theme => (
-            <BMStyle.LanguageContext.Consumer>
-            {language => (
-            <BMStyle.StateContext.Consumer>
-            {({IsAboveFold, IsMobileWidth}) => (
-                <BMWebPage headerIsDynamic = {true}>
-                    <div 
+            <BMWebPage headerIsExtended = {!this.state.isAboveFold}>
+                <BMStyle.ThemeContext.Consumer>
+                {theme => (
+                <BMStyle.LanguageContext.Consumer>
+                {language => (
+                <BMStyle.StateContext.Consumer>
+                {({IsMobileWidth}) => (
+                    <div
                         className = "web_page"
                         style = 
                         {{
@@ -124,7 +129,6 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
                             margin: "0px",
                             backgroundColor: theme.colors.BackgroundColor,
                             fontFamily: BMStyle.UITitleFont,
-                            overflowX: "hidden",
                         }}
                     >
                         <div
@@ -133,7 +137,7 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
                             {{
                                 width: "100%",
                                 height: "100vh",
-                                backgroundImage: "url(" + this.state.heroImageSrc + ")",
+                                backgroundImage: "url(" + theme.images.HeroImage + ")",
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
                                 position: "relative",
@@ -200,13 +204,13 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
 
                         <ContactWidget></ContactWidget>
                     </div>
-                </BMWebPage>
-            )}
-            </BMStyle.StateContext.Consumer>
-            )}
-            </BMStyle.LanguageContext.Consumer>
-            )}
-            </BMStyle.ThemeContext.Consumer>
+                )}
+                </BMStyle.StateContext.Consumer>
+                )}
+                </BMStyle.LanguageContext.Consumer>
+                )}
+                </BMStyle.ThemeContext.Consumer>
+            </BMWebPage>
         );
     }
 }

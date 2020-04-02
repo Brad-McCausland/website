@@ -13,8 +13,8 @@ import { Link } from "react-router-dom";
 
 interface HeaderProps
 {
-    // Setting isDynamic to true will cause the header's orange background to only appear when scrolling below the fold. Otherwise, it will always be visible.
-    isDynamic: boolean
+    // Setting isShowingSlidingBackdrop true will cause the header's orange background to appear. Will show the gradient background if false. Should only be set to false when above the fold on a hero image.
+    isShowingSlidingBackdrop: boolean
 }
 
 interface HeaderState
@@ -56,7 +56,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                 <BMStyle.LanguageContext.Consumer>
                 {language => (
                     <BMStyle.StateContext.Consumer>
-                    {({IsAboveFold, IsMobileWidth}) => (
+                    {({IsMobileWidth}) => (
                         <div className = "header" style =
                             {{
                                 position: "fixed",
@@ -70,7 +70,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                         >
                             <Gradient></Gradient>
 
-                            <SlidingMenu isExtended = {this.state.isMenuExtended} crossButtonAction = {this.toggleExtendMenu.bind(this)}>
+                            <SlidingMenu isExtended = {this.state.isMenuExtended} crossButtonAction = {this.toggleExtendMenu.bind(this)} isAboveFold = {this.props.isShowingSlidingBackdrop}>
                                 <SlidingMenuItem text = {language.DarkMode}>
                                     <ToggleSwitch width = {80} height = {40} startToggled = {theme.name === 'dark'} toggleAction = {
                                         (value: boolean) => theme.toggleTheme(value)}
@@ -98,7 +98,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                                         width: "100%",
                                         position: "absolute",
                                         zIndex: 1,
-                                        top: (IsAboveFold && this.props.isDynamic) ? "-100%" : "0px",
+                                        top: this.props.isShowingSlidingBackdrop ?  "0px" : "-100%",
                                         transition: `top ${BMStyle.HeaderSlideTransitionTime}`,
                                     }}
                                 >
@@ -133,7 +133,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                                             fontFamily: BMStyle.UITitleFont,
                                             display: IsMobileWidth ? "none" : "inline",
                                             margin: "5px",
-                                            opacity: IsAboveFold ? "0" : "1",
+                                            opacity: this.props.isShowingSlidingBackdrop ? "1" : "0",
                                             transition: "opacity 0.7s",
                                         }}
                                     >

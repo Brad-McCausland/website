@@ -7,13 +7,12 @@ import Cookies from 'js-cookie';
 
 interface BMWebPageProps
 {
-    headerIsDynamic: boolean,
+    headerIsExtended: boolean,
 }
 
 interface BMWebPageState
 {
     isMobileWidth: boolean,
-    isAboveFold: boolean,
     theme: BMThemeContextInterface,
     language: BMLanguageContextInterface,
 }
@@ -27,7 +26,6 @@ export class BMWebPage extends React.Component<BMWebPageProps, BMWebPageState>
         this.state =
         {
             isMobileWidth: this.isMobileWidth(),
-            isAboveFold: false,
             theme: Cookies.get(BMStyle.DarkModeCookie) === 'true'? BMStyle.DarkTheme : BMStyle.LightTheme,
             language: Cookies.get(BMStyle.LanguageCookie) === 'DE'? BMStyle.GermanText : BMStyle.EnglishText,
         };
@@ -71,21 +69,12 @@ export class BMWebPage extends React.Component<BMWebPageProps, BMWebPageState>
         });
     }
 
-    setIsAboveFold(isAboveFold: boolean)
-    {
-        console.log("Set above fold to " + isAboveFold)
-        this.setState
-        ({
-            isAboveFold: isAboveFold,
-        })
-    }
-
     render ()
     {
         return (
             <BMStyle.ThemeContext.Provider value = {{...this.state.theme, ...{toggleTheme: this.toggleDarkMode.bind(this)}}}>
             <BMStyle.LanguageContext.Provider value = {{...this.state.language, ...{toggleLanguage: this.toggleLanguage.bind(this)}}}>
-            <BMStyle.StateContext.Provider value = {{IsMobileWidth: this.state.isMobileWidth, IsAboveFold: false, ...{setIsAboveFold: this.setIsAboveFold.bind(this)}}}>
+            <BMStyle.StateContext.Provider value = {{IsMobileWidth: this.state.isMobileWidth}}>
                 {<div
                     className = "BM_Web_Page"
                     style = 
@@ -94,12 +83,11 @@ export class BMWebPage extends React.Component<BMWebPageProps, BMWebPageState>
                         position: "relative",
                         height: "100vh",
                         margin: "0px",
-                        overflowX: "hidden",
                         backgroundColor: this.state.theme.colors.BackgroundColor,
                         fontFamily: BMStyle.UITitleFont,
                     }}
                 >
-                    <Header isDynamic={this.props.headerIsDynamic}/>
+                    <Header isShowingSlidingBackdrop = {this.props.headerIsExtended}/>
                     {this.props.children}
                     <Footer/>
                 </div>}

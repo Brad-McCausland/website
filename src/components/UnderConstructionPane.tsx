@@ -46,7 +46,7 @@ export class UnderConstructionPane extends React.Component<UnderConstructionPane
         var linkedinLink = <a href={BMStyle.LinkedInUrl} target="_blank" style = {{color: BMStyle.LightTheme.colors.UIMainColor}}>Linkedin</a>;
         return (
             <BMStyle.StateContext.Consumer>
-            {({IsAboveFold, IsMobileWidth}) => (
+            {({IsMobileWidth}) => (
                 <div
                 className = "under_construction_pane"
                 style =

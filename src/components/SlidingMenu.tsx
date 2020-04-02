@@ -11,6 +11,7 @@ interface SlidingMenuProps
     menuItems?: {},
     crossButtonAction: () => void,
     isExtended: boolean,
+    isAboveFold: boolean,
 }
 
 interface SlidingMenuState
@@ -38,7 +39,7 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
             <BMStyle.ThemeContext.Consumer>
             {theme => (
                 <BMStyle.StateContext.Consumer>
-                {({IsAboveFold, IsMobileWidth}) => (
+                {({IsMobileWidth}) => (
                     <div
                         className = "sliding_menu"
                         style = 
@@ -47,11 +48,11 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
                             //width: "12vw",
                             minWidth: "300px",
                             height: "100vh",
-                            top: IsAboveFold ? "0px" : BMStyle.HeaderHeight,
+                            top: this.props.isAboveFold ? BMStyle.HeaderHeight : "0px",
                             left: this.props.isExtended ? "0px" : /*(isFirefox? "-moz-calc(-300px -12vw)" : "min(-300px, -12vw)")*/ "-300px",
                             transition: "left 1s" + ", " + `top ${BMStyle.HeaderSlideTransitionTime}`,
                             backgroundColor: theme.colors.UIDarkColor,
-                            zIndex: IsAboveFold ? 4 : 1,
+                            zIndex: this.props.isAboveFold ? 1 : 4,
                         }}
                     >
                         <div
