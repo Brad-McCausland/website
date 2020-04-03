@@ -36,7 +36,7 @@ interface HomePageState
 {
     isAboveFold: boolean,
     heroImageHeight: number,
-    heroImageSrc?: string,
+    heroImageIsLoaded: boolean,
 }
 
 
@@ -50,7 +50,7 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
         {
             isAboveFold: true,
             heroImageHeight: window.innerHeight,
-            heroImageSrc: undefined,
+            heroImageIsLoaded: false,
         };
     }
     
@@ -65,17 +65,14 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
         // Initialize hero image with smaller placeholder and replace with full res version when loaded
         const theme = this.context;
 
-        this.setState
-        ({
-            heroImageSrc: theme.images.HeroImagePlaceholder,
-        })
         const imageLoader = new Image()
         imageLoader.src = theme.images.HeroImage;
+
         imageLoader.onload = () =>
         {
             this.setState
             ({
-                heroImageSrc: theme.images.HeroImage,
+                heroImageIsLoaded: true,
             })
         }
     }
@@ -137,7 +134,7 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
                             {{
                                 width: "100%",
                                 height: "100vh",
-                                backgroundImage: "url(" + theme.images.HeroImage + ")",
+                                backgroundImage: "url(" + (this.state.heroImageIsLoaded? theme.images.HeroImage : theme.images.HeroImagePlaceholder) + ")",
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
                                 position: "relative",
