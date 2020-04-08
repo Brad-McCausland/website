@@ -27,7 +27,6 @@ interface HomePageProps
 }
 
 /* TODO:
- * Implement redirection to get https, client side routing. Implement https on mailer and double check it still works.
  * Get more photos
  */
 

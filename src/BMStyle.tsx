@@ -54,7 +54,7 @@ export interface BMLanguageContextInterface
     Name: string,
     Email: string,
     YourMessage: string,
-    Submit: string,
+    Send: string,
     DeveloperParagraph: string
     EducatorParagraph: string,
     TravellerParagraph: string,
@@ -85,6 +85,7 @@ export class BMStyle
     // Links
     static LinkedInUrl = "https://www.linkedin.com/in/bradleymccausland/";
     static GithubUrl = "https://github.com/bmcc0605";
+    static WebsiteGithubUrl = "https://github.com/bmcc0605/website";
     static MailToUrl = "mailto:me@bradmccausland.com";
 
     // Client Side Links
@@ -181,7 +182,7 @@ export class BMStyle
         Name: "Name",
         Email: "Email",
         YourMessage: "Your Message",
-        Submit: "SUBMIT",
+        Send: "SEND",
         DeveloperParagraph: "I'm a Seattle-based software developer with 2.5 years experience in iOS development, and I like to build cool stuff. Any language, stack, or framework. Front-end or back-end. I enjoy building robust applications with an emphasis on secure design and extensibility, especially when working towards a social good. See my resume for more, or check out my blog to see what I've been working on.",
         EducatorParagraph:  "Studying computer science has opened up a world of opportunities to me, and I owe a great deal to the educators who helped me take the first steps into the field. To give back, I've volunteered with a number of educational organizations including ACM mentors, Microsoft TEALS, and Hour of Code over the years, to help expose students to the field and to practice my communication skills.",
         TravellerParagraph: "Travel is fatal to prejudice, bigotry, and narrow-mindedness, and many of our people need it sorely on these accounts. Broad, wholesome, charitable views of men and things cannot be acquired by vegetating in one little corner of the earth all one's lifetime. Check out some of my photos in this stupid photo album component I guess or something.",  
@@ -190,7 +191,7 @@ export class BMStyle
         DeveloperResumeTextLinkPair: {text: "my resume", url: BMStyle.ResumePageLink},
         DeveloperBlogTextLinkPair:   {text: "my blog", url: BMStyle.BlogPageLink},
         TravellerPhotoTextLinkPair:  {text: "this stupid photo album component", url: BMStyle.TravelPageLink},
-        WebsiteGitubTextLinkPair:    {text: "here", url: "https://github.com/bmcc0605/website"},
+        WebsiteGitubTextLinkPair:    {text: "here", url: BMStyle.WebsiteGithubUrl},
     } as BMLanguageContextInterface
 
     static GermanText =
@@ -205,7 +206,7 @@ export class BMStyle
         Name: "Name",
         Email: "Email",
         YourMessage: "Deine Nachricht",
-        Submit: "SENDEN",
+        Send: "SENDEN",
         DeveloperParagraph: "Ich bin Softwareentwickler aus Seattle mit 2,5 Jahre in der iOS-Entwicklung, und ich mag cooles Sachen zu bauen. Jede Sprache, Stack, oder Framework. Frontend oder Backend. Ich baue gern robuste Anwendungen mit Schwerpunkt auf Datenschutz und Erweiterbarkeit, besonders wenn Ich für dem Allgemeinwohl Arbeite. Sehen Sie sich meinen Lebenslauf an, um mehr zu sehen. Oder Schauen Sie meinen Blog an, um Einige meiner Projekten zu sehen.",
         EducatorParagraph:  "Das Studium der Computerwissenschaft hat mir viele Chancen eröffnet, und ich schulde die Erzieher viel, die mir geholfen haben, um die ersten Schritte auf dieser Studienrichtung zu machen. Um etwas zurückzugeben, habe ich mich freiwillig bei viele Bildungsorganisationen, darunter ACM Mentoren, Microsoft TEALS, und Hour of Code gemeldet, um den Schülern in der Studienrichtung zu einführen und meine Kommunikationsfähigkeiten zu üben.",
         TravellerParagraph: "Reisen ist tödlich für Vorurteile, Bigotterie und Engstirnigkeit, und viele unserer Leute brauchen es an diesen Gründen schlecht. Breite, gesunde, und freigebige Meinungen zu Menschen und Dingen kann man durch vegetieren in ihrer Ecke der Welt nicht erhalten. Ich reise sehr gern, und Ich kann auch ein bisschen Deutsch sprechen!",
@@ -214,7 +215,7 @@ export class BMStyle
         DeveloperResumeTextLinkPair: {text: "meinen Lebenslauf", url: BMStyle.ResumePageLink},
         DeveloperBlogTextLinkPair:   {text: "meinen Blog", url: BMStyle.BlogPageLink},
         TravellerPhotoTextLinkPair:  {text: "Ich reise sehr gern", url: BMStyle.TravelPageLink},
-        WebsiteGitubTextLinkPair:    {text: "hier", url: "https://github.com/bmcc0605/website"},
+        WebsiteGitubTextLinkPair:    {text: "hier", url: BMStyle.WebsiteGithubUrl},
     } as BMLanguageContextInterface
 
     static DefaultStateContext =

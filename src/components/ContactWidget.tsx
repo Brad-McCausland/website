@@ -226,7 +226,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                                     backgroundColor: isSendable? (this.state.isSending? theme.colors.UIButtonIndentedColor : theme.colors.UIMainColor) : theme.colors.UIDisabledColor,
                                 }}
                             >
-                                {language.Submit}
+                                {language.Send}
                             </button>
                         </div>
                     )}
