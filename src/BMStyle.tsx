@@ -87,10 +87,10 @@ export class BMStyle
     static GithubUrl = "https://github.com/bmcc0605";
     static WebsiteGithubUrl = "https://github.com/bmcc0605/website";
     static MailToUrl = "mailto:me@bradmccausland.com";
+    static ResumeUrl = "https://docs.google.com/document/d/1UWA_gICEeT514HkZNR6tndVaD0Rk5an_CdJFNumni_M/edit?usp=sharing"
 
     // Client Side Links
     static HomePageLink = "/"
-    static ResumePageLink = "/resume"
     static BlogPageLink = "/blog"
     static TravelPageLink = "/travel"
 
@@ -188,7 +188,7 @@ export class BMStyle
         TravellerParagraph: "Travel is fatal to prejudice, bigotry, and narrow-mindedness, and many of our people need it sorely on these accounts. Broad, wholesome, charitable views of men and things cannot be acquired by vegetating in one little corner of the earth all one's lifetime. Check out some of my photos in this stupid photo album component I guess or something.",  
         UnderConstruction: "Under Construction!",
         UnderConstructionSubtitle: "Looks like I haven't gotten around to this part of the site yet, but you can check up on my progress here!",
-        DeveloperResumeTextLinkPair: {text: "my resume", url: BMStyle.ResumePageLink},
+        DeveloperResumeTextLinkPair: {text: "my resume", url: BMStyle.ResumeUrl},
         DeveloperBlogTextLinkPair:   {text: "my blog", url: BMStyle.BlogPageLink},
         TravellerPhotoTextLinkPair:  {text: "this stupid photo album component", url: BMStyle.TravelPageLink},
         WebsiteGitubTextLinkPair:    {text: "here", url: BMStyle.WebsiteGithubUrl},
@@ -212,7 +212,7 @@ export class BMStyle
         TravellerParagraph: "Reisen ist tödlich für Vorurteile, Bigotterie und Engstirnigkeit, und viele unserer Leute brauchen es an diesen Gründen schlecht. Breite, gesunde, und freigebige Meinungen zu Menschen und Dingen kann man durch vegetieren in ihrer Ecke der Welt nicht erhalten. Ich reise sehr gern, und Ich kann auch ein bisschen Deutsch sprechen!",
         UnderConstruction: "Im Bau!",
         UnderConstructionSubtitle: "Es sieht aus, als Ich deisen Teil der Website noch nicht gemacht hatte. Sie können meine Fortschritte hier sehen!",
-        DeveloperResumeTextLinkPair: {text: "meinen Lebenslauf", url: BMStyle.ResumePageLink},
+        DeveloperResumeTextLinkPair: {text: "meinen Lebenslauf", url: BMStyle.ResumeUrl},
         DeveloperBlogTextLinkPair:   {text: "meinen Blog", url: BMStyle.BlogPageLink},
         TravellerPhotoTextLinkPair:  {text: "Ich reise sehr gern", url: BMStyle.TravelPageLink},
         WebsiteGitubTextLinkPair:    {text: "hier", url: BMStyle.WebsiteGithubUrl},
