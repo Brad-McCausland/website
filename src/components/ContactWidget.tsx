@@ -16,6 +16,7 @@ interface ContactWidgetState
     message: string,
     isSendable: boolean,
     isSending: boolean,
+    showTestButtonsClickCount: number,
 }
 
 export class ContactWidget extends React.Component<ContactWidgetProps, ContactWidgetState>
@@ -30,6 +31,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
             message: "",
             isSendable: false,
             isSending: false,
+            showTestButtonsClickCount: 0,
         }
     }
 
@@ -64,10 +66,49 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
     {
         event.preventDefault();
 
-        this.setState({isSending: true,})
+        this.setState({isSending: true, isSendable: false})
     
         // Send request to AWS service
         fetch(BMStyle.EBMailServerUrl,
+        {
+            method: "POST",
+            body: JSON.stringify(this.state),
+            headers:
+            {
+                    'Accept': 'text/plain',
+                    'Content-Type': 'text/plain'
+            },
+        })
+        .then((response) =>
+        {
+            if (response.status == 200)
+            {
+                //TODO: Replace alerts with more pleasing UI feedback
+                alert("Message sent successfully!");
+                this.resetForm()
+            }
+            else
+            {
+                alert("Error: something went wrong with my mailer server. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
+                this.setState({isSending: false, isSendable: true})
+            }
+        })
+        .catch(() =>
+        {
+            alert("Error: email server not reachable. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
+            this.setState({isSending: false, isSendable: true})
+        })
+    }
+
+    // TODO: REMOVE TEST METHOD
+    handleTestSubmitButtonClicked(event: React.MouseEvent<HTMLButtonElement, MouseEvent>)
+    {
+        event.preventDefault();
+
+        this.setState({isSending: true,})
+    
+        // Send request to AWS service
+        fetch(BMStyle.EBAliasUrl,
         {
             method: "POST",
             body: JSON.stringify(this.state),
@@ -111,7 +152,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
 
     checkIfSendable()
     {
-        var isSendable = this.state.name !== "" && this.isEmailValid() && this.state.message !== "";
+        var isSendable = this.state.name !== "" && this.isEmailValid() && this.state.message !== "" && !this.state.isSending;
         this.setState(
             {
                 isSendable: isSendable,
@@ -224,7 +265,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
 
                             <button
                                 className = "submit_button"
-                                onClick = {this.state.isSendable? this.handleSubmitButtonClicked.bind(this) : (() => {return null})}
+                                onClick = {this.state.isSendable? this.handleSubmitButtonClicked.bind(this) : (() => {this.setState({showTestButtonsClickCount: this.state.showTestButtonsClickCount + 1})})}
                                 style = 
                                 {{
                                     width: IsMobileWidth? "100%" : "200px",
@@ -244,6 +285,17 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                                 }}
                             >
                                 {language.Submit}
+                            </button>
+
+                            <button
+                                className = "test submit button"
+                                onClick = {this.state.isSendable? this.handleTestSubmitButtonClicked.bind(this) : (() => {return null})}
+                                style = 
+                                {{
+                                    display: this.state.showTestButtonsClickCount > 2? "block" : "none",
+                                }}
+                            >
+                                Send message to alias
                             </button>
                         </div>
                     )}

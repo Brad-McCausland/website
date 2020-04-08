@@ -94,7 +94,8 @@ export class BMStyle
     static TravelPageLink = "/travel"
 
     // Service urls
-    static EBMailServerUrl = "https://bmwebsiteemailer-env.eba-32hxveme.us-east-2.elasticbeanstalk.com/"
+    static EBMailServerUrl = "http://bmwebsiteemailer-env-1.eba-32hxveme.us-east-2.elasticbeanstalk.com/"
+    static EBAliasUrl = "https://webmailer.bradmccausland.com/"
 
     // Dimensions
     static HeaderHeight = 70;
