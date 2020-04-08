@@ -14,7 +14,6 @@ interface ContactWidgetState
     name: string,
     email: string,
     message: string,
-    isSendable: boolean,
     isSending: boolean,
 }
 
@@ -28,43 +27,30 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
             name: "",
             email: "",
             message: "",
-            isSendable: false,
             isSending: false,
         }
     }
 
     handleNameFieldChange(event: React.ChangeEvent<HTMLInputElement>)
     {
-        this.setState(
-        {
-            name: event.target.value
-        });
-        this.checkIfSendable();
+        this.setState({name: event.target.value});
     }
 
     handleEmailFieldChange(event: React.ChangeEvent<HTMLInputElement>)
     {
-        this.setState(
-        {
-            email: event.target.value
-        });
-        this.checkIfSendable();
+        this.setState({email: event.target.value});
     }
 
     handleMessageFieldChange(event: React.ChangeEvent<HTMLTextAreaElement>)
     {
-        this.setState(
-        {
-            message: event.target.value
-        });
-        this.checkIfSendable();
+        this.setState({message: event.target.value});
     }
 
     handleSubmitButtonClicked(event: React.MouseEvent<HTMLButtonElement, MouseEvent>)
     {
         event.preventDefault();
 
-        this.setState({isSending: true, isSendable: false})
+        this.setState({isSending: true})
     
         // Send request to AWS service
         fetch(BMStyle.EBAliasUrl,
@@ -73,8 +59,8 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
             body: JSON.stringify(this.state),
             headers:
             {
-                    'Accept': 'text/plain',
-                    'Content-Type': 'text/plain'
+                'Accept': 'text/plain',
+                'Content-Type': 'text/plain'
             },
         })
         .then((response) =>
@@ -88,13 +74,13 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
             else
             {
                 alert("Error: something went wrong with my mailer server. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
-                this.setState({isSending: false, isSendable: true})
+                this.setState({isSending: false})
             }
         })
         .catch(() =>
         {
             alert("Error: email server not reachable. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
-            this.setState({isSending: false, isSendable: true})
+            this.setState({isSending: false})
         })
     }
 
@@ -105,20 +91,14 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                 name: "",
                 email: "",
                 message: "",
-                isSendable: false,
                 isSending: false,
             }
         )
     }
 
-    checkIfSendable()
+    messageIsSendable()
     {
-        var isSendable = this.state.name !== "" && this.isEmailValid() && this.state.message !== "" && !this.state.isSending;
-        this.setState(
-            {
-                isSendable: isSendable,
-            }
-        )
+        return this.state.name !== "" && this.isEmailValid() && this.state.message !== "" && !this.state.isSending;
     }
 
     isEmailValid()
@@ -129,6 +109,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
 
     render()
     {
+        const isSendable = this.messageIsSendable();
         return (
             <BMStyle.ThemeContext.Consumer>
             {theme => (
@@ -226,7 +207,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
 
                             <button
                                 className = "submit_button"
-                                onClick = {this.state.isSendable? this.handleSubmitButtonClicked.bind(this) : (() => {return null})}
+                                onClick = {isSendable? this.handleSubmitButtonClicked.bind(this) : (() => {return null})}
                                 style = 
                                 {{
                                     width: IsMobileWidth? "100%" : "200px",
@@ -241,8 +222,8 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                                     fontSize: "36px",
                                     fontFamily: BMStyle.UITitleFont,
                                     color: "white",
-                                    cursor: this.state.isSendable? "pointer" : "auto",
-                                    backgroundColor: this.state.isSendable? (this.state.isSending? theme.colors.UIButtonIndentedColor : theme.colors.UIMainColor) : theme.colors.UIDisabledColor,
+                                    cursor: isSendable? "pointer" : "auto",
+                                    backgroundColor: isSendable? (this.state.isSending? theme.colors.UIButtonIndentedColor : theme.colors.UIMainColor) : theme.colors.UIDisabledColor,
                                 }}
                             >
                                 {language.Submit}
