@@ -193,7 +193,7 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
                             </ScrollElement>
                             <ScrollElement name = {scrollableSectionNames.travellerSectionName}>
                                 <Body5050Section imageSrc = {theme.images.TravellerPortrait} height="600px" reverse = {false}>
-                                    {Linkify(language.TravellerParagraph, language.TravellerPhotoTextLinkPair)}
+                                    {Linkify(language.TravellerParagraph)}
                                 </Body5050Section>
                             </ScrollElement>
                         </div>
