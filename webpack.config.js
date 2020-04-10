@@ -1,10 +1,18 @@
 var path = require('path');
+const webpack = require('webpack');
+
 module.exports =
 {
     mode: "production",
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
+
+    entry: path.resolve(__dirname, 'dist/main.js'),
+    plugins:
+    [
+        new webpack.HashedModuleIdsPlugin(),
+    ],
 
     devServer:
     {
@@ -13,14 +21,36 @@ module.exports =
     output:
     {
         path: path.resolve(__dirname, 'dist'),
-        filename: "main.js",
-        publicPath: "/"
+        filename: "[name].[contenthash].js",
     },
 
     resolve:
     {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".js", ".ts", ".tsx"]
+    },
+
+    optimization:
+    {
+        runtimeChunk: 'single',
+        splitChunks:
+        {
+            chunks: "all",
+            maxInitialRequests: Infinity,
+            minSize: 0,
+            cacheGroups:
+            {
+                vendor:
+                {
+                    test: /[\\/]node_modules[\\/]/,
+                    name(module)
+                    {
+                        const name = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+                        return `npm.${name.replace("@", "")}`;
+                    },
+                },
+            },
+        },
     },
 
     module:
@@ -64,16 +94,5 @@ module.exports =
                 ]
               }
         ]
-    },
-
-    // When importing a module whose path matches one of the following, just
-    // assume a corresponding global variable exists and use that instead.
-    // This is important because it allows us to avoid bundling all of our
-    // dependencies, which allows browsers to cache those libraries between builds.
-    
-    externals:
-    {
-        "react": "React",
-        "react-dom": "ReactDOM",
     }
 };

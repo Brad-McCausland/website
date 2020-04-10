@@ -5,13 +5,9 @@ import * as Scroll from "react-scroll";
 import "../../index.css"
 import { BMStyle, BMThemeContextInterface, BMLanguageContextInterface } from '../BMStyle';
 import { SubtitleButton } from "../components/SubtitleButton";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
 import { Body5050Section } from "../components/Body5050Section"
 import { ContactWidget } from "../components/ContactWidget"
-import { UnderConstructionPane } from '../components/UnderConstructionPane';
 import { Linkify } from '../utils/Linkify';
-import Cookies from 'js-cookie';
 import { BMWebPage } from './BMWebPage';
 
 const scrollableSectionNames = 
@@ -28,6 +24,8 @@ interface HomePageProps
 
 /* TODO:
  * Get more photos
+ * Lazy load dark hero image
+ * Design review with Jelli
  */
 
 // State defines all private properties
