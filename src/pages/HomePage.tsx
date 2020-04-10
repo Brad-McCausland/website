@@ -1,6 +1,5 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import * as Scroll from "react-scroll";
+import { scroller as Scroller, Element as ScrollElement } from "react-scroll"
 
 import "../../index.css"
 import { BMStyle, BMThemeContextInterface, BMLanguageContextInterface } from '../BMStyle';
@@ -14,11 +13,11 @@ import { Linkify } from '../utils/Linkify';
 import Cookies from 'js-cookie';
 import { BMWebPage } from './BMWebPage';
 
-const scrollableSectionNames = 
+enum scrollableSectionNames
 {
-    developerSectionName: "DeveloperScrollElement",
-    educatorSectionName: "EducatorScrollElement",
-    travellerSectionName: "TravellerScrollElement",
+    developerSectionName = "DeveloperScrollElement",
+    educatorSectionName = "EducatorScrollElement",
+    travellerSectionName = "TravellerScrollElement",
 }
 
 interface HomePageProps
@@ -55,8 +54,13 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
     
     componentDidMount()
     {
-        window.addEventListener('scroll', this.handleScroll.bind(this), true);
+        window.addEventListener('scroll', this.handleScroll.bind(this));
         this.lazyLoadHeroImage();
+    }
+
+    componentWillUnmount()
+    {
+        window.removeEventListener('scroll', this.handleScroll.bind(this));
     }
 
     lazyLoadHeroImage()
@@ -94,9 +98,9 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
         }
     }
 
-    scrollToSection(section: string)
+    scrollToSection(section: scrollableSectionNames)
     {
-        Scroll.scroller.scrollTo(section, 
+        Scroller.scrollTo(section, 
         {
             duration: 1000,
             delay: 0,
@@ -107,9 +111,10 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
 
     render()
     {
-        var ScrollElement = Scroll.Element;
+        const {isAboveFold, heroImageIsLoaded} = this.state;
+
         return (
-            <BMWebPage headerIsExtended = {!this.state.isAboveFold}>
+            <BMWebPage headerIsExtended = {!isAboveFold}>
                 <BMStyle.ThemeContext.Consumer>
                 {theme => (
                 <BMStyle.LanguageContext.Consumer>
@@ -133,7 +138,7 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
                             {{
                                 width: "100%",
                                 height: "100vh",
-                                backgroundImage: "url(" + (this.state.heroImageIsLoaded? theme.images.HeroImage : theme.images.HeroImagePlaceholder) + ")",
+                                backgroundImage: "url(" + (heroImageIsLoaded? theme.images.HeroImage : theme.images.HeroImagePlaceholder) + ")",
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
                                 position: "relative",
