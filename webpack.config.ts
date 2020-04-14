@@ -5,7 +5,7 @@ const config: webpack.Configuration =
 {
     mode: "production",
 
-    // Enable sourcemaps for debugging webpack's output.
+    // Enable sourcemaps for debugging webpack's output
     devtool: "source-map",
 
     devServer:
