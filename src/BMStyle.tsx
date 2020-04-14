@@ -101,8 +101,18 @@ export class BMStyle
     // Dimensions
     static HeaderHeight = 70;
     static HeaderHeightString = BMStyle.HeaderHeight + "px";
+
     static MenuItemHeight = 70;
     static MenuItemHeightString = BMStyle.MenuItemHeight + "px";
+
+    static HeaderIconHeight = 40;
+    static HeaderIconHeightString = BMStyle.HeaderIconHeight + "px";
+
+    static HeaderIconMargin = 5;
+    static HeaderIconMarginString = BMStyle.HeaderIconMargin + "px";
+
+    static HeaderIconSideMarginString = "8.3333vw"
+    static HeaderIconMobileWidthSideMarginString = ((BMStyle.HeaderHeight - BMStyle.HeaderIconHeight) / 2) - BMStyle.HeaderIconMargin + "px";
 
     // Durations
     static HeaderSlideTransitionTime = "0.7s";

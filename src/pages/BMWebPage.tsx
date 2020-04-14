@@ -49,21 +49,21 @@ export class BMWebPage extends React.Component<BMWebPageProps, BMWebPageState>
         return window.innerWidth < 675;
     }
 
-    toggleDarkMode(toggled: boolean)
+    setDarkMode(value: boolean)
     {
         this.setState
         ({
-            theme: toggled? BMStyle.DarkTheme : BMStyle.LightTheme
+            theme: value? BMStyle.DarkTheme : BMStyle.LightTheme
         }, () => {
             Cookies.set(BMStyle.DarkModeCookie, (this.state.theme === BMStyle.DarkTheme)? "true" : "false");
         });
     }
 
-    toggleLanguage(toggled: boolean)
+    setLanguage(value: boolean)
     {
         this.setState
         ({
-            language: toggled? BMStyle.GermanText : BMStyle.EnglishText
+            language: value? BMStyle.GermanText : BMStyle.EnglishText
         }, () => {
             Cookies.set(BMStyle.LanguageCookie, this.state.language.LangCode);
         });
@@ -72,8 +72,8 @@ export class BMWebPage extends React.Component<BMWebPageProps, BMWebPageState>
     render ()
     {
         return (
-            <BMStyle.ThemeContext.Provider value = {{...this.state.theme, ...{toggleTheme: this.toggleDarkMode.bind(this)}}}>
-            <BMStyle.LanguageContext.Provider value = {{...this.state.language, ...{toggleLanguage: this.toggleLanguage.bind(this)}}}>
+            <BMStyle.ThemeContext.Provider value = {{...this.state.theme, ...{toggleTheme: this.setDarkMode.bind(this)}}}>
+            <BMStyle.LanguageContext.Provider value = {{...this.state.language, ...{toggleLanguage: this.setLanguage.bind(this)}}}>
             <BMStyle.StateContext.Provider value = {{IsMobileWidth: this.state.isMobileWidth}}>
                 {<div
                     className = "BM_Web_Page"

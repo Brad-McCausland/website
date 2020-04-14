@@ -9,7 +9,7 @@ interface ToggleSwitchProps
 {
     width: number,
     height: number,
-    startToggled?: boolean,
+    isToggled: boolean
     toggleAction?: (isToggled: boolean) => void,
     toggledOffText?: string,
     toggledOnText?: string,
@@ -17,7 +17,6 @@ interface ToggleSwitchProps
 
 interface ToggleSwitchState
 {
-    isToggled: boolean
 }
 
 export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitchState>
@@ -25,27 +24,14 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
     constructor(props: ToggleSwitchProps)
     {
         super(props);
-        this.state = 
-        {
-            isToggled: this.props.startToggled || false,
-        }
     }
 
     toggle()
     {
-        this.setState(
-            {
-                isToggled: !this.state.isToggled,
-            },
-
-            // Perform the toggle action only after state has been updated
-            () => {
-                if (this.props.toggleAction)
-                {
-                    this.props.toggleAction(this.state.isToggled);
-                }
-            }
-        )
+        if (this.props.toggleAction)
+        {
+            this.props.toggleAction(!this.props.isToggled);
+        }
     }
 
     render ()
@@ -63,10 +49,10 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
                         onClick = {this.toggle.bind(this)}
                         style = 
                         {{
-                            width: this.props.width + "px",
-                            height: this.props.height + "px",
-                            borderRadius: minDimension + "px",
-                            backgroundColor: this.state.isToggled? "rgba(0, 0, 0, 0.8)" : "rgba(0, 0, 0, 0.2)",
+                            width: `${this.props.width}px`,
+                            height: `${this.props.height}px`,
+                            borderRadius: `${minDimension}px`,
+                            backgroundColor: this.props.isToggled? "rgba(0, 0, 0, 0.8)" : "rgba(0, 0, 0, 0.2)",
                             position: "relative",
                             transition: "background-color 0.3s",
                         }}
@@ -113,7 +99,7 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
                                 top: `0`,
                                 bottom: `0`,
                                 right: "auto",
-                                left: this.state.isToggled? `${inverseMargin - sliderRadius}px` : `${margin}px`,
+                                left: this.props.isToggled? `${inverseMargin - sliderRadius}px` : `${margin}px`,
                                 width: `${sliderRadius}px`,
                                 height: `${sliderRadius}px`,
                                 transition: "left 0.3s",

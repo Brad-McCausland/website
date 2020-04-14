@@ -23,8 +23,6 @@ export class Footer extends React.Component<FooterProps, FooterState>
 
     render ()
     {
-        const Footer_ICON_MARGIN = "10px"; //10px = ((Footer height (70) - text element height (40)) / 2) - icon margin (5) Replace with calculated value
-
         return (
             <BMStyle.ThemeContext.Consumer>
             {theme => (
@@ -45,7 +43,7 @@ export class Footer extends React.Component<FooterProps, FooterState>
                             className = "left_justified_elements"
                             style = 
                             {{
-                                marginLeft: IsMobileWidth? Footer_ICON_MARGIN : "8.3333vw",
+                                marginLeft: IsMobileWidth? BMStyle.HeaderIconMobileWidthSideMarginString : "8.3333vw",
                                 marginRight: "auto",
                                 flexDirection: "row",
                             }}
@@ -58,7 +56,7 @@ export class Footer extends React.Component<FooterProps, FooterState>
                                     fontSize: "24px",
                                     fontFamily: BMStyle.UITitleFont,
                                     display: IsMobileWidth? "none" : "inline",
-                                    margin: "5px",
+                                    margin: BMStyle.HeaderIconMarginString,
                                     transition: "opacity 0.7s",
                                 }}
                             >
@@ -71,7 +69,7 @@ export class Footer extends React.Component<FooterProps, FooterState>
                             style = 
                             {{
                                 marginLeft: "auto",
-                                marginRight: IsMobileWidth? Footer_ICON_MARGIN : "8.3333vw",
+                                marginRight: IsMobileWidth? BMStyle.HeaderIconMobileWidthSideMarginString : "8.3333vw",
                                 flexDirection: "row",
                             }}
                         >

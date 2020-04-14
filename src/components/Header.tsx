@@ -44,12 +44,6 @@ export class Header extends React.Component<HeaderProps, HeaderState>
 
     render ()
     {
-        // Problem: I need to set side margins of the header icons to match the space between the tops of the icons and the top of the header
-        // I could pass the height as a number, do all the math manually, and then convert them all to strings, but that feels hacky.
-        // Side margins = (parent height - icon height) / 2
-        const HEADER_ICON_FULL_WIDTH_MARGIN = "8.3333vw";
-        const HEADER_ICON_MOBILE_WIDTH_MARGIN = "10px"; //10px = ((header height (70) - text element height (40)) / 2) - icon margin (5) Replace with calculated value
-
         return (
             <BMStyle.ThemeContext.Consumer>
             {theme => (
@@ -72,13 +66,13 @@ export class Header extends React.Component<HeaderProps, HeaderState>
 
                             <SlidingMenu isExtended = {this.state.isMenuExtended} crossButtonAction = {this.toggleExtendMenu.bind(this)} isAboveFold = {this.props.isShowingSlidingBackdrop}>
                                 <SlidingMenuItem text = {language.DarkMode}>
-                                    <ToggleSwitch width = {80} height = {40} startToggled = {theme.name === 'dark'} toggleAction = {
+                                    <ToggleSwitch width = {80} height = {40} isToggled = {theme.name === 'dark'} toggleAction = {
                                         (value: boolean) => theme.toggleTheme(value)}
                                     >
                                     </ToggleSwitch>
                                 </SlidingMenuItem>
                                 <SlidingMenuItem text = {language.Language}>
-                                    <ToggleSwitch width = {80} height = {40} startToggled = {language.LangCode === 'DE'} toggledOffText = {"EN"} toggledOnText = {"DE"} toggleAction = {
+                                    <ToggleSwitch width = {80} height = {40} isToggled = {language.LangCode === 'DE'} toggledOffText = {"EN"} toggledOnText = {"DE"} toggleAction = {
                                         (value: boolean) =>
                                         {
                                             language.toggleLanguage(value);
@@ -109,7 +103,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                                 className = "left_justified_elements"
                                 style = 
                                 {{
-                                    marginLeft: IsMobileWidth ? HEADER_ICON_MOBILE_WIDTH_MARGIN : HEADER_ICON_FULL_WIDTH_MARGIN,
+                                    marginLeft: IsMobileWidth ? BMStyle.HeaderIconMobileWidthSideMarginString : BMStyle.HeaderIconSideMarginString,
                                     marginRight: "auto",
                                     flexDirection: "row",
                                     zIndex: 3,
@@ -129,10 +123,10 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                                         style =
                                         {{
                                             color: "white",
-                                            fontSize: "40px",
+                                            fontSize: BMStyle.HeaderIconHeightString,
                                             fontFamily: BMStyle.UITitleFont,
                                             display: IsMobileWidth ? "none" : "inline",
-                                            margin: "5px",
+                                            margin: BMStyle.HeaderIconMarginString,
                                             opacity: this.props.isShowingSlidingBackdrop ? "1" : "0",
                                             transition: "opacity 0.7s",
                                         }}
@@ -147,7 +141,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                                 style = 
                                 {{
                                     marginLeft: "auto",
-                                    marginRight: IsMobileWidth ? HEADER_ICON_MOBILE_WIDTH_MARGIN : HEADER_ICON_FULL_WIDTH_MARGIN,
+                                    marginRight: IsMobileWidth ? BMStyle.HeaderIconMobileWidthSideMarginString : BMStyle.HeaderIconSideMarginString,
                                     flexDirection: "row",
                                     zIndex: 3,
                                 }}
