@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BMStyle } from '../BMStyle';
+import { BMStyle } from "../BMStyle";
 
 /*
  * Returns a drop down menu which contains language and display options. Controllers are passed to the menu object as menuItems, a dictionary of arbitrary length which pair the text to be displayed
@@ -37,9 +37,7 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
 
         return (
             <BMStyle.ThemeContext.Consumer>
-            {theme => (
-                <BMStyle.StateContext.Consumer>
-                {({IsMobileWidth}) => (
+                {theme => (
                     <div
                         className = "sliding_menu"
                         style = 
@@ -83,8 +81,6 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
                         {this.props.children}
                     </div>
                 )}
-                </BMStyle.StateContext.Consumer>
-            )}
             </BMStyle.ThemeContext.Consumer>
         )
     }

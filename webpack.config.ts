@@ -1,5 +1,5 @@
-import * as path from 'path';
-import * as webpack from 'webpack';
+import * as path from "path";
+import * as webpack from "webpack";
 
 const config: webpack.Configuration =
 {
@@ -15,7 +15,7 @@ const config: webpack.Configuration =
     //entry: path.resolve(__dirname, './src/index.tsx'),
     output:
     {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, "dist"),
         filename: "main.js",
         publicPath: "/"
     },
@@ -57,24 +57,24 @@ const config: webpack.Configuration =
             // load css files?
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: ["style-loader", "css-loader"]
             },
             {
                 test: /\.svg$/,
-                loader: 'svg-inline-loader'
+                loader: "svg-inline-loader"
             },
             {
                 test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
                 use: [
-                  {
-                    loader: 'file-loader',
-                    options: {
-                      name: '[name].[ext]',
-                      outputPath: 'fonts/'
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "[name].[ext]",
+                            outputPath: "fonts/"
+                        }
                     }
-                  }
                 ]
-              }
+            }
         ]
     },
 };

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { BMStyle, inLineTextLinkPair } from '../BMStyle';
+import * as React from "react";
+import { BMStyle, inLineTextLinkPair } from "../BMStyle";
 import { Link } from "react-router-dom";
 
 /*
@@ -13,18 +13,18 @@ function clickableTextLink(link: inLineTextLinkPair)
     {
         return (
             <BMStyle.ThemeContext.Consumer>
-            {theme => (
-                <Link 
-                    style = 
-                    {{
-                        color: theme.colors.UIMainColor,
-                        textDecoration: "none",
-                    }}
-                    to={link.url}
-                >
-                    {link.text}
-                </Link>
-            )}
+                {theme => (
+                    <Link 
+                        style = 
+                        {{
+                            color: theme.colors.UIMainColor,
+                            textDecoration: "none",
+                        }}
+                        to={link.url}
+                    >
+                        {link.text}
+                    </Link>
+                )}
             </BMStyle.ThemeContext.Consumer>
         )
     }
@@ -33,19 +33,20 @@ function clickableTextLink(link: inLineTextLinkPair)
     {
         return (
             <BMStyle.ThemeContext.Consumer>
-            {theme => (
-                <a
-                    style = 
-                    {{
-                        color: theme.colors.UIMainColor,
-                        textDecoration: "none",
-                    }}
-                    href={link.url}
-                    target="_blank"
-                >
-                    {link.text}
-                </a>
-            )}
+                {theme => (
+                    <a
+                        style = 
+                        {{
+                            color: theme.colors.UIMainColor,
+                            textDecoration: "none",
+                        }}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {link.text}
+                    </a>
+                )}
             </BMStyle.ThemeContext.Consumer>
         )
     }
@@ -79,12 +80,12 @@ function recursiveSplicer(input: string, ...linkWords: inLineTextLinkPair[])
         const substringEnd = substringStart + currentLinkWord.text.length;
 
         var firstSubstring = input.slice(0, substringStart);
+        // Create new text/url pair with text from input to preserve capitalization
         var link = clickableTextLink(
-        {
-            // Create new text/url pair with text from input to preserve capitalization
-            text: input.slice(substringStart, substringEnd),
-            url: currentLinkWord.url
-        });
+            {
+                text: input.slice(substringStart, substringEnd),
+                url: currentLinkWord.url
+            });
         var secondSubstring = input.slice(substringEnd);
 
         returnText = [recursiveSplicer(firstSubstring, ...linkWords), link, recursiveSplicer(secondSubstring, ...linkWords)];

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BMStyle } from '../BMStyle';
+import { BMStyle } from "../BMStyle";
 
 /*
  * Custom toggle switch element
@@ -96,8 +96,8 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
                             style = 
                             {{
                                 position: "absolute",
-                                top: `0`,
-                                bottom: `0`,
+                                top: "0",
+                                bottom: "0",
                                 right: "auto",
                                 left: this.props.isToggled? `${inverseMargin - sliderRadius}px` : `${margin}px`,
                                 width: `${sliderRadius}px`,

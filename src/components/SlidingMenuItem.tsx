@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BMStyle } from '../BMStyle';
+import { BMStyle } from "../BMStyle";
 
 /*
  * Parent class for different elements that can be displayed in the slide out menu.

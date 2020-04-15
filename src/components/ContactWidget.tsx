@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BMStyle } from '../BMStyle';
+import { BMStyle } from "../BMStyle";
 
 /*
  * A collection of elements that makes up the "contact me" section of the site. Includes title, input fields for name, email address, message, and submit button
@@ -54,34 +54,34 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
     
         // Send request to AWS service
         fetch(BMStyle.EBAliasUrl,
-        {
-            method: "POST",
-            body: JSON.stringify(this.state),
-            headers:
             {
-                'Accept': 'text/plain',
-                'Content-Type': 'text/plain'
-            },
-        })
-        .then((response) =>
-        {
-            if (response.status == 200)
+                method: "POST",
+                body: JSON.stringify(this.state),
+                headers:
+                {
+                    "Accept": "text/plain",
+                    "Content-Type": "text/plain"
+                },
+            })
+            .then((response) =>
             {
-                //TODO: Replace alerts with more pleasing UI feedback
-                alert("Message sent successfully!");
-                this.resetForm()
-            }
-            else
+                if (response.status == 200)
+                {
+                    //TODO: Replace alerts with more pleasing UI feedback
+                    alert("Message sent successfully!");
+                    this.resetForm();
+                }
+                else
+                {
+                    alert("Error: something went wrong with my mailer server. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
+                    this.setState({isSending: false})
+                }
+            })
+            .catch(() =>
             {
-                alert("Error: something went wrong with my mailer server. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
+                alert("Error: email server not reachable. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
                 this.setState({isSending: false})
-            }
-        })
-        .catch(() =>
-        {
-            alert("Error: email server not reachable. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
-            this.setState({isSending: false})
-        })
+            });
     }
 
     resetForm()
@@ -112,128 +112,128 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
         const isSendable = this.messageIsSendable();
         return (
             <BMStyle.ThemeContext.Consumer>
-            {theme => (
-                <BMStyle.LanguageContext.Consumer>
-                {language => (
-                    <BMStyle.StateContext.Consumer>
-                    {({IsMobileWidth}) => (
-                        <div
-                            className = "contact_widget"
-                            style = 
-                            {{
-                                padding: IsMobileWidth? "100px 8px 150px" : "100px 24vw 150px",
-                                display: "flex",
-                                flexDirection: "column",
-                            }}
-                        >
-                            <h1
-                                className = "contact_widget_header"
-                                style =
-                                {{
-                                    margin: "20px",
-                                    fontFamily: BMStyle.UITitleFont,
-                                    fontSize: IsMobileWidth? "15vw" : "64px",
-                                    color: theme.colors.UIMainColor,
-                                    textAlign: "center",
-                                }}
-                            >
-                                {language.Contact} 
-                            </h1>
+                {theme => (
+                    <BMStyle.LanguageContext.Consumer>
+                        {language => (
+                            <BMStyle.StateContext.Consumer>
+                                {({IsMobileWidth}) => (
+                                    <div
+                                        className = "contact_widget"
+                                        style = 
+                                        {{
+                                            padding: IsMobileWidth? "100px 8px 150px" : "100px 24vw 150px",
+                                            display: "flex",
+                                            flexDirection: "column",
+                                        }}
+                                    >
+                                        <h1
+                                            className = "contact_widget_header"
+                                            style =
+                                            {{
+                                                margin: "20px",
+                                                fontFamily: BMStyle.UITitleFont,
+                                                fontSize: IsMobileWidth? "15vw" : "64px",
+                                                color: theme.colors.UIMainColor,
+                                                textAlign: "center",
+                                            }}
+                                        >
+                                            {language.Contact} 
+                                        </h1>
 
-                            <input
-                                className = "name_field"
-                                type = "text"
-                                placeholder = {language.Name}
-                                value = {this.state.name}
-                                onChange = {this.handleNameFieldChange.bind(this)}
-                                style =
-                                {{
-                                    width: "100%",
-                                    margin: "4px 0",
-                                    padding: "12px 20px",
-                                    fontSize: "24px",
-                                    color: theme.colors.ContactTextColor,
-                                    backgroundColor: theme.colors.ContactBackgroundColor,
-                                    outlineWidth: "0px",
-                                    border: "none",
-                                    boxSizing: "border-box",
-                                    fontFamily: BMStyle.UITextEntryFont,
-                                    height: "60px"
-                                }}
-                            ></input>
-                            <input
-                                className = "email_field"
-                                type = "text"
-                                placeholder = {language.Email}
-                                value = {this.state.email}
-                                onChange = {this.handleEmailFieldChange.bind(this)}
-                                style =
-                                {{
-                                    width: "100%",
-                                    margin: "4px 0",
-                                    padding: "12px 20px",
-                                    fontSize: "24px",
-                                    color: theme.colors.ContactTextColor,
-                                    backgroundColor: theme.colors.ContactBackgroundColor,
-                                    outlineWidth: "0px",
-                                    border: "none",
-                                    boxSizing: "border-box",
-                                    fontFamily: BMStyle.UITextEntryFont,
-                                    height: "60px"
-                                }}
-                            ></input>
-                            <textarea
-                                className = "message_field"
-                                placeholder = {language.YourMessage}
-                                value = {this.state.message}
-                                onChange = {this.handleMessageFieldChange.bind(this)}
-                                style =
-                                {{
-                                    width: "100%",
-                                    margin: "4px 0",
-                                    padding: "12px 20px",
-                                    fontSize: "24px",
-                                    color: theme.colors.ContactTextColor,
-                                    backgroundColor: theme.colors.ContactBackgroundColor,
-                                    outlineWidth: "0px",
-                                    border: "none",
-                                    boxSizing: "border-box",
-                                    fontFamily: BMStyle.UITextEntryFont,
-                                    height: "250px",
-                                    resize: "none",
-                                }}
-                            >
-                            </textarea>
+                                        <input
+                                            className = "name_field"
+                                            type = "text"
+                                            placeholder = {language.Name}
+                                            value = {this.state.name}
+                                            onChange = {this.handleNameFieldChange.bind(this)}
+                                            style =
+                                            {{
+                                                width: "100%",
+                                                margin: "4px 0",
+                                                padding: "12px 20px",
+                                                fontSize: "24px",
+                                                color: theme.colors.ContactTextColor,
+                                                backgroundColor: theme.colors.ContactBackgroundColor,
+                                                outlineWidth: "0px",
+                                                border: "none",
+                                                boxSizing: "border-box",
+                                                fontFamily: BMStyle.UITextEntryFont,
+                                                height: "60px"
+                                            }}
+                                        ></input>
+                                        <input
+                                            className = "email_field"
+                                            type = "text"
+                                            placeholder = {language.Email}
+                                            value = {this.state.email}
+                                            onChange = {this.handleEmailFieldChange.bind(this)}
+                                            style =
+                                            {{
+                                                width: "100%",
+                                                margin: "4px 0",
+                                                padding: "12px 20px",
+                                                fontSize: "24px",
+                                                color: theme.colors.ContactTextColor,
+                                                backgroundColor: theme.colors.ContactBackgroundColor,
+                                                outlineWidth: "0px",
+                                                border: "none",
+                                                boxSizing: "border-box",
+                                                fontFamily: BMStyle.UITextEntryFont,
+                                                height: "60px"
+                                            }}
+                                        ></input>
+                                        <textarea
+                                            className = "message_field"
+                                            placeholder = {language.YourMessage}
+                                            value = {this.state.message}
+                                            onChange = {this.handleMessageFieldChange.bind(this)}
+                                            style =
+                                            {{
+                                                width: "100%",
+                                                margin: "4px 0",
+                                                padding: "12px 20px",
+                                                fontSize: "24px",
+                                                color: theme.colors.ContactTextColor,
+                                                backgroundColor: theme.colors.ContactBackgroundColor,
+                                                outlineWidth: "0px",
+                                                border: "none",
+                                                boxSizing: "border-box",
+                                                fontFamily: BMStyle.UITextEntryFont,
+                                                height: "250px",
+                                                resize: "none",
+                                            }}
+                                        >
+                                        </textarea>
 
-                            <button
-                                className = "submit_button"
-                                onClick = {isSendable? this.handleSubmitButtonClicked.bind(this) : (() => {return null})}
-                                style = 
-                                {{
-                                    width: IsMobileWidth? "100%" : "200px",
-                                    height: "64px",
-                                    marginTop: "4px",
-                                    marginLeft: "auto",
-                                    marginRight: "0",
-                                    display: "block",
-                                    padding: "4px",
-                                    border: "none",
-                                    outlineWidth: "0px",
-                                    fontSize: "36px",
-                                    fontFamily: BMStyle.UITitleFont,
-                                    color: "white",
-                                    cursor: isSendable? "pointer" : "auto",
-                                    backgroundColor: isSendable? (this.state.isSending? theme.colors.UIButtonIndentedColor : theme.colors.UIMainColor) : theme.colors.UIDisabledColor,
-                                }}
-                            >
-                                {language.Send}
-                            </button>
-                        </div>
-                    )}
-                    </BMStyle.StateContext.Consumer>
+                                        <button
+                                            className = "submit_button"
+                                            onClick = {isSendable? this.handleSubmitButtonClicked.bind(this) : (() => {return null})}
+                                            style = 
+                                            {{
+                                                width: IsMobileWidth? "100%" : "200px",
+                                                height: "64px",
+                                                marginTop: "4px",
+                                                marginLeft: "auto",
+                                                marginRight: "0",
+                                                display: "block",
+                                                padding: "4px",
+                                                border: "none",
+                                                outlineWidth: "0px",
+                                                fontSize: "36px",
+                                                fontFamily: BMStyle.UITitleFont,
+                                                color: "white",
+                                                cursor: isSendable? "pointer" : "auto",
+                                                backgroundColor: isSendable? (this.state.isSending? theme.colors.UIButtonIndentedColor : theme.colors.UIMainColor) : theme.colors.UIDisabledColor,
+                                            }}
+                                        >
+                                            {language.Send}
+                                        </button>
+                                    </div>
+                                )}
+                            </BMStyle.StateContext.Consumer>
+                        )}
+                    </BMStyle.LanguageContext.Consumer>
                 )}
-                </BMStyle.LanguageContext.Consumer>
-            )}
             </BMStyle.ThemeContext.Consumer>
         )
     }
