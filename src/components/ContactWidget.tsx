@@ -1,4 +1,5 @@
 import * as React from "react";
+import "../css/ContactWidget.less";
 import { BMStyle } from "../BMStyle";
 
 /*
@@ -28,7 +29,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
             email: "",
             message: "",
             isSending: false,
-        }
+        };
     }
 
     handleNameFieldChange(event: React.ChangeEvent<HTMLInputElement>)
@@ -119,23 +120,15 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                                 {({IsMobileWidth}) => (
                                     <div
                                         className = "contact_widget"
-                                        style = 
-                                        {{
-                                            padding: IsMobileWidth? "100px 8px 150px" : "100px 24vw 150px",
-                                            display: "flex",
-                                            flexDirection: "column",
-                                        }}
+                                        style = {{padding: IsMobileWidth? "100px 8px 150px" : "100px 24vw 150px"}}
                                     >
                                         <h1
                                             className = "contact_widget_header"
                                             style =
-                                            {{
-                                                margin: "20px",
-                                                fontFamily: BMStyle.UITitleFont,
-                                                fontSize: IsMobileWidth? "15vw" : "64px",
-                                                color: theme.colors.UIMainColor,
-                                                textAlign: "center",
-                                            }}
+                                                {{
+                                                    fontSize: IsMobileWidth? "15vw" : "64px",
+                                                    color: theme.colors.UIMainColor,
+                                                }}
                                         >
                                             {language.Contact} 
                                         </h1>
@@ -147,19 +140,10 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                                             value = {this.state.name}
                                             onChange = {this.handleNameFieldChange.bind(this)}
                                             style =
-                                            {{
-                                                width: "100%",
-                                                margin: "4px 0",
-                                                padding: "12px 20px",
-                                                fontSize: "24px",
-                                                color: theme.colors.ContactTextColor,
-                                                backgroundColor: theme.colors.ContactBackgroundColor,
-                                                outlineWidth: "0px",
-                                                border: "none",
-                                                boxSizing: "border-box",
-                                                fontFamily: BMStyle.UITextEntryFont,
-                                                height: "60px"
-                                            }}
+                                                {{
+                                                    color: theme.colors.ContactTextColor,
+                                                    backgroundColor: theme.colors.ContactBackgroundColor,
+                                                }}
                                         ></input>
                                         <input
                                             className = "email_field"
@@ -168,19 +152,10 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                                             value = {this.state.email}
                                             onChange = {this.handleEmailFieldChange.bind(this)}
                                             style =
-                                            {{
-                                                width: "100%",
-                                                margin: "4px 0",
-                                                padding: "12px 20px",
-                                                fontSize: "24px",
-                                                color: theme.colors.ContactTextColor,
-                                                backgroundColor: theme.colors.ContactBackgroundColor,
-                                                outlineWidth: "0px",
-                                                border: "none",
-                                                boxSizing: "border-box",
-                                                fontFamily: BMStyle.UITextEntryFont,
-                                                height: "60px"
-                                            }}
+                                                {{
+                                                    color: theme.colors.ContactTextColor,
+                                                    backgroundColor: theme.colors.ContactBackgroundColor,
+                                                }}
                                         ></input>
                                         <textarea
                                             className = "message_field"
@@ -188,20 +163,10 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                                             value = {this.state.message}
                                             onChange = {this.handleMessageFieldChange.bind(this)}
                                             style =
-                                            {{
-                                                width: "100%",
-                                                margin: "4px 0",
-                                                padding: "12px 20px",
-                                                fontSize: "24px",
-                                                color: theme.colors.ContactTextColor,
-                                                backgroundColor: theme.colors.ContactBackgroundColor,
-                                                outlineWidth: "0px",
-                                                border: "none",
-                                                boxSizing: "border-box",
-                                                fontFamily: BMStyle.UITextEntryFont,
-                                                height: "250px",
-                                                resize: "none",
-                                            }}
+                                                {{
+                                                    color: theme.colors.ContactTextColor,
+                                                    backgroundColor: theme.colors.ContactBackgroundColor,
+                                                }}
                                         >
                                         </textarea>
 
@@ -209,22 +174,11 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                                             className = "submit_button"
                                             onClick = {isSendable? this.handleSubmitButtonClicked.bind(this) : (() => {return null})}
                                             style = 
-                                            {{
-                                                width: IsMobileWidth? "100%" : "200px",
-                                                height: "64px",
-                                                marginTop: "4px",
-                                                marginLeft: "auto",
-                                                marginRight: "0",
-                                                display: "block",
-                                                padding: "4px",
-                                                border: "none",
-                                                outlineWidth: "0px",
-                                                fontSize: "36px",
-                                                fontFamily: BMStyle.UITitleFont,
-                                                color: "white",
-                                                cursor: isSendable? "pointer" : "auto",
-                                                backgroundColor: isSendable? (this.state.isSending? theme.colors.UIButtonIndentedColor : theme.colors.UIMainColor) : theme.colors.UIDisabledColor,
-                                            }}
+                                                {{
+                                                    width: IsMobileWidth? "100%" : "200px",
+                                                    cursor: isSendable? "pointer" : "auto",
+                                                    backgroundColor: isSendable? (this.state.isSending? theme.colors.UIButtonIndentedColor : theme.colors.UIMainColor) : theme.colors.UIDisabledColor,
+                                                }}
                                         >
                                             {language.Send}
                                         </button>

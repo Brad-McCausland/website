@@ -23,7 +23,7 @@ const config: webpack.Configuration =
     resolve:
     {
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".js", ".ts", ".tsx"]
+        extensions: [".js", ".ts", ".tsx", ".less"]
     },
 
     /*
@@ -58,6 +58,10 @@ const config: webpack.Configuration =
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"]
+            },
+            {
+                test: /\.less$/,
+                loader: ["style-loader", "css-loader", "less-loader"],
             },
             {
                 test: /\.svg$/,
