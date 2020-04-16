@@ -7,6 +7,8 @@ import { ToggleSwitch } from "./ToggleSwitch";
 import { SlidingMenuItem } from "./SlidingMenuItem";
 import { Link } from "react-router-dom";
 
+import "../css/Header.less";
+
 /*
  * Header object which contains menu and link buttons. When above the fold, will display a black gradient as a background. When below, will switch to an orange background and display my name as well.
  */
@@ -51,17 +53,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                         {language => (
                             <BMStyle.StateContext.Consumer>
                                 {({IsMobileWidth}) => (
-                                    <div className = "header" style =
-                                        {{
-                                            position: "fixed",
-                                            top: "0",
-                                            width: "100%",
-                                            height: BMStyle.HeaderHeightString,
-                                            display: "flex",
-                                            zIndex: 3,
-                                            alignItems: "center",
-                                        }}
-                                    >
+                                    <div className = "header">
                                         <Gradient></Gradient>
 
                                         <SlidingMenu isExtended = {this.state.isMenuExtended} crossButtonAction = {this.toggleExtendMenu.bind(this)} isAboveFold = {this.props.isShowingSlidingBackdrop}>
@@ -86,50 +78,28 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                                             <div
                                                 className = "orange_slider"
                                                 style = 
-                                                {{
-                                                    backgroundColor: theme.colors.UIMainColor,
-                                                    height: "100%",
-                                                    width: "100%",
-                                                    position: "absolute",
-                                                    zIndex: 1,
-                                                    top: this.props.isShowingSlidingBackdrop ?  "0px" : "-100%",
-                                                    transition: `top ${BMStyle.HeaderSlideTransitionTime}`,
-                                                }}
+                                                    {{
+                                                        backgroundColor: theme.colors.UIMainColor,
+                                                        top: this.props.isShowingSlidingBackdrop ?  "0px" : "-100%",
+                                                    }}
                                             >
                                             </div>
                                         </div>
 
                                         <div 
                                             className = "left_justified_elements"
-                                            style = 
-                                            {{
-                                                marginLeft: IsMobileWidth ? BMStyle.HeaderIconMobileWidthSideMarginString : BMStyle.HeaderIconSideMarginString,
-                                                marginRight: "auto",
-                                                flexDirection: "row",
-                                                zIndex: 3,
-                                            }}
+                                            style = {{marginLeft: IsMobileWidth ? BMStyle.HeaderIconMobileWidthSideMarginString : BMStyle.HeaderIconSideMarginString }}
                                         >
                                             <HeaderIcon className = "icon-menu" onClick = {() => this.toggleExtendMenu()}></HeaderIcon>
 
-                                            <Link 
-                                                style = 
-                                                {{
-                                                    textDecoration: "none",
-                                                }}
-                                                to={BMStyle.HomePageLink}
-                                            >
+                                            <Link to={BMStyle.HomePageLink}>
                                                 <h1 
                                                     className = "name_in_header"
                                                     style =
-                                                    {{
-                                                        color: "white",
-                                                        fontSize: BMStyle.HeaderIconHeightString,
-                                                        fontFamily: BMStyle.UITitleFont,
-                                                        display: IsMobileWidth ? "none" : "inline",
-                                                        margin: BMStyle.HeaderIconMarginString,
-                                                        opacity: this.props.isShowingSlidingBackdrop ? "1" : "0",
-                                                        transition: "opacity 0.7s",
-                                                    }}
+                                                        {{
+                                                            opacity: this.props.isShowingSlidingBackdrop ? "1" : "0",
+                                                            display: IsMobileWidth ? "none" : "inline",
+                                                        }}
                                                 >
                                                     Brad McCausland
                                                 </h1>
@@ -138,13 +108,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
 
                                         <div 
                                             className = "right_justified_elements"
-                                            style = 
-                                            {{
-                                                marginLeft: "auto",
-                                                marginRight: IsMobileWidth ? BMStyle.HeaderIconMobileWidthSideMarginString : BMStyle.HeaderIconSideMarginString,
-                                                flexDirection: "row",
-                                                zIndex: 3,
-                                            }}
+                                            style = {{marginRight: IsMobileWidth ? BMStyle.HeaderIconMobileWidthSideMarginString : BMStyle.HeaderIconSideMarginString}}
                                         >
                                             <HeaderIcon className = "icon-envelope" onClick = {() => window.open(BMStyle.MailToUrl, "_blank")}></HeaderIcon>
                                             <HeaderIcon className = "icon-github" onClick = {() => window.open(BMStyle.GithubUrl, "_blank")}></HeaderIcon>

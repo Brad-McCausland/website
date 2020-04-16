@@ -51,7 +51,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
     {
         event.preventDefault();
 
-        this.setState({isSending: true})
+        this.setState({isSending: true});
     
         // Send request to AWS service
         fetch(BMStyle.EBAliasUrl,
@@ -75,13 +75,13 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                 else
                 {
                     alert("Error: something went wrong with my mailer server. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
-                    this.setState({isSending: false})
+                    this.setState({isSending: false});
                 }
             })
             .catch(() =>
             {
                 alert("Error: email server not reachable. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
-                this.setState({isSending: false})
+                this.setState({isSending: false});
             });
     }
 
@@ -94,7 +94,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                 message: "",
                 isSending: false,
             }
-        )
+        );
     }
 
     messageIsSendable()
@@ -172,7 +172,10 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
 
                                         <button
                                             className = "submit_button"
-                                            onClick = {isSendable? this.handleSubmitButtonClicked.bind(this) : (() => {return null})}
+                                            onClick = {isSendable? this.handleSubmitButtonClicked.bind(this) : (() =>
+                                            {
+                                                return null;
+                                            })}
                                             style = 
                                                 {{
                                                     width: IsMobileWidth? "100%" : "200px",
@@ -189,6 +192,6 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                     </BMStyle.LanguageContext.Consumer>
                 )}
             </BMStyle.ThemeContext.Consumer>
-        )
+        );
     }
 }
