@@ -1,0 +1,28 @@
+@import "BMStyle";
+
+.sliding_menu
+{
+    position: absolute;
+    min-width: 300px;
+    height: 100vh;
+    transition: ~"left 1s, top @{MenuSlideTransitionTime}";
+
+    .menu_header
+    {
+        width: 100%;
+        height: @HeaderHeight;
+
+        .icon_cross:before
+        {
+            content: "\ea0f";
+            text-align: center;
+            color: #ffffff;
+            height: 20px;
+            font-size: 20px;
+            font-family: @UIIconFont;
+            padding: 25px;
+            float: right;
+            cursor: pointer;
+        }
+    }
+}

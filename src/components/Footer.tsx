@@ -47,6 +47,6 @@ export class Footer extends React.Component<FooterProps, FooterState>
                     </BMStyle.StateContext.Consumer>
                 )}
             </BMStyle.ThemeContext.Consumer>
-        )
+        );
     }
 }

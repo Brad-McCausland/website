@@ -1,5 +1,6 @@
 import * as React from "react";
 import { BMStyle } from "../BMStyle";
+import "../css/SlidingMenu.less";
 
 /*
  * Returns a drop down menu which contains language and display options. Controllers are passed to the menu object as menuItems, a dictionary of arbitrary length which pair the text to be displayed
@@ -41,42 +42,15 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
                     <div
                         className = "sliding_menu"
                         style = 
-                        {{
-                            position: "absolute",
-                            //width: "12vw",
-                            minWidth: "300px",
-                            height: "100vh",
-                            top: this.props.isAboveFold ? BMStyle.HeaderHeight : "0px",
-                            left: this.props.isExtended ? "0px" : /*(isFirefox? "-moz-calc(-300px -12vw)" : "min(-300px, -12vw)")*/ "-300px",
-                            transition: "left 1s" + ", " + `top ${BMStyle.HeaderSlideTransitionTime}`,
-                            backgroundColor: theme.colors.UIDarkColor,
-                            zIndex: this.props.isAboveFold ? 1 : 4,
-                        }}
-                    >
-                        <div
-                            className = "menu_header"
-                            style = 
                             {{
-                                width: "100%",
-                                height: BMStyle.HeaderHeight,
+                                backgroundColor: theme.colors.UIDarkColor,
+                                zIndex: this.props.isAboveFold ? 1 : 4,
+                                top: this.props.isAboveFold ? BMStyle.HeaderHeight : "0px",
+                                left: this.props.isExtended ? "0px" : /*(isFirefox? "-moz-calc(-300px -12vw)" : "min(-300px, -12vw)")*/ "-300px",
                             }}
-                        >
-                            <span
-                                className = "icon-cross"
-                                onClick = {this.props.crossButtonAction}
-                                style = 
-                                {{
-                                    textAlign: "center",
-                                    color: "#ffffff",
-                                    height: "20px",
-                                    fontSize: "20px",
-                                    fontFamily: BMStyle.UIIconFont,
-                                    padding: "25px",
-                                    float: "right",
-                                    cursor: "pointer",
-                                }}
-                            >
-                            </span>
+                    >
+                        <div className = "menu_header">
+                            <span className = "icon_cross" onClick = {this.props.crossButtonAction}/>
                         </div>
                         {this.props.children}
                     </div>

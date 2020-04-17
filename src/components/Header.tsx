@@ -32,7 +32,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
         this.state = 
         {
             isMenuExtended: false,
-        }
+        };
     }
 
     toggleExtendMenu()
@@ -41,7 +41,7 @@ export class Header extends React.Component<HeaderProps, HeaderState>
             {
                 isMenuExtended: !this.state.isMenuExtended,
             }
-        )
+        );
     }
 
     render ()
@@ -121,6 +121,6 @@ export class Header extends React.Component<HeaderProps, HeaderState>
                     </BMStyle.LanguageContext.Consumer>
                 )}
             </BMStyle.ThemeContext.Consumer>
-        )
+        );
     }
 }

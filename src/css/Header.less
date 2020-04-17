@@ -1,7 +1,5 @@
 @import "BMStyle";
 
-@transitionTime: 0.7s;
-
 .header
 {
     width: 100%;
@@ -18,7 +16,7 @@
         width: 100%;
         position: absolute;
         z-index: 1;
-        transition: ~"top @{transitionTime}";
+        transition: ~"top @{MenuSlideTransitionTime}";
     }
 
     .left_justified_elements
@@ -38,7 +36,7 @@
             font-size: @HeaderIconHeight;
             font-family: @UITitleFont;
             margin: @HeaderIconMargin;
-            transition: ~"opacity @{transitionTime}";
+            transition: ~"opacity @{MenuSlideTransitionTime}";
         }
     }
 
