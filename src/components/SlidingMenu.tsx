@@ -27,7 +27,7 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
         this.state = 
         {
             isExtended: false
-        }
+        };
     }
 
     render()
@@ -56,6 +56,6 @@ export class SlidingMenu extends React.Component<SlidingMenuProps, SlidingMenuSt
                     </div>
                 )}
             </BMStyle.ThemeContext.Consumer>
-        )
+        );
     }
 }

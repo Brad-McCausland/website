@@ -1,5 +1,6 @@
 import * as React from "react";
 import { BMStyle } from "../BMStyle";
+import "../css/SlidingMenuItem.less";
 
 /*
  * Parent class for different elements that can be displayed in the slide out menu.
@@ -26,44 +27,11 @@ export class SlidingMenuItem extends React.Component<SlidingMenuItemProps, Slidi
     render()
     {
         return (
-            <div
-                className = "menu_item"
-                style = 
-                {{
-                    width: "100%",
-                    height: BMStyle.MenuItemHeightString,
-                    alignItems: "center",
-                }}>
-                <text
-                    className = "menu_item_text"
-                    style = 
-                    {{
-                        flex: "1",
-                        height: "100%",
-                        fontSize: "28px",
-                        color: "white",
-                        paddingLeft: "16px",
-                        float: "left",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                    }}
-                >
+            <div className = "sliding_menu_item">
+                <text className = "menu_item_text">
                     {this.props.text}
                 </text>
-                <div
-                    className = "menu_item_controller"
-                    style =
-                    {{
-                        flex: "1",
-                        height: "100%",
-                        paddingRight: "16px",
-                        float: "right",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                    }}
-                >
+                <div className = "menu_item_controller">
                     {this.props.children}
                 </div>
             </div>
