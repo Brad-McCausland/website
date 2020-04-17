@@ -1,0 +1,41 @@
+@import "BMStyle";
+
+.toggle_outer_element
+{
+    position: relative;
+    transition: ~"background-color @{ToggleSwitchTransitionTime}";
+
+    text[class^="text_toggled_"]
+    {
+        height: 100%;
+        font-size: 125%;
+        color: white;
+        padding-left: 9px;
+        float: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        user-select: none;
+        
+        .toggled_on_text
+        {
+            padding-left: 9px;
+            float: left;
+        }
+        .toggled_off_text
+        {
+            padding-right: 9px;
+            float: right;
+        }
+    }
+
+    .toggle_inner_element
+    {
+        transition: ~"left @{ToggleSwitchTransitionTime}";
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: auto;
+    }
+}

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { BMStyle } from "../BMStyle";
+import "../css/ToggleSwitch.less";
 
 /*
  * Custom toggle switch element
@@ -48,65 +49,29 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
                         className = "toggle_outer_element"
                         onClick = {this.toggle.bind(this)}
                         style = 
-                        {{
-                            width: `${this.props.width}px`,
-                            height: `${this.props.height}px`,
-                            borderRadius: `${minDimension}px`,
-                            backgroundColor: this.props.isToggled? "rgba(0, 0, 0, 0.8)" : "rgba(0, 0, 0, 0.2)",
-                            position: "relative",
-                            transition: "background-color 0.3s",
-                        }}
-                    >
-                        <text
-                            className = "toggled_on_text"
-                            style = 
                             {{
-                                height: "100%",
-                                fontSize: "125%",
-                                color: "white",
-                                paddingLeft: "9px",
-                                float: "left",
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center",
-                                userSelect: "none",
+                                width: `${this.props.width}px`,
+                                height: `${this.props.height}px`,
+                                borderRadius: `${minDimension}px`,
+                                backgroundColor: this.props.isToggled? "rgba(0, 0, 0, 0.8)" : "rgba(0, 0, 0, 0.2)",
                             }}
-                        >
+                    >
+                        <text className = "text_toggled_on">
                             {this.props.toggledOnText}
                         </text>
-                        <text
-                            className = "toggled_off_text"
-                            style = 
-                            {{
-                                height: "100%",
-                                fontSize: "125%",
-                                color: "white",
-                                paddingRight: "9px",
-                                float: "right",
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center",
-                                userSelect: "none",
-                            }}
-                        >
+                        <text className = "text_toggled_off">
                             {this.props.toggledOffText}
                         </text>
                         <div
                             className = "toggle_inner_element"
                             style = 
-                            {{
-                                position: "absolute",
-                                top: "0",
-                                bottom: "0",
-                                right: "auto",
-                                left: this.props.isToggled? `${inverseMargin - sliderRadius}px` : `${margin}px`,
-                                width: `${sliderRadius}px`,
-                                height: `${sliderRadius}px`,
-                                transition: "left 0.3s",
-                                borderRadius: `${sliderRadius}px`,
-                                margin: "auto",
-                                backgroundColor: theme.colors.UIMainColor,
-                            }}
+                                {{
+                                    left: this.props.isToggled? `${inverseMargin - sliderRadius}px` : `${margin}px`,
+                                    width: `${sliderRadius}px`,
+                                    height: `${sliderRadius}px`,
+                                    borderRadius: `${sliderRadius}px`,
+                                    backgroundColor: theme.colors.UIMainColor,
+                                }}
                         >
                         </div>
                     </div>

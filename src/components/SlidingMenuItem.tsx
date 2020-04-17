@@ -1,5 +1,4 @@
 import * as React from "react";
-import { BMStyle } from "../BMStyle";
 import "../css/SlidingMenuItem.less";
 
 /*
@@ -35,6 +34,6 @@ export class SlidingMenuItem extends React.Component<SlidingMenuItemProps, Slidi
                     {this.props.children}
                 </div>
             </div>
-        )
+        );
     }
 }
