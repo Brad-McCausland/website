@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../css/Gradient.less";
+import "../styles/Gradient.less";
 
 /*
  * Returns en empty div styled to fill it's parent with a black -> alpha gradient from top to bottom.

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BMStyle } from "../BMStyle";
-import "../css/ToggleSwitch.less";
+import "../styles/ToggleSwitch.less";
 
 /*
  * Custom toggle switch element

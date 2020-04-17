@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BMStyle } from "../BMStyle";
-import "../css/SlidingMenu.less";
+import "../styles/SlidingMenu.less";
 
 /*
  * Returns a drop down menu which contains language and display options. Controllers are passed to the menu object as menuItems, a dictionary of arbitrary length which pair the text to be displayed

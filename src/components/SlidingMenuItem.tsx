@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../css/SlidingMenuItem.less";
+import "../styles/SlidingMenuItem.less";
 
 /*
  * Parent class for different elements that can be displayed in the slide out menu.

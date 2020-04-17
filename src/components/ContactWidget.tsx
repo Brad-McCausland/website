@@ -1,6 +1,6 @@
 import * as React from "react";
-import "../css/ContactWidget.less";
 import { BMStyle } from "../BMStyle";
+import "../styles/ContactWidget.less";
 
 /*
  * A collection of elements that makes up the "contact me" section of the site. Includes title, input fields for name, email address, message, and submit button
