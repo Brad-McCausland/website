@@ -61,7 +61,6 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
                                             style = 
                                                 {{
                                                     position: IsMobileWidth ? "absolute" : "relative",
-                                                    flex: "1", //TODO: Why does the page break when I move this to the .less file?
                                                 }}
                                         >
                                             <ReactFitText compressor={2.1} minFontSize={language.LangCode === "EN"? 26 : 22} maxFontSize={language.LangCode === "EN"? 48 : 40}>
