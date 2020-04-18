@@ -2,6 +2,7 @@ import * as React from "react";
 import { scroller as Scroller, Element as ScrollElement } from "react-scroll";
 
 import "../../index.css";
+import "../styles/pages/HomePage.less";
 import { BMStyle } from "../BMStyle";
 import { SubtitleButton } from "../components/SubtitleButton";
 import { Body5050Section } from "../components/Body5050Section";
@@ -111,53 +112,19 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
                             {language => (
                                 <BMStyle.StateContext.Consumer>
                                     {({IsMobileWidth}) => (
-                                        <div
-                                            className = "web_page"
-                                            style = 
-                                            {{
-                                                display: "block",
-                                                position: "relative",
-                                                margin: "0px",
-                                                backgroundColor: theme.colors.BackgroundColor,
-                                                fontFamily: BMStyle.UITitleFont,
-                                            }}
-                                        >
+                                        <div className = "home_page">
                                             <div
                                                 className = "hero_image"
-                                                style =
-                                                {{
-                                                    width: "100%",
-                                                    height: "100vh",
-                                                    backgroundImage: "url(" + (heroImageIsLoaded? theme.images.HeroImage : theme.images.HeroImagePlaceholder) + ")",
-                                                    backgroundSize: "cover",
-                                                    backgroundPosition: "center",
-                                                    position: "relative",
-                                                    display: "flex",
-                                                    flexDirection: "column",
-                                                    zIndex: 2,
-                                                }}
+                                                style = {{backgroundImage: "url(" + (heroImageIsLoaded? theme.images.HeroImage : theme.images.HeroImagePlaceholder) + ")"}}
                                             >
 
                                                 <div className = "name_title">
-                                                    <h1 style =
-                                                    {{
-                                                        color: "white",
-                                                        fontSize: IsMobileWidth ? "10vw" : "5vw",
-                                                        fontFamily: BMStyle.UITitleFont,
-                                                        textAlign: "center",
-                                                        marginTop: "20vh",
-                                                        marginBottom: "2vw"
-                                                    }}>
+                                                    <h1 style = {{fontSize: IsMobileWidth ? "10vw" : "5vw"}}>
                                                             Brad McCausland
                                                     </h1>
                                                 </div>
                                                 <div
                                                     className = "subtitle_buttons"
-                                                    style =
-                                                    {{
-                                                        display: "flex",
-                                                        justifyContent: "center",
-                                                    }}
                                                 >
                                                     <SubtitleButton text = {language.Educator}  onClick = {() => this.scrollToSection(scrollableSectionNames.educatorSectionName)}></SubtitleButton>
                                                     <SubtitleButton text = {language.Traveller}  onClick = {() => this.scrollToSection(scrollableSectionNames.travellerSectionName)}></SubtitleButton>
@@ -165,17 +132,7 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
                                                 </div>
                                             </div>
 
-                                            <div
-                                                className = "body"
-                                                style = 
-                                                {{
-                                                    zIndex: 1,
-                                                    position: "relative",
-                                                    display: "flex",
-                                                    flexDirection: "column",
-                                                    marginBottom: "50px",
-                                                }}
-                                            >
+                                            <div className = "webpage_body">
                                                 <ScrollElement name = {scrollableSectionNames.developerSectionName}>
                                                     <Body5050Section imageSrc = {theme.images.DeveloperPortrait} height="600px" reverse = {false}>
                                                         {Linkify(language.DeveloperParagraph, language.DeveloperResumeTextLinkPair, language.DeveloperBlogTextLinkPair)}

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BMStyle } from "../BMStyle";
-import "../styles/SubtitleButton.less";
+import "../styles/components/SubtitleButton.less";
 
 interface SubtitleButtonProps
 {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { HeaderIcon } from "./HeaderIcon";
 import { BMStyle } from "../BMStyle";
-import "../styles/Footer.less";
+import "../styles/components/Footer.less";
 
 /*
  * Footer object which contains copyright info and link buttons.

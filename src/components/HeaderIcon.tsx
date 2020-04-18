@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../styles/HeaderIcon.less";
+import "../styles/components/HeaderIcon.less";
 
 /*
  * Returns a span object containing a single glyph from the icons font. The icon is determined by the class name, as specified in index.css.

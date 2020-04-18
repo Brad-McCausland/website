@@ -16,10 +16,10 @@ function clickableTextLink(link: inLineTextLinkPair)
                 {theme => (
                     <Link 
                         style = 
-                        {{
-                            color: theme.colors.UIMainColor,
-                            textDecoration: "none",
-                        }}
+                            {{
+                                color: theme.colors.UIMainColor,
+                                textDecoration: "none",
+                            }}
                         to={link.url}
                     >
                         {link.text}
@@ -36,10 +36,10 @@ function clickableTextLink(link: inLineTextLinkPair)
                 {theme => (
                     <a
                         style = 
-                        {{
-                            color: theme.colors.UIMainColor,
-                            textDecoration: "none",
-                        }}
+                            {{
+                                color: theme.colors.UIMainColor,
+                                textDecoration: "none",
+                            }}
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"

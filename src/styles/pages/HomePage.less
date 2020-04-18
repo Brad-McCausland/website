@@ -1,0 +1,46 @@
+@import "../BMStyle";
+
+.home_page
+{
+    display: block;
+    position: relative;
+    margin: 0px;
+    font-family: @UITitleFont;
+    background-color: inherit;
+
+    .hero_image
+    {
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        z-index: 2;
+
+        .name_title
+        {
+            color: white;
+            font-family: @UITitleFont;
+            text-align: center;
+            margin-top: 20vh;
+            margin-bottom: 2vw;
+        }
+
+        .subtitle_buttons
+        {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .webpage_body
+    {
+        z-index: 1;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 50px;
+    }
+}

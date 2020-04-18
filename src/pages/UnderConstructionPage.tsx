@@ -5,6 +5,8 @@ import { Linkify } from "../utils/Linkify";
 import { BMWebPage } from "./BMWebPage";
 import ReactFitText = require("react-fittext");
 
+import "../styles/pages/UnderConstructionPage.less";
+
 interface UnderConstructionPageProps
 {
 }
@@ -28,46 +30,19 @@ export class UnderConstructionPage extends React.Component<UnderConstructionPage
                     {theme => (
                         <BMStyle.LanguageContext.Consumer>
                             {language => (
-                                <div
-                                    className = "Under_Construction_Page"
-                                    style = 
-                                    {{
-                                        display: "block",
-                                        position: "relative",
-                                        height: "100vh",
-                                        margin: "0px",
-                                        overflowX: "hidden",
-                                        backgroundColor: theme.colors.BackgroundColor,
-                                        fontFamily: BMStyle.UITitleFont,
-                                    }}
-                                >
+                                <div className = "under_construction_page">
                                     <ReactFitText compressor={1.1} maxFontSize={64}>
                                         <h1
-                                            className = "UnderConstructionTitle"
-                                            style = 
-                                            {{
-                                                width: "100%",
-                                                paddingTop: "30vh",
-                                                paddingBottom: "5vh",
-                                                fontFamily: BMStyle.UITitleFont,
-                                                color: theme.colors.UIMainColor,
-                                                textAlign: "center",
-                                            }}
+                                            className = "under_construction_title"
+                                            style = {{color: theme.colors.UIMainColor}}
                                         >
                                             {language.UnderConstruction}
                                         </h1>
                                     </ReactFitText>
                                     <ReactFitText compressor={1.5} maxFontSize={36}>
                                         <p
-                                            style = 
-                                            {{
-                                                fontFamily: BMStyle.UIContentFont,
-                                                fontSize: "36px",
-                                                color: theme.colors.BodyTextColor,
-                                                padding: "24px 8vw",
-                                                textAlign: "justify",
-                                                textAlignLast: "center",
-                                            }}
+                                            className = "under_construction_text"
+                                            style = {{color: theme.colors.BodyTextColor}}
                                         >
                                             {Linkify(language.UnderConstructionSubtitle, language.WebsiteGitubTextLinkPair)}
                                         </p>

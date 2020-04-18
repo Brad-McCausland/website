@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BMStyle } from "../BMStyle";
-import "../styles/ToggleSwitch.less";
+import "../styles/components/ToggleSwitch.less";
 
 /*
  * Custom toggle switch element
@@ -77,6 +77,6 @@ export class ToggleSwitch extends React.Component<ToggleSwitchProps, ToggleSwitc
                     </div>
                 )}
             </BMStyle.ThemeContext.Consumer>
-        )
+        );
     }
 }

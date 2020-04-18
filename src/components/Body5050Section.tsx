@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BMStyle } from "../BMStyle";
-import "../styles/Body5050Section.less";
+import "../styles/components/Body5050Section.less";
 import ReactFitText = require("react-fittext");
 
 /*

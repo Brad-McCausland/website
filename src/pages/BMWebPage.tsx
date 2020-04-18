@@ -4,6 +4,7 @@ import { BMStyle, BMThemeContextInterface, BMLanguageContextInterface } from "..
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import Cookies from "js-cookie";
+import "../styles/pages/BMWebPage.less";
 
 interface BMWebPageProps
 {
@@ -73,16 +74,8 @@ export class BMWebPage extends React.Component<BMWebPageProps, BMWebPageState>
                 <BMStyle.LanguageContext.Provider value = {{...this.state.language, ...{toggleLanguage: this.setLanguage.bind(this)}}}>
                     <BMStyle.StateContext.Provider value = {{IsMobileWidth: this.state.isMobileWidth}}>
                         {<div
-                            className = "BM_Web_Page"
-                            style = 
-                            {{
-                                display: "block",
-                                position: "relative",
-                                height: "100vh",
-                                margin: "0px",
-                                backgroundColor: this.state.theme.colors.BackgroundColor,
-                                fontFamily: BMStyle.UITitleFont,
-                            }}
+                            className = "BM_web_page"
+                            style = {{backgroundColor: this.state.theme.colors.BackgroundColor}}
                         >
                             <Header isShowingSlidingBackdrop = {this.props.headerIsExtended}/>
                             {this.props.children}

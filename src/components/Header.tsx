@@ -7,7 +7,7 @@ import { ToggleSwitch } from "./ToggleSwitch";
 import { SlidingMenuItem } from "./SlidingMenuItem";
 import { Link } from "react-router-dom";
 
-import "../styles/Header.less";
+import "../styles/components/Header.less";
 
 /*
  * Header object which contains menu and link buttons. When above the fold, will display a black gradient as a background. When below, will switch to an orange background and display my name as well.
