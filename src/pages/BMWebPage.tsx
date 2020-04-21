@@ -24,12 +24,25 @@ export class BMWebPage extends React.Component<BMWebPageProps, BMWebPageState>
     {
         super(props);
 
+        const DarkModeCookie = Cookies.get(BMStyle.DarkModeCookie);
+        const LanguageCookie = Cookies.get(BMStyle.LanguageCookie);
+
         this.state =
         {
             isMobileWidth: this.isMobileWidth(),
-            theme: Cookies.get(BMStyle.DarkModeCookie) === "true"? BMStyle.DarkTheme : BMStyle.LightTheme,
-            language: Cookies.get(BMStyle.LanguageCookie) === "DE"? BMStyle.GermanText : BMStyle.EnglishText,
+            theme: DarkModeCookie === "true"? BMStyle.DarkTheme : BMStyle.LightTheme,
+            language: LanguageCookie === "DE"? BMStyle.GermanText : BMStyle.EnglishText,
         };
+
+        // Initialize cookies to default values if none set
+        if (!DarkModeCookie)
+        {
+            Cookies.set(BMStyle.DarkModeCookie, "false");
+        }
+        if (!LanguageCookie)
+        {
+            Cookies.set(BMStyle.LanguageCookie, "EN");
+        }
     }
     
     componentDidMount()
