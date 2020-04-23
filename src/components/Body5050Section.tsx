@@ -53,7 +53,10 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
                                                 style =  {{display: IsMobileWidth ? "flex" : "none",}}
                                             >
                                             </div>
-                                            <img src = {this.props.imageSrc}/>
+                                            <img
+                                                className = "body_image"
+                                                src = {this.props.imageSrc}
+                                            />
                                         </div>
 
                                         <div
