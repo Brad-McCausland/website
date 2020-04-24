@@ -2,6 +2,7 @@ import * as React from "react";
 import { BMStyle } from "../BMStyle";
 import "../styles/components/ContactWidget.less";
 
+/// <reference path = "../../external_modules/cypress.d.ts" />
 /*
  * A collection of elements that makes up the "contact me" section of the site. Includes title, input fields for name, email address, message, and submit button
  */
@@ -50,7 +51,18 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
     handleSubmitButtonClicked(event: React.MouseEvent<HTMLButtonElement, MouseEvent>)
     {
         event.preventDefault();
+        if (window.Cypress)
+        {
+            this.setState({message: "Submit Button Clicked"});
+        }
+        else
+        {
+            this.sendMessage();
+        }
+    }
 
+    sendMessage()
+    {
         this.setState({isSending: true});
     
         // Send request to AWS service
@@ -104,7 +116,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
 
     isEmailValid()
     {
-        const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+        const emailRegex = /^[\w"_][\w.+"_-]+[\w"_]@[\w\[\]][\w.\[\]-]+\.[\w\[\]]+$/;
         return emailRegex.test(this.state.email);
     }
 
