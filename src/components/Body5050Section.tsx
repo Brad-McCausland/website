@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BMStyle } from "../BMStyle";
 import "../styles/components/Body5050Section.less";
+import { SmartImg } from "./SmartImg";
 import ReactFitText = require("react-fittext");
 
 /*
@@ -53,9 +54,9 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
                                                 style =  {{display: IsMobileWidth ? "flex" : "none",}}
                                             >
                                             </div>
-                                            <img
-                                                className = "body_image"
-                                                src = {this.props.imageSrc}
+                                            <SmartImg
+                                                fullUrl = {this.props.imageSrc}
+                                                thumbnailUrl = "../images/mag.png" //TODO: create thumbnails for body images
                                             />
                                         </div>
 

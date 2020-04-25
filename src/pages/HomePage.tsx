@@ -9,6 +9,7 @@ import { Body5050Section } from "../components/Body5050Section";
 import { ContactWidget } from "../components/ContactWidget";
 import { Linkify } from "../utils/Linkify";
 import { BMWebPage } from "./BMWebPage";
+import { SmartImg } from "../components/SmartImg";
 
 enum scrollableSectionNames
 {
@@ -52,26 +53,11 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
     componentDidMount()
     {
         window.addEventListener("scroll", this.handleScroll.bind(this));
-        this.lazyLoadHeroImage();
     }
 
     componentWillUnmount()
     {
         window.removeEventListener("scroll", this.handleScroll.bind(this));
-    }
-
-    lazyLoadHeroImage()
-    {
-        // Initialize hero image with smaller placeholder and replace with full res version when loaded
-        const theme = this.context;
-
-        const imageLoader = new Image()
-        imageLoader.src = theme.images.HeroImage;
-
-        imageLoader.onload = () =>
-        {
-            this.setState({heroImageIsLoaded: true});
-        };
     }
 
     isAboveFold(): boolean
@@ -102,8 +88,8 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
 
     render()
     {
-        const {isAboveFold, heroImageIsLoaded} = this.state;
-
+        const {isAboveFold} = this.state;
+        
         return (
             <BMWebPage headerIsExtended = {!isAboveFold}>
                 <BMStyle.ThemeContext.Consumer>
@@ -113,22 +99,22 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
                                 <BMStyle.StateContext.Consumer>
                                     {({IsMobileWidth}) => (
                                         <div className = "home_page">
-                                            <div
-                                                className = "hero_image"
-                                                style = {{backgroundImage: "url(" + (heroImageIsLoaded? theme.images.HeroImage : theme.images.HeroImagePlaceholder) + ")"}}
-                                            >
+                                            <div className = "hero_image">
+                                                <SmartImg fullUrl = {theme.images.HeroImage} thumbnailUrl = {theme.images.HeroImagePlaceholder}/>
 
-                                                <div className = "name_title">
-                                                    <h1 style = {{fontSize: IsMobileWidth ? "10vw" : "5vw"}}>
-                                                            Brad McCausland
-                                                    </h1>
-                                                </div>
-                                                <div
-                                                    className = "subtitle_buttons"
-                                                >
-                                                    <SubtitleButton text = {language.Educator}  onClick = {() => this.scrollToSection(scrollableSectionNames.educatorSectionName)}></SubtitleButton>
-                                                    <SubtitleButton text = {language.Traveller}  onClick = {() => this.scrollToSection(scrollableSectionNames.travellerSectionName)}></SubtitleButton>
-                                                    <SubtitleButton text = {language.Developer}  onClick = {() => this.scrollToSection(scrollableSectionNames.developerSectionName)}></SubtitleButton>
+                                                <div className = "hero_image_text_elements">
+                                                    <div className = "name_title">
+                                                        <h1 style = {{fontSize: IsMobileWidth ? "10vw" : "5vw"}}>
+                                                                Brad McCausland
+                                                        </h1>
+                                                    </div>
+                                                    <div
+                                                        className = "subtitle_buttons"
+                                                    >
+                                                        <SubtitleButton text = {language.Educator}  onClick = {() => this.scrollToSection(scrollableSectionNames.educatorSectionName)}></SubtitleButton>
+                                                        <SubtitleButton text = {language.Traveller}  onClick = {() => this.scrollToSection(scrollableSectionNames.travellerSectionName)}></SubtitleButton>
+                                                        <SubtitleButton text = {language.Developer}  onClick = {() => this.scrollToSection(scrollableSectionNames.developerSectionName)}></SubtitleButton>
+                                                    </div>
                                                 </div>
                                             </div>
 
