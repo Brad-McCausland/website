@@ -10,7 +10,8 @@ import ReactFitText = require("react-fittext");
 
 interface Body5050SectionProps
 {
-    imageSrc: string,
+    fullImageSrc: string,
+    thumbnailImageSrc: string,
     height: string,
     reverse: boolean,
 }
@@ -55,8 +56,8 @@ export class Body5050Section extends React.Component<Body5050SectionProps, Body5
                                             >
                                             </div>
                                             <SmartImg
-                                                fullUrl = {this.props.imageSrc}
-                                                thumbnailUrl = "../images/mag.png" //TODO: create thumbnails for body images
+                                                fullUrl = {this.props.fullImageSrc}
+                                                thumbnailUrl = {this.props.thumbnailImageSrc}
                                             />
                                         </div>
 

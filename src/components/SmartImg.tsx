@@ -61,4 +61,14 @@ export class SmartImg extends React.Component<SmartImgProps, SmartImgState>
             <img className = "smart_img" src = {imgSrc}/>
         );
     }
+
+    /*
+    Sleep function for slowing down image load when testing locally
+    sleep = (milliseconds: number) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+    }
+
+    
+    this.sleep(1000).then((() => {}
+    */
 }

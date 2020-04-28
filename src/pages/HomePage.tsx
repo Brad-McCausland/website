@@ -100,7 +100,7 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
                                     {({IsMobileWidth}) => (
                                         <div className = "home_page">
                                             <div className = "hero_image">
-                                                <SmartImg fullUrl = {theme.images.HeroImage} thumbnailUrl = {theme.images.HeroImagePlaceholder}/>
+                                                <SmartImg fullUrl = {theme.images.HeroImage} thumbnailUrl = {theme.images.HeroImageThumbnail}/>
 
                                                 <div className = "hero_image_text_elements">
                                                     <div className = "name_title">
@@ -120,17 +120,17 @@ export class HomePage extends React.Component<HomePageProps, HomePageState>
 
                                             <div className = "webpage_body">
                                                 <ScrollElement name = {scrollableSectionNames.developerSectionName}>
-                                                    <Body5050Section imageSrc = {theme.images.DeveloperPortrait} height="600px" reverse = {false}>
+                                                    <Body5050Section fullImageSrc = {theme.images.DeveloperPortrait} thumbnailImageSrc = {theme.images.DeveloperPortraitThumbnail} height="600px" reverse = {false}>
                                                         {Linkify(language.DeveloperParagraph, language.DeveloperResumeTextLinkPair, language.DeveloperBlogTextLinkPair)}
                                                     </Body5050Section>
                                                 </ScrollElement>
                                                 <ScrollElement name = {scrollableSectionNames.educatorSectionName}>
-                                                    <Body5050Section imageSrc = {theme.images.EducatorPortrait} height="600px" reverse = {true}>
+                                                    <Body5050Section fullImageSrc = {theme.images.EducatorPortrait} thumbnailImageSrc = {theme.images.EducatorPortraitThumbnail} height="600px" reverse = {true}>
                                                         {Linkify(language.EducatorParagraph)}
                                                     </Body5050Section>
                                                 </ScrollElement>
                                                 <ScrollElement name = {scrollableSectionNames.travellerSectionName}>
-                                                    <Body5050Section imageSrc = {theme.images.TravellerPortrait} height="600px" reverse = {false}>
+                                                    <Body5050Section fullImageSrc = {theme.images.TravellerPortrait} thumbnailImageSrc = {theme.images.TravellerPortraitThumbnail} height="600px" reverse = {false}>
                                                         {Linkify(language.TravellerParagraph)}
                                                     </Body5050Section>
                                                 </ScrollElement>

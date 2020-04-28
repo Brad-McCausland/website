@@ -32,10 +32,13 @@ export interface BMThemeContextInterface
     images:
     {
         HeroImage: string,
-        HeroImagePlaceholder: string,
+        HeroImageThumbnail: string,
         DeveloperPortrait: string,
+        DeveloperPortraitThumbnail: string,
         EducatorPortrait: string,
+        EducatorPortraitThumbnail: string,
         TravellerPortrait: string,
+        TravellerPortraitThumbnail: string,
     },
 
     // Function given and implemented by provider objects and called by consumers to handle theme switching.
@@ -142,10 +145,13 @@ export class BMStyle
         images:
         {
             HeroImage: "./src/images/hero_light.png",
-            HeroImagePlaceholder: "./src/images/hero_light_placeholder.png",
+            HeroImageThumbnail: "./src/images/hero_light_thumbnail.png",
             DeveloperPortrait: "./src/images/portrait_light.png",
-            EducatorPortrait: "./src/images/educator_portrait2.png",
-            TravellerPortrait: "./src/images/traveller_image_light.png"
+            DeveloperPortraitThumbnail: "./src/images/portrait_light_thumbnail.png",
+            EducatorPortrait: "./src/images/educator_light.png",
+            EducatorPortraitThumbnail: "./src/images/educator_light_thumbnail.png",
+            TravellerPortrait: "./src/images/traveller_light.png",
+            TravellerPortraitThumbnail: "./src/images/traveller_light_thumbnail.png"
         }
     } as BMThemeContextInterface
 
@@ -172,10 +178,13 @@ export class BMStyle
         images:
         {
             HeroImage: "./src/images/hero_dark.png",
-            HeroImagePlaceholder: "./src/images/hero_dark_placeholder.png",
+            HeroImageThumbnail: "./src/images/hero_dark_thumbnail.png",
             DeveloperPortrait: "./src/images/portrait_dark.png",
-            EducatorPortrait: "./src/images/educator_portrait2.png",
-            TravellerPortrait: "./src/images/traveller_image_dark.png",
+            DeveloperPortraitThumbnail: "./src/images/portrait_dark_thumbnail.png",
+            EducatorPortrait: "./src/images/educator_dark.png",
+            EducatorPortraitThumbnail: "./src/images/educator_dark_thumbnail.png",
+            TravellerPortrait: "./src/images/traveller_dark.png",
+            TravellerPortraitThumbnail: "./src/images/traveller_dark_thumbnail.png"
         }
     } as BMThemeContextInterface
 
