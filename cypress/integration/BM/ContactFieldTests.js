@@ -65,6 +65,21 @@ describe("Test Contact Form", function()
         cy.get(".contact_widget").find(".message_field").contains("Submit Button Clicked");
     });
 
+    it("Test button changes to darker color when clicked", function()
+    {
+        cy.visit("localhost:8000/");
+
+        cy.get(".contact_widget").find(".name_field").type("Name");
+        cy.get(".contact_widget").find(".email_field").type("Test@email.com");
+        cy.get(".contact_widget").find(".message_field").type("Message");
+
+        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(255, 160, 0)").then(($button) =>
+        {
+            $button.click();
+            expect($button).to.have.css("background-color", "rgb(224, 109, 0)");
+        });
+    });
+
     // Test cases stolen from https://gist.github.com/cjaoude/fd9910626629b53c4d25
     it("Test accepts only valid email addresses", function()
     {

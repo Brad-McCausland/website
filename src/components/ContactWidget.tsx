@@ -54,6 +54,11 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
         if (window.Cypress)
         {
             this.setState({message: "Submit Button Clicked"});
+            this.setState({isSending: true});
+            setTimeout(() =>
+            {
+                this.setState({isSending: false});
+            }, 2000);
         }
         else
         {
@@ -192,7 +197,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                                                 {{
                                                     width: IsMobileWidth? "100%" : "200px",
                                                     cursor: isSendable? "pointer" : "auto",
-                                                    backgroundColor: isSendable? (this.state.isSending? theme.colors.UIButtonIndentedColor : theme.colors.UIMainColor) : theme.colors.UIDisabledColor,
+                                                    backgroundColor: this.state.isSending? theme.colors.UIButtonIndentedColor : (isSendable ? theme.colors.UIMainColor : theme.colors.UIDisabledColor),
                                                 }}
                                         >
                                             {language.Send}
