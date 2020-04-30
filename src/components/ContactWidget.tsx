@@ -7,6 +7,15 @@ import "../styles/components/ContactWidget.less";
  * A collection of elements that makes up the "contact me" section of the site. Includes title, input fields for name, email address, message, and submit button
  */
 
+enum MessageSendState
+{
+    ready,
+    sending,
+    recentlySent,
+    recentlyFailed
+}
+
+
 interface ContactWidgetProps
 {
 }
@@ -16,7 +25,7 @@ interface ContactWidgetState
     name: string,
     email: string,
     message: string,
-    isSending: boolean,
+    sendState: MessageSendState,
 }
 
 export class ContactWidget extends React.Component<ContactWidgetProps, ContactWidgetState>
@@ -29,7 +38,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
             name: "",
             email: "",
             message: "",
-            isSending: false,
+            sendState: MessageSendState.ready,
         };
     }
 
@@ -54,10 +63,10 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
         if (window.Cypress)
         {
             this.setState({message: "Submit Button Clicked"});
-            this.setState({isSending: true});
+            this.setState({sendState: MessageSendState.sending});
             setTimeout(() =>
             {
-                this.setState({isSending: false});
+                this.setState({sendState: MessageSendState.ready});
             }, 2000);
         }
         else
@@ -66,9 +75,19 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
         }
     }
 
+    mockFailure()
+    {
+        this.setState({sendState: MessageSendState.sending});
+        setTimeout(() =>
+        {
+            this.setState({sendState: MessageSendState.recentlyFailed});
+            this.resetStateAfterTimeout(3000);
+        }, 2000);
+    }
+
     sendMessage()
     {
-        this.setState({isSending: true});
+        this.setState({sendState: MessageSendState.sending});
     
         // Send request to AWS service
         fetch(BMStyle.EBAliasUrl,
@@ -85,21 +104,29 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
             {
                 if (response.status == 200)
                 {
-                    //TODO: Replace alerts with more pleasing UI feedback
-                    alert("Message sent successfully!");
                     this.resetForm();
+                    this.setState({sendState: MessageSendState.recentlySent});
+                    this.resetStateAfterTimeout(3000);
                 }
                 else
                 {
                     alert("Error: something went wrong with my mailer server. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
-                    this.setState({isSending: false});
+                    this.setState({sendState: MessageSendState.recentlyFailed});
+                    this.resetStateAfterTimeout(3000);
                 }
             })
             .catch(() =>
             {
                 alert("Error: email server not reachable. Email me the old-fashioned way (click the envelope in the top bar) and let me know what happened.");
-                this.setState({isSending: false});
+                this.setState({sendState: MessageSendState.recentlyFailed});
+                this.resetStateAfterTimeout(3000);
             });
+    }
+
+    // Needed as alternative to sendMessage() in inline conditional for send button
+    nullFunction()
+    {
+        return null;
     }
 
     resetForm()
@@ -109,15 +136,43 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                 name: "",
                 email: "",
                 message: "",
-                isSending: false,
             }
         );
     }
 
+    resetStateAfterTimeout(timeout: number)
+    {
+        setTimeout(() =>
+        {
+            this.setState({sendState: MessageSendState.ready});
+        }, timeout);
+    }
+
     messageIsSendable()
     {
-        return this.state.name !== "" && this.isEmailValid() && this.state.message !== "" && !this.state.isSending;
+        return this.state.name !== "" && this.isEmailValid() && this.state.message !== "" && this.isReady();
     }
+
+    isReady()
+    {
+        return this.state.sendState === MessageSendState.ready;
+    }
+    
+    isSending()
+    {
+        return this.state.sendState === MessageSendState.sending;
+    }
+    
+    hasRecentlySent()
+    {
+        return this.state.sendState === MessageSendState.recentlySent;
+    }
+    
+    hasRecentlyFailed()
+    {
+        return this.state.sendState === MessageSendState.recentlyFailed;
+    }
+
 
     isEmailValid()
     {
@@ -128,6 +183,11 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
     render()
     {
         const isSendable = this.messageIsSendable();
+        const isReady = this.isReady();
+        const isSending = this.isSending();
+        const hasRecentlySent = this.hasRecentlySent();
+        const hasRecentlyFailed = this.hasRecentlyFailed();
+
         return (
             <BMStyle.ThemeContext.Consumer>
                 {theme => (
@@ -189,18 +249,38 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
 
                                         <button
                                             className = "submit_button"
-                                            onClick = {isSendable? this.handleSubmitButtonClicked.bind(this) : (() =>
-                                            {
-                                                return null;
-                                            })}
-                                            style = 
+                                            onClick = {isSendable? this.handleSubmitButtonClicked.bind(this) : this.nullFunction}
+                                            style =
                                                 {{
                                                     width: IsMobileWidth? "100%" : "200px",
-                                                    cursor: isSendable? "pointer" : "auto",
-                                                    backgroundColor: this.state.isSending? theme.colors.UIButtonIndentedColor : (isSendable ? theme.colors.UIMainColor : theme.colors.UIDisabledColor),
+                                                    cursor: isSendable? "pointer" : "auto"
                                                 }}
                                         >
-                                            {language.Send}
+                                            <span className = "submit_button_fill" style =
+                                                {{
+                                                    transition: "background-color 0.5s",
+                                                    backgroundColor: 
+                                                        isSending? theme.colors.UIButtonIndentedColor : 
+                                                            hasRecentlySent? theme.colors.UIMainColor :
+                                                                hasRecentlyFailed? theme.colors.UIFailedColor :
+                                                                    isSendable ? theme.colors.UIMainColor : theme.colors.UIDisabledColor,
+                                                }}>
+                                            </span>
+                                            <span className = "submit_button_load_bar" style =
+                                                {{
+                                                    backgroundColor: theme.colors.UIMainColor,
+                                                    width: isSending || hasRecentlySent? "100%" : "0%",
+                                                    transition: isReady || hasRecentlyFailed? "width 0s" : "width 3s",
+                                                }}>
+                                            </span>
+                                            <span className = "submit_button_text">
+                                                {
+                                                    isReady? language.Send :
+                                                        isSending? language.Sending :
+                                                            hasRecentlySent? language.Sent :
+                                                                hasRecentlyFailed? language.Failed : ""
+                                                }
+                                            </span>
                                         </button>
                                     </div>
                                 )}
