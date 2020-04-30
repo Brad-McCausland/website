@@ -258,7 +258,7 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
                                             onClick = {isSendable? this.handleSubmitButtonClicked.bind(this) : this.nullFunction}
                                             style =
                                                 {{
-                                                    width: IsMobileWidth? "100%" : "200px",
+                                                    width: IsMobileWidth? "100%" : "320px",
                                                     cursor: isSendable? "pointer" : "auto"
                                                 }}
                                         >
