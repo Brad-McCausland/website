@@ -60,13 +60,19 @@ export class ContactWidget extends React.Component<ContactWidgetProps, ContactWi
     handleSubmitButtonClicked(event: React.MouseEvent<HTMLButtonElement, MouseEvent>)
     {
         event.preventDefault();
-        if (window.Cypress)
+        // Submitting the form with the correct strings fakes a failure. Useful for testing.
+        if (this.state.name === "Plain Simple Garak" && this.state.message === "I'm just a humble tailor.")
+        {
+            this.mockFailure();
+        }
+        else if (window.Cypress)
         {
             this.setState({message: "Submit Button Clicked"});
             this.setState({sendState: MessageSendState.sending});
             setTimeout(() =>
             {
-                this.setState({sendState: MessageSendState.ready});
+                this.setState({sendState: MessageSendState.recentlySent});
+                this.resetStateAfterTimeout(3000);
             }, 2000);
         }
         else

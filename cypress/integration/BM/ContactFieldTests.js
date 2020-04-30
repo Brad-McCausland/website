@@ -5,13 +5,13 @@ describe("Test Contact Form", function()
         cy.visit("localhost:8000/");
 
         // Button should be disabled
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(170, 170, 170)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(170, 170, 170)");
 
         // Click button
         cy.get(".contact_widget").find(".submit_button").click();
 
         // Button should still be disabled
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(170, 170, 170)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(170, 170, 170)");
     });
 
     it("Test 'send' button only enabled whan all fields are filled", function()
@@ -19,11 +19,11 @@ describe("Test Contact Form", function()
         cy.visit("localhost:8000/");
 
         cy.get(".contact_widget").find(".name_field").type("Name");
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(170, 170, 170)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(170, 170, 170)");
         cy.get(".contact_widget").find(".email_field").type("Test@email.com");
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(170, 170, 170)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(170, 170, 170)");
         cy.get(".contact_widget").find(".message_field").type("Message");
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(255, 160, 0)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(255, 160, 0)");
     });
 
     it("Test button is disabled after returning to unsendable state", function()
@@ -33,22 +33,22 @@ describe("Test Contact Form", function()
         cy.get(".contact_widget").find(".name_field").type("Name");
         cy.get(".contact_widget").find(".email_field").type("Test@email.com");
         cy.get(".contact_widget").find(".message_field").type("Message");
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(255, 160, 0)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(255, 160, 0)");
 
         cy.get(".contact_widget").find(".message_field").clear();
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(170, 170, 170)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(170, 170, 170)");
         cy.get(".contact_widget").find(".message_field").type("Message");
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(255, 160, 0)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(255, 160, 0)");
 
         cy.get(".contact_widget").find(".email_field").clear();
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(170, 170, 170)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(170, 170, 170)");
         cy.get(".contact_widget").find(".email_field").type("Test@email.com");
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(255, 160, 0)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(255, 160, 0)");
 
         cy.get(".contact_widget").find(".name_field").clear();
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(170, 170, 170)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(170, 170, 170)");
         cy.get(".contact_widget").find(".name_field").type("Name");
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(255, 160, 0)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(255, 160, 0)");
 
     });
 
@@ -60,12 +60,12 @@ describe("Test Contact Form", function()
         cy.get(".contact_widget").find(".name_field").type("Name");
         cy.get(".contact_widget").find(".email_field").type("Test@email.com");
         cy.get(".contact_widget").find(".message_field").type("Message");
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(255, 160, 0)").click();
+        cy.get(".contact_widget").find(".submit_button").click();
 
         cy.get(".contact_widget").find(".message_field").contains("Submit Button Clicked");
     });
 
-    it("Test button changes to darker color when clicked", function()
+    it("Test button text changes from send to sending when clicked, from sending to sent! on success, and from sent! back to send after a timeout", function()
     {
         cy.visit("localhost:8000/");
 
@@ -73,10 +73,37 @@ describe("Test Contact Form", function()
         cy.get(".contact_widget").find(".email_field").type("Test@email.com");
         cy.get(".contact_widget").find(".message_field").type("Message");
 
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(255, 160, 0)").then(($button) =>
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_text").should("have.text", "SEND");
+
+        cy.get(".contact_widget").find(".submit_button").then(($button) =>
         {
             $button.click();
-            expect($button).to.have.css("background-color", "rgb(224, 109, 0)");
+            cy.get(".contact_widget").find(".submit_button").find(".submit_button_text").should("have.text", "SENDING");
+            cy.wait(3000);
+            cy.get(".contact_widget").find(".submit_button").find(".submit_button_text").should("have.text", "SENT!");
+            cy.wait(3000);
+            cy.get(".contact_widget").find(".submit_button").find(".submit_button_text").should("have.text", "SEND");
+        });
+    });
+
+    it("Test button's text changes when a failure is suffered", function()
+    {
+        cy.visit("localhost:8000/");
+
+        cy.get(".contact_widget").find(".name_field").type("Plain Simple Garak");
+        cy.get(".contact_widget").find(".email_field").type("Test@email.com");
+        cy.get(".contact_widget").find(".message_field").type("I'm just a humble tailor.");
+
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_text").should("have.text", "SEND");
+
+        cy.get(".contact_widget").find(".submit_button").then(($button) =>
+        {
+            $button.click();
+            cy.get(".contact_widget").find(".submit_button").find(".submit_button_text").should("have.text", "SENDING");
+            cy.wait(3000);
+            cy.get(".contact_widget").find(".submit_button").find(".submit_button_text").should("have.text", "FAILED");
+            cy.wait(3000);
+            cy.get(".contact_widget").find(".submit_button").find(".submit_button_text").should("have.text", "SEND");
         });
     });
 
@@ -126,14 +153,14 @@ describe("Test Contact Form", function()
         {
             cy.get(".contact_widget").find(".email_field").clear();
             cy.get(".contact_widget").find(".email_field").type(address);
-            cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(255, 160, 0)");
+            cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(255, 160, 0)");
         }
 
         for (let address of invalidEmails)
         {
             cy.get(".contact_widget").find(".email_field").clear();
             cy.get(".contact_widget").find(".email_field").type(address);
-            cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(170, 170, 170)");
+            cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(170, 170, 170)");
         }
     });
 
@@ -144,12 +171,12 @@ describe("Test Contact Form", function()
         cy.get(".contact_widget").find(".name_field").type("Name");
         cy.get(".contact_widget").find(".email_field").type("Test@example.com");
         cy.get(".contact_widget").find(".message_field").type("Message");
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(255, 160, 0)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(255, 160, 0)");
         
         cy.get(".contact_widget").find(".email_field").type("{backspace}{backspace}{backspace}");
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(170, 170, 170)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(170, 170, 170)");
 
         cy.get(".contact_widget").find(".email_field").type("com");
-        cy.get(".contact_widget").find(".submit_button").should("have.css", "background-color", "rgb(255, 160, 0)");
+        cy.get(".contact_widget").find(".submit_button").find(".submit_button_fill").should("have.css", "background-color", "rgb(255, 160, 0)");
     });
 });
