@@ -50,6 +50,11 @@ export class BMWebPage extends React.Component<BMWebPageProps, BMWebPageState>
         window.addEventListener("resize", this.handleWindowResize.bind(this), true);
     }
 
+    componentWillUnmount()
+    {
+        window.removeEventListener("resize", this.handleWindowResize.bind(this), true);
+    }
+
     handleWindowResize()
     {
         this.setState({isMobileWidth: this.isMobileWidth()})

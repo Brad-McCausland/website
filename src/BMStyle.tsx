@@ -34,6 +34,8 @@ export interface BMThemeContextInterface
     {
         HeroImage: string,
         HeroImageThumbnail: string,
+        BlogHeroImage: string,
+        BlogHeroImageThumbnail: string,
         DeveloperPortrait: string,
         DeveloperPortraitThumbnail: string,
         EducatorPortrait: string,
@@ -151,6 +153,8 @@ export class BMStyle
         {
             HeroImage: "./src/images/hero_light.png",
             HeroImageThumbnail: "./src/images/hero_light_thumbnail.png",
+            BlogHeroImage: "./src/images/blog_hero_1.png",
+            BlogHeroImageThumbnail: "./src/images/blog_hero_1_thumbnail.png",
             DeveloperPortrait: "./src/images/portrait_light.png",
             DeveloperPortraitThumbnail: "./src/images/portrait_light_thumbnail.png",
             EducatorPortrait: "./src/images/educator_light.png",
@@ -185,6 +189,8 @@ export class BMStyle
         {
             HeroImage: "./src/images/hero_dark.png",
             HeroImageThumbnail: "./src/images/hero_dark_thumbnail.png",
+            BlogHeroImage: "./src/images/blog_hero_dark.png",
+            BlogHeroImageThumbnail: "./src/images/blog_hero_dark_thumbnail.png",
             DeveloperPortrait: "./src/images/portrait_dark.png",
             DeveloperPortraitThumbnail: "./src/images/portrait_dark_thumbnail.png",
             EducatorPortrait: "./src/images/educator_dark.png",

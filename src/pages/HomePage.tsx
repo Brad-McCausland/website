@@ -23,10 +23,6 @@ interface HomePageProps
 
 }
 
-/* TODO:
- * Get more photos
- */
-
 // State defines all private properties
 interface HomePageState
 {
