@@ -60,18 +60,34 @@ export class BlogHomePage extends React.Component<BlogHomePageProps, BlogHomePag
                     {theme => (
                         <BMStyle.LanguageContext.Consumer>
                             {language => (
-                                <div className = "blog_home_page">
-                                    <div className = "hero_image">
-                                        <SmartImg fullUrl = {theme.images.BlogHeroImage} thumbnailUrl = {theme.images.BlogHeroImageThumbnail}/>
-                                    </div>
-                                    <div 
-                                        className = "dev_spacing_element"
-                                        style = 
-                                        {{
-                                            height: "1000px",
-                                        }}>
-                                    </div>
-                                </div>
+                                <BMStyle.StateContext.Consumer>
+                                    {({IsMobileWidth}) => (
+                                        <div className = "blog_home_page">
+                                            <div className = "hero_image">
+                                                <SmartImg fullUrl = {theme.images.BlogHeroImage} thumbnailUrl = {theme.images.BlogHeroImageThumbnail}/>
+                                            </div>
+                                            <ReactFitText compressor={1.1} maxFontSize={128}>
+                                                <h1
+                                                    className = "blog_title"
+                                                    style = {{color: theme.colors.BodyTextColor}}
+                                                >
+                                                    <i>
+                                                        {language.Blog}
+                                                    </i>
+                                                </h1>
+                                            </ReactFitText>
+                                            <div 
+                                                className = "blog_entries"
+                                                style = 
+                                                {{
+                                                    margin: IsMobileWidth? "100px 10px" : "100px 10vw",
+                                                    backgroundColor: theme.colors.ContactBackgroundColor,
+                                                }}>
+                                            </div>
+                                            <div className = "spacer"/>
+                                        </div>
+                                    )}
+                                </BMStyle.StateContext.Consumer>
                             )}
                         </BMStyle.LanguageContext.Consumer>
                     )}

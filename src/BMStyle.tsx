@@ -64,6 +64,7 @@ export interface BMLanguageContextInterface
     Sending: string,
     Sent: string,
     Failed: string,
+    Blog: string;
     DeveloperParagraph: string
     EducatorParagraph: string,
     TravellerParagraph: string,
@@ -153,8 +154,8 @@ export class BMStyle
         {
             HeroImage: "./src/images/hero_light.png",
             HeroImageThumbnail: "./src/images/hero_light_thumbnail.png",
-            BlogHeroImage: "./src/images/blog_hero_1.png",
-            BlogHeroImageThumbnail: "./src/images/blog_hero_1_thumbnail.png",
+            BlogHeroImage: "./src/images/blog_hero_2.png",
+            BlogHeroImageThumbnail: "./src/images/blog_hero_2_thumbnail.png",
             DeveloperPortrait: "./src/images/portrait_light.png",
             DeveloperPortraitThumbnail: "./src/images/portrait_light_thumbnail.png",
             EducatorPortrait: "./src/images/educator_light.png",
@@ -217,6 +218,7 @@ export class BMStyle
         Sending: "SENDING",
         Sent: "SENT!",
         Failed: "FAILED",
+        Blog: "BLOG",
         DeveloperParagraph: "I'm a Seattle-based software developer with 2.5 years experience in iOS development, and I like to build cool stuff. Any language, stack, or framework. Front-end or back-end. I enjoy building robust applications with an emphasis on secure design and extensibility, especially when working towards a social good. See my resume for more, or check out my blog to see what I've been working on.",
         EducatorParagraph:  "Studying computer science has opened up a world of opportunities to me, and I owe a great deal to the educators who helped me take the first steps into the field. To give back, I've volunteered with a number of educational organizations including ACM mentors, Microsoft TEALS, and Hour of Code over the years, to help expose students to the field and to practice my communication skills.",
         TravellerParagraph: "Mark Twain once said: \"Travel is fatal to prejudice, bigotry, and narrow-mindedness, and many of our people need it sorely on these accounts. Broad, wholesome, charitable views of men and things cannot be acquired by vegetating in one little corner of the earth all one's lifetime.\" I love to travel, and can speak a bit of German!",  
@@ -244,6 +246,7 @@ export class BMStyle
         Sending: "LAUFEN",
         Sent: "GESENDET!",
         Failed: "FEHLGESCHLAGT",
+        Blog: "BLOG",
         DeveloperParagraph: "Ich bin Softwareentwickler aus Seattle mit 2,5 Jahre in der iOS-Entwicklung, und ich mag cooles Sachen zu bauen. Jede Sprache, Stack, oder Framework. Frontend oder Backend. Ich baue gern robuste Anwendungen mit Schwerpunkt auf Datenschutz und Erweiterbarkeit, besonders wenn Ich für dem Allgemeinwohl Arbeite. Sehen Sie sich meinen Lebenslauf an, um mehr zu sehen. Oder Schauen Sie meinen Blog an, um Einige meiner Projekten zu sehen.",
         EducatorParagraph:  "Das Studium der Computerwissenschaft hat mir viele Chancen eröffnet, und ich schulde die Erzieher viel, die mir geholfen haben, um die ersten Schritte auf dieser Studienrichtung zu machen. Um etwas zurückzugeben, habe ich mich freiwillig bei viele Bildungsorganisationen, darunter ACM Mentoren, Microsoft TEALS, und Hour of Code gemeldet, um den Schülern in der Studienrichtung zu einführen und meine Kommunikationsfähigkeiten zu üben.",
         TravellerParagraph: "Mark Twain hat gesagt: \"Reisen ist tödlich für Vorurteile, Bigotterie und Engstirnigkeit, und viele unserer Leute brauchen es an diesen Gründen schlecht. Breite, gesunde, und freigebige Meinungen zu Menschen und Dingen kann man durch vegetieren in ihrer Ecke der Welt nicht erhalten.\" Ich reise sehr gern, und Ich kann auch ein bisschen Deutsch sprechen!",
