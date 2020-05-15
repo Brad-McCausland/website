@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { BMStyle } from "../BMStyle";
-import { Linkify } from "../utils/Linkify";
+import { BlogEntryCell } from "../components/BlogEntryCell"
 import { BMWebPage } from "./BMWebPage";
 import { SmartImg } from "../components/SmartImg";
 import ReactFitText = require("react-fittext");
@@ -82,7 +82,14 @@ export class BlogHomePage extends React.Component<BlogHomePageProps, BlogHomePag
                                                 {{
                                                     margin: IsMobileWidth? "100px 10px" : "100px 10vw",
                                                     backgroundColor: theme.colors.ContactBackgroundColor,
-                                                }}>
+                                                }}
+                                            >
+                                                {/*TODO: Load entries from server and display them all*/}
+                                                <BlogEntryCell
+                                                    image = "./src/images/blog_post_example_img.png"
+                                                    title = "Sample Blog Entry"
+                                                    date = "5/14/2020"
+                                                />
                                             </div>
                                             <div className = "spacer"/>
                                         </div>

@@ -1,0 +1,34 @@
+@import "../BMStyle";
+
+.blog_entry_cell
+{
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    height: 150px;
+
+    .blog_entry_img
+    {
+        height: 100%;
+    }
+
+    .blog_entry_text_elements
+    {
+        flex-direction: column;
+        width: 100%;
+        padding: 8px;
+
+        .blog_entry_title
+        {
+            margin-top: 0px;
+            margin-bottom: 8px;
+            font-family: @UITitleFont;
+        }
+
+        .blog_entry_date
+        {
+            margin-bottom: 0px;
+            font-family: @UITitleFont;
+        }
+    }
+}
