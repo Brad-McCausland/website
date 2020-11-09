@@ -94,8 +94,8 @@ export class BMStyle
 
     // Links
     static LinkedInUrl = "https://www.linkedin.com/in/bradleymccausland/";
-    static GithubUrl = "https://github.com/bmcc0605";
-    static WebsiteGithubUrl = "https://github.com/bmcc0605/website";
+    static GithubUrl = "https://github.com/Brad-McCausland";
+    static WebsiteGithubUrl = "https://github.com/Brad-McCausland/website";
     static MailToUrl = "mailto:me@bradmccausland.com";
     static ResumeUrl = "https://docs.google.com/document/d/1UWA_gICEeT514HkZNR6tndVaD0Rk5an_CdJFNumni_M/edit?usp=sharing"
 

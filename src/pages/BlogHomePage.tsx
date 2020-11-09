@@ -85,11 +85,12 @@ export class BlogHomePage extends React.Component<BlogHomePageProps, BlogHomePag
                                                 }}
                                             >
                                                 {/*TODO: Load entries from server and display them all*/}
+                                                {/*
                                                 <BlogEntryCell
                                                     image = "./src/images/blog_post_example_img.png"
                                                     title = "Sample Blog Entry"
                                                     date = "5/14/2020"
-                                                />
+                                                />*/}
                                             </div>
                                             <div className = "spacer"/>
                                         </div>
